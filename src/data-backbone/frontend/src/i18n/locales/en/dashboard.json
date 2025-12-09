@@ -1,8 +1,26 @@
 {
   "title": "Dashboard",
+  "subtitle": "Overview of your sales pipeline and activity",
   "greeting": "Good morning, {{name}}. Here's your pipeline overview.",
   "pipelineTitle": "Pipeline",
   "pipelineSubtitle": "Manage your sales pipeline and track deal progress.",
+  "metrics": {
+    "companies": "Companies",
+    "contacts": "Contacts",
+    "openDeals": "Open Deals",
+    "signals": "Unread Signals",
+    "meetings": "Meetings",
+    "wonDeals": "Won Deals"
+  },
+  "pipelineValue": "Pipeline Value",
+  "wonRevenue": "Won Revenue",
+  "weighted": "Weighted",
+  "dealsClosed": "deals closed",
+  "pipelineStages": "Pipeline Stages",
+  "deals": "deals",
+  "noPipelineData": "No pipeline data available",
+  "recentActivity": "Recent Activity",
+  "noActivity": "No recent activity",
   "searchCompanies": {
     "title": "Search Companies",
     "placeholder": "e.g., 'HR companies in Austin' or 'tech companies in San Francisco'",

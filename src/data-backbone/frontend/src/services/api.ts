@@ -484,6 +484,273 @@ class ApiClient {
       }),
     });
   }
+
+  // ============================================================================
+  // NEW DATA API ENDPOINTS (with synthetic data)
+  // ============================================================================
+
+  async getDashboardMetrics(): Promise<{
+    companies: number;
+    contacts: number;
+    open_deals: number;
+    pipeline_value: number;
+    unread_signals: number;
+    upcoming_meetings: number;
+    won_deals: number;
+    won_value: number;
+    activity_counts: Record<string, number>;
+    currency: string;
+  }> {
+    return this.fetch('/api/dashboard/metrics');
+  }
+
+  async getActivityFeed(limit: number = 20): Promise<{
+    activities: Array<{
+      id: string;
+      type: string;
+      subject: string;
+      description: string;
+      performed_by: string;
+      performed_at: string;
+      deal_name: string;
+      company_name: string;
+    }>;
+  }> {
+    return this.fetch(`/api/dashboard/activity-feed?limit=${limit}`);
+  }
+
+  async getCompaniesData(params?: {
+    industry?: string;
+    country?: string;
+    size?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    companies: Array<{
+      id: string;
+      name: string;
+      industry: string;
+      size: string;
+      country: string;
+      region: string;
+      employee_count: number;
+      annual_revenue: number;
+      health_score: number;
+      engagement_score: number;
+      icp_fit_score: number;
+      contact_count: number;
+      deal_count: number;
+    }>;
+    total: number;
+  }> {
+    const searchParams = new URLSearchParams();
+    if (params?.industry) searchParams.append('industry', params.industry);
+    if (params?.country) searchParams.append('country', params.country);
+    if (params?.size) searchParams.append('size', params.size);
+    if (params?.limit) searchParams.append('limit', params.limit.toString());
+    if (params?.offset) searchParams.append('offset', params.offset.toString());
+    const query = searchParams.toString();
+    return this.fetch(`/api/companies${query ? '?' + query : ''}`);
+  }
+
+  async getCompanyDetails(companyId: string): Promise<{
+    id: string;
+    name: string;
+    industry: string;
+    contacts: Array<{
+      id: string;
+      full_name: string;
+      job_title: string;
+      email: string;
+      seniority: string;
+    }>;
+    deals: Array<{
+      id: string;
+      name: string;
+      stage: string;
+      value: number;
+    }>;
+    signals: Array<{
+      id: string;
+      title: string;
+      type: string;
+      impact: string;
+    }>;
+  }> {
+    return this.fetch(`/api/companies/${encodeURIComponent(companyId)}`);
+  }
+
+  async getContactsData(params?: {
+    company_id?: string;
+    seniority?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    contacts: Array<{
+      id: string;
+      full_name: string;
+      email: string;
+      job_title: string;
+      seniority: string;
+      department: string;
+      company_name: string;
+      company_id: string;
+      engagement_score: number;
+    }>;
+    total: number;
+  }> {
+    const searchParams = new URLSearchParams();
+    if (params?.company_id) searchParams.append('company_id', params.company_id);
+    if (params?.seniority) searchParams.append('seniority', params.seniority);
+    if (params?.limit) searchParams.append('limit', params.limit.toString());
+    if (params?.offset) searchParams.append('offset', params.offset.toString());
+    const query = searchParams.toString();
+    return this.fetch(`/api/contacts${query ? '?' + query : ''}`);
+  }
+
+  async getDealsData(params?: {
+    stage?: string;
+    company_id?: string;
+    owner?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    deals: Array<{
+      id: string;
+      name: string;
+      stage: string;
+      value: number;
+      probability: number;
+      product: string;
+      owner: string;
+      company_name: string;
+      company_id: string;
+      expected_close_date: string;
+      created_at: string;
+    }>;
+    total: number;
+  }> {
+    const searchParams = new URLSearchParams();
+    if (params?.stage) searchParams.append('stage', params.stage);
+    if (params?.company_id) searchParams.append('company_id', params.company_id);
+    if (params?.owner) searchParams.append('owner', params.owner);
+    if (params?.limit) searchParams.append('limit', params.limit.toString());
+    if (params?.offset) searchParams.append('offset', params.offset.toString());
+    const query = searchParams.toString();
+    return this.fetch(`/api/deals${query ? '?' + query : ''}`);
+  }
+
+  async getPipelineStats(): Promise<{
+    stages: Array<{
+      stage: string;
+      count: number;
+      value: number;
+    }>;
+    total_count: number;
+    total_value: number;
+    weighted_value: number;
+    currency: string;
+  }> {
+    return this.fetch('/api/deals/pipeline-stats');
+  }
+
+  async getDealDetails(dealId: string): Promise<{
+    id: string;
+    name: string;
+    stage: string;
+    value: number;
+    company: {
+      id: string;
+      name: string;
+    };
+    primary_contact?: {
+      id: string;
+      full_name: string;
+    };
+    activities: Array<{
+      id: string;
+      type: string;
+      subject: string;
+      performed_at: string;
+    }>;
+  }> {
+    return this.fetch(`/api/deals/${encodeURIComponent(dealId)}`);
+  }
+
+  async getSignalsData(params?: {
+    signal_type?: string;
+    impact?: string;
+    company_id?: string;
+    is_read?: boolean;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    signals: Array<{
+      id: string;
+      title: string;
+      description: string;
+      type: string;
+      category: string;
+      impact: string;
+      company_name: string;
+      company_id: string;
+      detected_at: string;
+      is_read: boolean;
+      confidence_score: number;
+    }>;
+    total: number;
+  }> {
+    const searchParams = new URLSearchParams();
+    if (params?.signal_type) searchParams.append('signal_type', params.signal_type);
+    if (params?.impact) searchParams.append('impact', params.impact);
+    if (params?.company_id) searchParams.append('company_id', params.company_id);
+    if (params?.is_read !== undefined) searchParams.append('is_read', params.is_read.toString());
+    if (params?.limit) searchParams.append('limit', params.limit.toString());
+    if (params?.offset) searchParams.append('offset', params.offset.toString());
+    const query = searchParams.toString();
+    return this.fetch(`/api/signals${query ? '?' + query : ''}`);
+  }
+
+  async getSignalsSummary(): Promise<{
+    total: number;
+    unread: number;
+    by_type: Record<string, number>;
+    by_impact: Record<string, number>;
+  }> {
+    return this.fetch('/api/signals/summary');
+  }
+
+  async getMeetingsData(upcoming_only: boolean = true, limit: number = 20): Promise<{
+    meetings: Array<{
+      id: string;
+      title: string;
+      start_time: string;
+      end_time: string;
+      location: string;
+      company_name: string;
+      company_id: string;
+      deal_name?: string;
+      prep_status: string;
+      attendees: Array<{
+        id: string;
+        name: string;
+        email: string;
+      }>;
+    }>;
+    total: number;
+  }> {
+    return this.fetch(`/api/meetings?upcoming_only=${upcoming_only}&limit=${limit}`);
+  }
+
+  async searchData(q: string, entity_type?: string): Promise<{
+    companies: Array<{ id: string; name: string; industry: string }>;
+    contacts: Array<{ id: string; full_name: string; job_title: string; company_name: string }>;
+    deals: Array<{ id: string; name: string; stage: string; company_name: string }>;
+  }> {
+    const searchParams = new URLSearchParams({ q });
+    if (entity_type) searchParams.append('entity_type', entity_type);
+    return this.fetch(`/api/search?${searchParams.toString()}`);
+  }
 }
 
 export const api = new ApiClient();

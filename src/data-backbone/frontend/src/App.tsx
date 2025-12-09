@@ -6,6 +6,7 @@ import PeopleList from './components/PeopleList'
 import Search from './components/Search'
 import Login from './components/Login'
 import DarkModeToggle from './components/DarkModeToggle'
+import Dashboard from './components/Dashboard'
 import { LeadsDashboard } from './components/leads'
 import { BowtieDashboard } from './components/bowtie'
 import { OutreachSequences } from './components/outreach'
@@ -92,94 +93,7 @@ function App() {
   const renderPageContent = () => {
     switch (currentPage) {
       case 'dashboard':
-        return (
-          <div>
-            <div className="page-header">
-              <div>
-                <h1 className="page-title">{t('common:navigation.dashboard')}</h1>
-                <p className="page-subtitle">{t('dashboard:greeting', { name: 'Hugo' })}</p>
-              </div>
-              <div className="page-actions">
-                <DarkModeToggle />
-              </div>
-            </div>
-            <BowtieDashboard />
-
-            {/* Search Companies Block */}
-            <div className="card" style={{ marginTop: '24px' }}>
-              <div className="card-header">
-                <h3 className="card-title">{t('dashboard:searchPlaceholder')}</h3>
-              </div>
-              <div className="card-content">
-                <div className="input-wrapper" style={{ marginBottom: '16px' }}>
-                  <input
-                    type="text"
-                    className="input"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="e.g., 'HR companies in Austin' or 'tech companies in San Francisco'"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter' && !ingesting) {
-                        handleIngest()
-                      }
-                    }}
-                  />
-                </div>
-
-                <div style={{ display: 'flex', gap: '24px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={useGoogle}
-                      onChange={(e) => setUseGoogle(e.target.checked)}
-                      disabled={ingesting}
-                    />
-                    <span className="text-body-sm">Google Places</span>
-                  </label>
-
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={useHunter}
-                      onChange={(e) => setUseHunter(e.target.checked)}
-                      disabled={ingesting || !useGoogle}
-                    />
-                    <span className="text-body-sm">Hunter.io (enrich with people)</span>
-                  </label>
-
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span className="text-body-sm">Limit:</span>
-                    <input
-                      type="number"
-                      min="1"
-                      max="50"
-                      value={limit}
-                      onChange={(e) => setLimit(parseInt(e.target.value) || 10)}
-                      disabled={ingesting}
-                      className="input"
-                      style={{ width: '80px' }}
-                    />
-                  </label>
-                </div>
-
-                <button
-                  className={`btn ${ingesting || !searchQuery.trim() || !useGoogle ? 'btn-secondary' : 'btn-primary'}`}
-                  onClick={handleIngest}
-                  disabled={ingesting || !searchQuery.trim() || !useGoogle}
-                  style={{ width: '100%' }}
-                >
-                  {ingesting ? t('common:status.loading') : 'Load Companies'}
-                </button>
-
-                {ingestStatus && (
-                  <div className={`badge ${ingestStatus.includes('Success') || ingestStatus.includes('Loaded') ? 'badge-green' : ingestStatus.includes('Error') ? 'badge-red' : 'badge-amber'}`} style={{ marginTop: '16px', display: 'block', textAlign: 'center', padding: '12px' }}>
-                    {ingestStatus}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )
+        return <Dashboard />
 
       case 'pipeline':
         return (

@@ -24,8 +24,10 @@ app = FastAPI(title="Graph Query API", version="0.4.0")  # bumped for thought le
 # Include API routers
 from atlas.api.routers.connectors import router as connectors_router
 from atlas.api.routers.thought_leadership import router as thought_leadership_router
+from atlas.api.routers.data import router as data_router
 app.include_router(connectors_router)
 app.include_router(thought_leadership_router)
+app.include_router(data_router)
 
 QDRANT_COLLECTION = "atlas_entities"
 
