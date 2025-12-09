@@ -1,4 +1,4 @@
-# iBood Sales Intelligence Platform
+# AI-KIP Sales Intelligence Platform
 
 First version of the sales intelligence platform - created for small partners up to 10 sales people.
 
