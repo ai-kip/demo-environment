@@ -207,4 +207,4 @@ MIT
 
 ## Support
 
-Contact: support@ibood.com
+Contact: michael@ai-kip.com
