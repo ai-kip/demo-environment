@@ -2,7 +2,9 @@
 
 ## Executive Summary
 
-This plan outlines the fastest path to achieving feature parity with Outreach.io using best-in-class third-party tools. Total estimated timeline: **12-16 weeks** with recommended vendor stack costing approximately **$500-1,500/month** at startup scale.
+This plan outlines the fastest path to achieving feature parity with Outreach.io using **European-based, GDPR-compliant third-party tools**. Total estimated timeline: **12-16 weeks** with recommended vendor stack costing approximately **€800-1,800/month** at startup scale.
+
+**Key Principle:** All third-party vendors are European companies or offer EU data residency to ensure full GDPR compliance and data sovereignty.
 
 ---
 
@@ -17,19 +19,18 @@ This plan outlines the fastest path to achieving feature parity with Outreach.io
 | API | FastAPI | ✅ Production |
 | Frontend | React 19 + Vite | ✅ Production |
 
-### Recommended Third-Party Integrations
+### Recommended European Third-Party Integrations
 
-| Category | Recommended Tool | Alternative | Monthly Cost | Why |
-|----------|-----------------|-------------|--------------|-----|
-| **Email Sending** | [Instantly](https://instantly.ai) | Smartlead | $97-197 | Built for cold outreach, unlimited accounts, warmup included |
-| **Transactional Email** | [Postmark](https://postmarkapp.com) | SendGrid | $15-50 | 93.8% deliverability, best for notifications |
-| **AI/LLM** | Claude API (Anthropic) | OpenAI GPT-4 | $50-200 | Already integrated, excellent for sales content |
-| **Call Dialer** | [Aircall](https://aircall.io) | Twilio Flex | $40/user | Power dialer, CRM sync, call recording |
-| **Transcription** | [AssemblyAI](https://assemblyai.com) | Deepgram | $0.15/hr | Sentiment analysis included, 99 languages |
-| **Calendar/Scheduling** | [Cal.com](https://cal.com) | Calendly API | Free-$15 | Open source, self-hostable, full API |
-| **Workflow Automation** | [n8n](https://n8n.io) | Zapier | Free (self-host) | Self-hosted, unlimited workflows |
-| **Data Enrichment** | [Apollo.io](https://apollo.io) | Clearbit | $49/user | Already have connector, best value |
-| **CRM Sync** | Native + n8n | Workato | Free | Custom bidirectional sync |
+| Category | Recommended Tool | HQ | Alternative | Monthly Cost | Why |
+|----------|-----------------|-----|-------------|--------------|-----|
+| **Email Sending** | [lemlist](https://lemlist.com) | 🇫🇷 France | Woodpecker (🇵🇱) | €69-99/user | French company, GDPR built-in, cold email + LinkedIn automation |
+| **AI/LLM** | [Mistral AI](https://mistral.ai) | 🇫🇷 France | Claude via EU router | €50-200 | French AI company, EU data residency, no US CLOUD Act |
+| **Call Dialer** | [Aircall](https://aircall.io) | 🇫🇷 France | CloudTalk (🇸🇰) | €40/user | French-founded, EU data centers, power dialer |
+| **Transcription** | [Gladia](https://gladia.io) | 🇫🇷 France | SpeechText.AI | €0.15/hr | French company, EU-hosted, 100+ languages |
+| **Calendar/Scheduling** | [Zeeg](https://zeeg.me) | 🇩🇪 Germany | Meetergo (🇩🇪) | €0-15 | German company, EU servers only |
+| **Workflow Automation** | [n8n](https://n8n.io) | 🇩🇪 Germany | Make (🇨🇿) | Free (self-host) | Berlin-based, self-hosted, unlimited workflows |
+| **Data Enrichment** | [Cognism](https://cognism.com) | 🇬🇧 UK | Dealfront (🇩🇪/🇫🇮) | €125/user | UK company, EMEA data leader, GDPR-compliant DB |
+| **CRM Sync** | Native + n8n | 🇩🇪 | - | Free | Custom bidirectional sync |
 
 ---
 
@@ -38,22 +39,29 @@ This plan outlines the fastest path to achieving feature parity with Outreach.io
 ### Goal
 Enable actual email sending with tracking, warmup, and deliverability management.
 
-### Approach: Integrate Instantly.ai API
+### Approach: Integrate lemlist API
 
-**Why Instantly over building custom:**
+**Why lemlist (French company):**
+- Headquarters in Paris, France - full EU jurisdiction
+- Built-in GDPR compliance with consent tracking
 - Handles email warmup automatically (critical for deliverability)
-- Manages multiple sending accounts
-- Built-in bounce/complaint handling
+- Multichannel: Email + LinkedIn + calls in one platform
+- 600M+ verified contact database
 - API + webhooks for full automation
-- $97/month vs 3-4 weeks of custom development
+- €69-99/user/month
+
+**Alternative: [Woodpecker](https://woodpecker.co) (Poland)**
+- Polish company, EU-based
+- Cold email focused, €49/user/month
+- Excellent deliverability tools
 
 ### Implementation Steps
 
 ```
-Week 1: Instantly Integration
-├── Create InstantlyConnector in /atlas/connectors/instantly/
-├── Implement campaign CRUD via Instantly API
-├── Map sequence steps to Instantly campaigns
+Week 1: lemlist Integration
+├── Create LemlistConnector in /atlas/connectors/lemlist/
+├── Implement campaign CRUD via lemlist API
+├── Map sequence steps to lemlist campaigns
 ├── Add webhook endpoint for email events (open/click/reply/bounce)
 └── Store events in Neo4j linked to prospects
 
@@ -65,7 +73,7 @@ Week 2: Sequence Execution Engine
 └── Create execution dashboard in frontend
 
 Week 3: Tracking & Analytics
-├── Process Instantly webhooks in real-time
+├── Process lemlist webhooks in real-time
 ├── Update prospect engagement scores
 ├── Build email analytics dashboard
 ├── Add sequence performance metrics
@@ -77,28 +85,36 @@ Week 3: Tracking & Analytics
 POST /api/sequences/{id}/execute      # Start sequence execution
 POST /api/sequences/{id}/pause        # Pause running sequence
 GET  /api/sequences/{id}/analytics    # Get performance metrics
-POST /api/webhooks/instantly          # Receive email events
+POST /api/webhooks/lemlist            # Receive email events
 GET  /api/emails/{id}/tracking        # Get email tracking data
 ```
 
 ### Estimated Cost
-- Instantly Growth: $97/month (unlimited accounts, 5,000 leads)
-- Postmark (transactional): $15/month
+- lemlist Email Pro: €69/user/month (per seat)
+- lemlist Multichannel: €99/user/month (email + LinkedIn)
 
 ---
 
 ## Phase 2: AI Sales Agent (Weeks 4-6)
 
 ### Goal
-Automate research, personalization, and follow-up recommendations using Claude API.
+Automate research, personalization, and follow-up recommendations using European AI.
 
-### Approach: Build AI Agent Layer with Claude
+### Approach: Build AI Agent Layer with Mistral AI
 
-**Why Claude:**
-- Already integrated in your stack
-- Excellent at sales writing with proper context
-- 200K context window for rich prospect data
-- Safer outputs (less hallucination)
+**Why Mistral AI (French company):**
+- Headquarters in Paris, France - full EU jurisdiction
+- Not subject to US CLOUD Act
+- Data processed exclusively on European infrastructure
+- Excellent performance at competitive pricing
+- Open-weight models available for self-hosting
+- €0.40/M input tokens, €2/M output tokens (Medium 3)
+
+**Alternative: Claude API via [Requesty EU](https://requesty.ai/eu)**
+- Frankfurt-based AI router
+- Zero data egress from EU borders
+- GDPR Article 44 compliant
+- Access to Claude/GPT through EU proxy
 
 ### Implementation Steps
 
@@ -128,23 +144,30 @@ Week 6: Smart Recommendations
 ### Example Agent Architecture
 ```python
 # /atlas/services/ai_agent/research_agent.py
+from mistralai.client import MistralClient
+
 class ResearchAgent:
+    def __init__(self):
+        self.mistral = MistralClient(api_key=os.getenv("MISTRAL_API_KEY"))
+
     async def research_prospect(self, prospect_id: str) -> ResearchResult:
         # 1. Gather data from multiple sources
-        company_data = await self.apollo.enrich_company(domain)
+        company_data = await self.cognism.enrich_company(domain)
         linkedin_data = await self.linkedin.get_profile(url)
         news = await self.web_search(f"{company_name} news")
 
-        # 2. Send to Claude for synthesis
-        research = await self.claude.analyze(
-            system="You are a B2B sales research analyst...",
-            context={company_data, linkedin_data, news},
-            task="Create a comprehensive prospect brief"
+        # 2. Send to Mistral for synthesis
+        response = self.mistral.chat(
+            model="mistral-medium-latest",
+            messages=[
+                {"role": "system", "content": "You are a B2B sales research analyst..."},
+                {"role": "user", "content": f"Create a comprehensive prospect brief: {context}"}
+            ]
         )
 
         # 3. Store structured output
-        await self.neo4j.save_research(prospect_id, research)
-        return research
+        await self.neo4j.save_research(prospect_id, response)
+        return response
 ```
 
 ### API Endpoints to Add
@@ -157,7 +180,8 @@ POST /api/ai/analyze/sentiment            # Analyze reply sentiment
 ```
 
 ### Estimated Cost
-- Claude API: ~$50-150/month (depending on volume)
+- Mistral API: ~€50-150/month (depending on volume)
+- Alternative: Requesty EU proxy ~€100-200/month
 
 ---
 
@@ -168,12 +192,20 @@ Real-time two-way sync with Salesforce and HubSpot.
 
 ### Approach: n8n + Custom Sync Engine
 
-**Why n8n:**
-- Self-hosted (data stays with you)
+**Why n8n (German company):**
+- Headquarters in Berlin, Germany
+- Self-hosted (data never leaves your infrastructure)
 - Visual workflow builder for non-devs
 - Native Salesforce/HubSpot nodes
 - Webhook triggers for real-time sync
 - Free when self-hosted
+- Recently raised $180M at $2.5B valuation
+
+**Alternative: [Make](https://make.com) (Czech Republic)**
+- Formerly Integromat, EU-based
+- Visual automation builder
+- €9/month starting price
+- More user-friendly than n8n
 
 ### Implementation Steps
 
@@ -246,12 +278,21 @@ Click-to-call, call recording, and automatic logging.
 
 ### Approach: Aircall API Integration
 
-**Why Aircall:**
+**Why Aircall (French company):**
+- Founded and headquartered in Paris, France
+- EU data centers available
+- GDPR-compliant, SOC 2 certified
 - Power dialer for high-volume calling
 - Native CRM integrations
 - Call recording + transcription ready
-- $40/user/month (vs Twilio custom build ~$200+/user)
+- €40/user/month
 - REST API + webhooks
+
+**Alternative: [CloudTalk](https://cloudtalk.io) (Slovakia)**
+- EU-based company
+- GDPR & HIPAA compliant
+- €25/user/month starting price
+- 160+ countries supported
 
 ### Implementation Steps
 
@@ -264,12 +305,28 @@ Week 10: Aircall Integration
 ├── Sync call tasks with sequence steps
 
 Week 11: Call Intelligence
-├── Integrate AssemblyAI for transcription
+├── Integrate Gladia for transcription
 ├── Build transcription viewer in deal detail
 ├── Add sentiment analysis on calls
-├── Create call summary generator (Claude)
+├── Create call summary generator (Mistral)
 ├── Implement keyword/competitor mention alerts
 ```
+
+### Transcription: Gladia (French company)
+
+**Why Gladia:**
+- Paris-based French company
+- EU-hosted processing
+- 100+ languages supported
+- Real-time transcription
+- Speaker diarization
+- On-premises option available
+- €0.15/hour
+
+**Alternative: [SpeechText.AI](https://speechtext.ai)**
+- EU servers (France)
+- 50+ languages
+- €0.012/minute (~€0.72/hour)
 
 ### API Endpoints to Add
 ```python
@@ -281,8 +338,8 @@ GET  /api/prospects/{id}/call-history     # Call history for prospect
 ```
 
 ### Estimated Cost
-- Aircall: $40/user/month
-- AssemblyAI: ~$20-50/month (based on call volume)
+- Aircall: €40/user/month
+- Gladia: ~€20-50/month (based on call volume)
 
 ---
 
@@ -291,13 +348,15 @@ GET  /api/prospects/{id}/call-history     # Call history for prospect
 ### Goal
 AI-powered deal prediction and pipeline forecasting.
 
-### Approach: Custom ML Model + Claude Analysis
+### Approach: Custom ML Model + Mistral Analysis
 
-**Why custom vs Clari/Gong:**
-- Clari: $1,080/user/year - expensive
+**Why custom vs US vendors (Clari/Gong):**
+- Clari: $1,080/user/year - expensive AND US-based
+- Gong: US-based, data leaves EU
 - Your Neo4j graph has unique signal data
-- Claude can explain predictions (transparency)
+- Mistral can explain predictions (transparency)
 - Build competitive advantage
+- Full data sovereignty
 
 ### Implementation Steps
 
@@ -318,7 +377,7 @@ Week 13: Prediction Model
 ├── Train simple XGBoost/LightGBM model on historical deals
 ├── Features: engagement scores, velocity, MEDDPICC completion
 ├── Output: win probability, expected close date
-├── Use Claude to generate explanation for each prediction
+├── Use Mistral to generate explanation for each prediction
 └── Create "similar won deals" recommendations
 
 Week 14: Forecasting Dashboard
@@ -340,7 +399,7 @@ POST /api/forecast/scenario               # What-if scenario analysis
 
 ### Estimated Cost
 - Compute: Included in existing infra
-- Claude API: Included in Phase 2 budget
+- Mistral API: Included in Phase 2 budget
 
 ---
 
@@ -349,34 +408,44 @@ POST /api/forecast/scenario               # What-if scenario analysis
 ### Goal
 Embedded scheduling with automatic CRM logging.
 
-### Approach: Cal.com Self-Hosted
+### Approach: Zeeg (German) or Cal.com Self-Hosted
 
-**Why Cal.com:**
-- Open source, self-hostable
-- Full API control
-- White-label capable
-- No per-user fees
-- Calendly alternative that you own
+**Why Zeeg (German company):**
+- Headquarters in Germany
+- Data stored exclusively on EU servers
+- Built specifically as GDPR-compliant Calendly alternative
+- No cross-border data transfers
+- €8-15/user/month
+
+**Alternative: [Meetergo](https://meetergo.com) (Germany)**
+- German company, EU servers only
+- 23,000+ organizations trust it
+- €8/month starting (33% cheaper than Calendly)
+
+**Self-hosted option: [Cal.com](https://cal.com)**
+- Open source, self-hosted = full control
+- No data leaves your infrastructure
+- Free when self-hosted
 
 ### Implementation Steps
 
 ```
-Week 15: Cal.com Integration
-├── Deploy Cal.com container
+Week 15: Zeeg/Cal.com Integration
+├── Deploy Zeeg or Cal.com container
 ├── Create booking types (discovery, demo, follow-up)
 ├── Integrate with Google/Outlook calendars
 ├── Auto-create meetings in Neo4j on booking
 ├── Add booking links to email sequences
 
 Week 16: Meeting Intelligence
-├── Pre-meeting brief generator (Claude)
+├── Pre-meeting brief generator (Mistral)
 ├── Auto-log meetings to CRM
 ├── Meeting outcome tracking
 ├── No-show detection and follow-up triggers
 └── Meeting analytics dashboard
 ```
 
-### Cal.com Docker Addition
+### Cal.com Docker Addition (if self-hosting)
 ```yaml
 # Add to docker-compose.yml
 calcom:
@@ -390,7 +459,54 @@ calcom:
 ```
 
 ### Estimated Cost
+- Zeeg: €8-15/user/month
+- Meetergo: €8/user/month
 - Cal.com: Free (self-hosted)
+
+---
+
+## Phase 7: Data Enrichment (Ongoing)
+
+### Goal
+Accurate B2B contact and company data with GDPR compliance.
+
+### Approach: Cognism (UK) or Dealfront (Germany/Finland)
+
+**Why Cognism (UK company):**
+- UK-headquartered, GDPR-compliant
+- Best EMEA data coverage (UK, DACH, Benelux, Nordics, France, Spain)
+- 400M+ business profiles, 200M+ verified emails
+- Phone-verified mobile numbers (Diamond Data®)
+- Database checked against DNC lists in 13 countries
+- ~€125/user/month (€1,500-2,500/user/year)
+
+**Alternative: [Dealfront](https://dealfront.com) (Germany/Finland)**
+- Formed from merger of Echobot (🇩🇪) and Leadfeeder (🇫🇮)
+- 398M+ contacts, 56M+ companies
+- Strong DACH, Benelux, Nordics coverage
+- Intent data from website visitors
+- ~€99/user/month
+
+### Integration with Existing Connectors
+```python
+# Replace Apollo connector with Cognism
+# /atlas/connectors/cognism/connector.py
+class CognismConnector(BaseConnector):
+    name = "cognism"
+    description = "European B2B data enrichment"
+
+    async def enrich_company(self, domain: str) -> dict:
+        # Cognism API call
+        pass
+
+    async def enrich_person(self, email: str) -> dict:
+        # Cognism API call with GDPR consent tracking
+        pass
+```
+
+### Estimated Cost
+- Cognism: €125/user/month (~€1,500/user/year)
+- Dealfront: €99/user/month
 
 ---
 
@@ -398,21 +514,21 @@ calcom:
 
 ```
 Month 1 (Weeks 1-4):
-├── Week 1-3: Email Execution Engine (Instantly)
-└── Week 4: AI Research Agent (Start)
+├── Week 1-3: Email Execution Engine (lemlist 🇫🇷)
+└── Week 4: AI Research Agent (Mistral 🇫🇷)
 
 Month 2 (Weeks 5-8):
 ├── Week 5-6: AI Sales Agent (Complete)
-├── Week 7-8: Salesforce Sync (n8n)
+├── Week 7-8: Salesforce Sync (n8n 🇩🇪)
 
 Month 3 (Weeks 9-12):
 ├── Week 9: HubSpot Sync + Sync UI
-├── Week 10-11: Call Dialer (Aircall)
+├── Week 10-11: Call Dialer (Aircall 🇫🇷 + Gladia 🇫🇷)
 └── Week 12: Revenue Forecasting (Start)
 
 Month 4 (Weeks 13-16):
 ├── Week 13-14: Revenue Forecasting (Complete)
-└── Week 15-16: Meeting Scheduler (Cal.com)
+└── Week 15-16: Meeting Scheduler (Zeeg 🇩🇪 or Cal.com)
 ```
 
 ---
@@ -421,39 +537,56 @@ Month 4 (Weeks 13-16):
 
 ### Monthly Recurring Costs (at scale: 10 users, 10K prospects)
 
-| Service | Cost/Month | Notes |
-|---------|-----------|-------|
-| Instantly | $197 | Hyper plan, unlimited accounts |
-| Postmark | $50 | ~50K transactional emails |
-| Claude API | $150 | ~500K tokens/day |
-| Aircall | $400 | 10 users × $40 |
-| AssemblyAI | $50 | ~300 hrs transcription |
-| Apollo.io | $490 | 10 users × $49 |
-| Cal.com | $0 | Self-hosted |
-| n8n | $0 | Self-hosted |
-| **Total** | **~$1,337/month** | |
+| Service | Provider | HQ | Cost/Month | Notes |
+|---------|----------|-----|-----------|-------|
+| lemlist | lemlist | 🇫🇷 France | €690-990 | 10 users × €69-99 |
+| Mistral AI | Mistral | 🇫🇷 France | €100-150 | ~500K tokens/day |
+| Aircall | Aircall | 🇫🇷 France | €400 | 10 users × €40 |
+| Gladia | Gladia | 🇫🇷 France | €50 | ~300 hrs transcription |
+| Cognism | Cognism | 🇬🇧 UK | €1,250 | 10 users × €125 |
+| Zeeg | Zeeg | 🇩🇪 Germany | €80 | 10 users × €8 |
+| n8n | n8n | 🇩🇪 Germany | €0 | Self-hosted |
+| **Total** | | | **~€2,570-2,920/month** | |
 
-### Comparison to Outreach.io
+### Comparison to US-based Outreach.io
 - Outreach: $100-150/user/month = **$1,000-1,500/month** for 10 users
-- Your stack: **~$1,337/month** with MORE flexibility and data ownership
+- Your EU stack: **~€2,570-2,920/month** with:
+  - ✅ Full GDPR compliance
+  - ✅ EU data residency
+  - ✅ No US CLOUD Act exposure
+  - ✅ Data sovereignty
+  - ✅ More features (multichannel, AI, enrichment)
+
+### Budget Option (5 users, startup)
+
+| Service | Cost/Month |
+|---------|-----------|
+| lemlist Email Pro | €345 (5 × €69) |
+| Mistral AI | €50 |
+| CloudTalk | €125 (5 × €25) |
+| SpeechText.AI | €30 |
+| Dealfront | €495 (5 × €99) |
+| Meetergo | €40 (5 × €8) |
+| n8n | €0 |
+| **Total** | **~€1,085/month** |
 
 ### One-Time Development Costs
 - Internal development: 16 weeks
-- Alternative: Hire contractor ~$15-25K for full implementation
+- Alternative: Hire contractor ~€15-25K for full implementation
 
 ---
 
 ## Quick Wins (Can Start Immediately)
 
 ### This Week
-1. **Deploy n8n** - Add to docker-compose, takes 30 minutes
-2. **Activate Apollo connector** - Already built, just needs API key
-3. **Add Instantly account** - Sign up, get API key, start warmup
+1. **Deploy n8n** (🇩🇪) - Add to docker-compose, takes 30 minutes
+2. **Sign up for lemlist trial** (🇫🇷) - 14-day free trial available
+3. **Get Mistral API key** (🇫🇷) - Instant signup, no credit card needed
 
 ### Next Week
-1. **Build Instantly connector** - Similar pattern to existing connectors
+1. **Build lemlist connector** - Similar pattern to existing connectors
 2. **Create first n8n workflow** - Salesforce contact sync
-3. **Add AI endpoint** - `/api/ai/personalize/email` using existing Claude
+3. **Add AI endpoint** - `/api/ai/personalize/email` using Mistral
 
 ---
 
@@ -461,11 +594,28 @@ Month 4 (Weeks 13-16):
 
 | Risk | Mitigation |
 |------|------------|
-| Email deliverability issues | Use Instantly's managed warmup; start slow |
+| Email deliverability issues | Use lemlist's managed warmup; start slow |
 | API rate limits | Implement backoff; use Redis queue |
 | Data sync conflicts | Field-level ownership rules; audit log |
 | Vendor lock-in | All data in your Neo4j; export capabilities |
 | Cost overruns | Set API budget alerts; usage monitoring |
+| Brexit impact on UK data | Cognism has EU adequacy; alternative: Dealfront (🇩🇪/🇫🇮) |
+
+---
+
+## GDPR Compliance Summary
+
+All recommended vendors provide:
+
+| Requirement | Coverage |
+|-------------|----------|
+| EU Data Residency | ✅ All vendors process data in EU |
+| DPA Available | ✅ All vendors offer Data Processing Agreements |
+| Right to Erasure | ✅ API endpoints for data deletion |
+| Consent Management | ✅ Built into platforms (lemlist, Cognism) |
+| Data Portability | ✅ Export capabilities |
+| No US CLOUD Act | ✅ No US-headquartered vendors |
+| SCCs Not Required | ✅ No cross-border transfers |
 
 ---
 
@@ -503,24 +653,48 @@ Month 4 (Weeks 13-16):
 
 ## Next Steps
 
-1. **Review this plan** and prioritize phases
-2. **Set up accounts** for Instantly, Aircall, Apollo (free trials available)
-3. **Deploy n8n** to docker-compose
-4. **Start Phase 1** - Email execution is highest impact
+### Scheduled Start: Tonight, December 9th, 2024 at 22:00 CET
+
+**Phase 1 Implementation Tasks (Tonight):**
+1. ✅ Deploy n8n to docker-compose
+2. ✅ Create LemlistConnector skeleton in `/atlas/connectors/lemlist/`
+3. ✅ Add Mistral AI client to `/atlas/services/ai_agent/`
+4. ✅ Set up webhook endpoints for lemlist events
+
+**This Week:**
+1. **Set up accounts** for lemlist, Aircall, Cognism (free trials available)
+2. **Complete lemlist integration** - Campaign CRUD, sequence mapping
+3. **Test email warmup** - Start with test accounts
+
+**Next Week:**
+1. **Build Mistral AI agent** - Research and personalization
+2. **Create first n8n workflow** - Salesforce contact sync
+3. **Add AI endpoint** - `/api/ai/personalize/email` using Mistral
 
 ---
 
 ## Resources & Documentation
 
-- [Instantly API Docs](https://developer.instantly.ai/)
-- [Aircall API Reference](https://developer.aircall.io/api-references/)
-- [AssemblyAI Docs](https://www.assemblyai.com/docs)
-- [Cal.com GitHub](https://github.com/calcom/cal.com)
-- [n8n Documentation](https://docs.n8n.io/)
-- [Claude API Docs](https://docs.anthropic.com/)
-- [Apollo.io API](https://apolloio.github.io/apollo-api-docs/)
+### European Vendors
+- [lemlist API Docs](https://developer.lemlist.com/) (🇫🇷 France)
+- [Mistral AI Docs](https://docs.mistral.ai/) (🇫🇷 France)
+- [Aircall API Reference](https://developer.aircall.io/api-references/) (🇫🇷 France)
+- [Gladia Docs](https://docs.gladia.io/) (🇫🇷 France)
+- [n8n Documentation](https://docs.n8n.io/) (🇩🇪 Germany)
+- [Cognism API](https://www.cognism.com/integrations) (🇬🇧 UK)
+- [Zeeg API](https://zeeg.me/api) (🇩🇪 Germany)
+- [Cal.com GitHub](https://github.com/calcom/cal.com) (Open Source)
+
+### Alternatives
+- [Woodpecker](https://woodpecker.co/) (🇵🇱 Poland) - Cold email
+- [CloudTalk](https://cloudtalk.io/) (🇸🇰 Slovakia) - VoIP dialer
+- [Dealfront](https://dealfront.com/) (🇩🇪/🇫🇮) - Data enrichment
+- [Make](https://make.com/) (🇨🇿 Czech Republic) - Workflow automation
+- [Meetergo](https://meetergo.com/) (🇩🇪 Germany) - Scheduling
+- [SpeechText.AI](https://speechtext.ai/) (🇫🇷 France) - Transcription
 
 ---
 
 *Last Updated: December 2024*
 *Generated for Duinrell Sales Intelligence Platform*
+*All vendors are European-based or offer EU data residency*
