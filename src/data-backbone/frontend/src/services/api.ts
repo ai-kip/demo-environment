@@ -12,6 +12,25 @@ import type {
   SequenceWithEnrollments,
 } from '../types/database';
 
+// Connector types
+export interface ConnectorConfig {
+  id: string;
+  name: string;
+  type: string;
+  auth_type: string;
+  auth_fields: string[];
+  base_url: string;
+  rate_limit: number;
+  rate_limit_window: number;
+  supports_search: boolean;
+  supports_enrich: boolean;
+  supports_people: boolean;
+  supports_webhook: boolean;
+  docs_url: string;
+  icon: string;
+  description: string;
+}
+
 const API_BASE = import.meta.env.DEV ? '/api' : 'http://localhost:8000';
 
 class ApiClient {
@@ -67,7 +86,11 @@ class ApiClient {
   }
 
   async getDepartmentAnalytics() {
-    return this.fetch('/analytics/departments');
+    try {
+      return await this.fetch('/analytics/departments');
+    } catch {
+      return []; // Return empty array if endpoint doesn't exist
+    }
   }
 
   async getCompaniesByIndustry(industry: string) {
@@ -146,7 +169,11 @@ class ApiClient {
   // ============================================================================
 
   async getDeals(): Promise<Array<{ deal: Deal; company: { id: string; name: string; domain: string }; owner_name?: string; champion_name?: string }>> {
-    return this.fetch('/deals');
+    try {
+      return await this.fetch('/deals');
+    } catch {
+      return []; // Return empty array if endpoint doesn't exist
+    }
   }
 
   async getDealById(id: string): Promise<DealWithDetails> {
@@ -162,7 +189,11 @@ class ApiClient {
   }
 
   async getDealPipelineStats(): Promise<DealPipelineStats[]> {
-    return this.fetch('/deals/pipeline-stats');
+    try {
+      return await this.fetch('/deals/pipeline-stats');
+    } catch {
+      return []; // Return empty array if endpoint doesn't exist
+    }
   }
 
   async createDeal(deal: Partial<Deal>): Promise<{ success: boolean; deal_id: string }> {
@@ -195,11 +226,19 @@ class ApiClient {
   }
 
   async getHotAccounts(minScore: number = 70, limit: number = 20): Promise<HotAccount[]> {
-    return this.fetch(`/signals/hot-accounts?min_score=${minScore}&limit=${limit}`);
+    try {
+      return await this.fetch(`/signals/hot-accounts?min_score=${minScore}&limit=${limit}`);
+    } catch {
+      return []; // Return empty array if endpoint doesn't exist
+    }
   }
 
   async getSignalStats(days: number = 30) {
-    return this.fetch(`/signals/stats?days=${days}`);
+    try {
+      return await this.fetch(`/signals/stats?days=${days}`);
+    } catch {
+      return null; // Return null if endpoint doesn't exist
+    }
   }
 
   // ============================================================================
@@ -214,7 +253,11 @@ class ApiClient {
     meetings_count: number;
     reply_rate: number;
   }>> {
-    return this.fetch('/sequences');
+    try {
+      return await this.fetch('/sequences');
+    } catch {
+      return []; // Return empty array if endpoint doesn't exist
+    }
   }
 
   async getSequenceById(id: string): Promise<SequenceWithEnrollments> {
@@ -260,7 +303,11 @@ class ApiClient {
   // ============================================================================
 
   async getLeads(limit: number = 50) {
-    return this.fetch(`/leads?limit=${limit}`);
+    try {
+      return await this.fetch(`/leads?limit=${limit}`);
+    } catch {
+      return []; // Return empty array if endpoint doesn't exist
+    }
   }
 
   async updateLeadStatus(companyId: string, status: string): Promise<{ success: boolean }> {
@@ -275,15 +322,171 @@ class ApiClient {
   // ============================================================================
 
   async getBowtieMetrics() {
-    return this.fetch('/analytics/bowtie');
+    try {
+      return await this.fetch('/analytics/bowtie');
+    } catch {
+      return null; // Return null if endpoint doesn't exist
+    }
   }
 
   async getConversionFunnel() {
-    return this.fetch('/analytics/funnel');
+    try {
+      return await this.fetch('/analytics/funnel');
+    } catch {
+      return null; // Return null if endpoint doesn't exist
+    }
+  }
+
+  // ============================================================================
+  // CONNECTOR ENDPOINTS
+  // ============================================================================
+
+  async getConnectorRegistry(): Promise<{ connectors: ConnectorConfig[]; count: number }> {
+    return this.fetch('/connectors/registry');
+  }
+
+  async getConnectorInfo(connectorId: string): Promise<ConnectorConfig> {
+    return this.fetch(`/connectors/registry/${encodeURIComponent(connectorId)}`);
+  }
+
+  async testConnectorConnection(
+    connectorId: string,
+    authConfig: Record<string, string>
+  ): Promise<{ status: string; message: string; rate_limit?: Record<string, unknown> }> {
+    return this.fetch('/connectors/test', {
+      method: 'POST',
+      body: JSON.stringify({
+        connector_id: connectorId,
+        auth_config: authConfig,
+      }),
+    });
+  }
+
+  async searchWithConnector(
+    connectorId: string,
+    authConfig: Record<string, string>,
+    query: string,
+    limit: number = 20,
+    filters?: Record<string, unknown>
+  ) {
+    return this.fetch('/connectors/search', {
+      method: 'POST',
+      body: JSON.stringify({
+        connector_id: connectorId,
+        auth_config: authConfig,
+        query,
+        limit,
+        filters,
+      }),
+    });
+  }
+
+  async enrichWithConnector(
+    connectorId: string,
+    authConfig: Record<string, string>,
+    domain?: string,
+    kvkNumber?: string,
+    linkedinUrl?: string
+  ) {
+    return this.fetch('/connectors/enrich', {
+      method: 'POST',
+      body: JSON.stringify({
+        connector_id: connectorId,
+        auth_config: authConfig,
+        domain,
+        kvk_number: kvkNumber,
+        linkedin_url: linkedinUrl,
+      }),
+    });
+  }
+
+  async findPeopleWithConnector(
+    connectorId: string,
+    authConfig: Record<string, string>,
+    domain: string,
+    limit: number = 50,
+    titles?: string[],
+    seniorities?: string[]
+  ) {
+    return this.fetch('/connectors/people', {
+      method: 'POST',
+      body: JSON.stringify({
+        connector_id: connectorId,
+        auth_config: authConfig,
+        domain,
+        limit,
+        titles,
+        seniorities,
+      }),
+    });
+  }
+
+  async previewFile(file: File, sheetName?: string) {
+    const formData = new FormData();
+    formData.append('file', file);
+    if (sheetName) formData.append('sheet_name', sheetName);
+
+    const response = await fetch(`${API_BASE}/connectors/file/preview`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to preview file');
+    }
+
+    return response.json();
+  }
+
+  async importFile(
+    file: File,
+    columnMapping: Record<string, string>,
+    recordType: 'company' | 'contact' = 'company',
+    skipRows: number = 0,
+    sheetName?: string
+  ) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('column_mapping', JSON.stringify(columnMapping));
+    formData.append('record_type', recordType);
+    formData.append('skip_rows', skipRows.toString());
+    if (sheetName) formData.append('sheet_name', sheetName);
+
+    const response = await fetch(`${API_BASE}/connectors/file/import`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to import file');
+    }
+
+    return response.json();
+  }
+
+  async verifyEmail(apiKey: string, email: string) {
+    return this.fetch('/connectors/email/verify', {
+      method: 'POST',
+      body: JSON.stringify({ api_key: apiKey, email }),
+    });
+  }
+
+  async findEmail(apiKey: string, domain: string, firstName: string, lastName: string) {
+    return this.fetch('/connectors/email/find', {
+      method: 'POST',
+      body: JSON.stringify({
+        api_key: apiKey,
+        domain,
+        first_name: firstName,
+        last_name: lastName,
+      }),
+    });
   }
 }
 
 export const api = new ApiClient();
 
 // Re-export types for convenience
-export type { Company, Employee, Deal, DealStage, OutreachSequence, HotAccount };
+export type { Company, Employee, Deal, DealStage, OutreachSequence, HotAccount, ConnectorConfig };

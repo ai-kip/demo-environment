@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDarkMode } from '../context/DarkModeContext'
 
 interface LoginProps {
@@ -6,6 +7,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
+  const { t } = useTranslation('common')
   const { isDarkMode } = useDarkMode()
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -17,7 +19,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     if (password === envPassword) {
       onLogin()
     } else {
-      setError('Incorrect password')
+      setError(t('auth.incorrectPassword'))
     }
   }
 
@@ -41,10 +43,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       }}>
         <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: isDarkMode ? '#f9fafb' : '#111827' }}>
-            Access Required
+            {t('auth.accessRequired')}
           </h2>
           <p style={{ marginTop: '0.5rem', color: isDarkMode ? '#9ca3af' : '#6b7280' }}>
-            Please enter the password to continue
+            {t('auth.enterPassword')}
           </p>
         </div>
 
@@ -54,7 +56,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               htmlFor="password"
               style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: isDarkMode ? '#d1d5db' : '#374151', marginBottom: '0.5rem' }}
             >
-              Password
+              {t('auth.password')}
             </label>
             <input
               type="password"
@@ -75,7 +77,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 backgroundColor: isDarkMode ? '#374151' : 'white',
                 color: isDarkMode ? '#f9fafb' : '#111827'
               }}
-              placeholder="Enter password"
+              placeholder={t('auth.password')}
             />
           </div>
 
@@ -102,7 +104,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               cursor: 'pointer'
             }}
           >
-            Sign In
+            {t('auth.signIn')}
           </button>
         </form>
       </div>

@@ -19,7 +19,11 @@ from neo4j import Session
 from qdrant_client import QdrantClient
 from qdrant_client.models import FieldCondition, Filter, MatchValue
 
-app = FastAPI(title="Graph Query API", version="0.2.0")  # bumped for intelligent search
+app = FastAPI(title="Graph Query API", version="0.3.0")  # bumped for connector API
+
+# Include connector router
+from atlas.api.routers.connectors import router as connectors_router
+app.include_router(connectors_router)
 
 QDRANT_COLLECTION = "atlas_entities"
 

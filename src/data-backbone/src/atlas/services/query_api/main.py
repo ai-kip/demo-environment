@@ -45,7 +45,10 @@ from atlas.services.query_api.cypher_queries import (
 )
 from atlas.services.query_api.deps import embedder, neo4j_session, qdrant_client
 
-app = FastAPI(title="Graph Query API", version="0.2.0")  # bumped for intelligent search
+# Import connector router
+from atlas.api.routers.connectors import router as connectors_router
+
+app = FastAPI(title="Graph Query API", version="0.3.0")  # bumped for connector framework
 
 # Add CORS middleware
 app.add_middleware(
@@ -55,6 +58,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include connector router
+app.include_router(connectors_router)
 
 QDRANT_COLLECTION = "atlas_entities"
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import HealthStatus from './components/HealthStatus'
 import CompanyList from './components/CompanyList'
 import PeopleList from './components/PeopleList'
@@ -11,12 +12,15 @@ import { OutreachSequences } from './components/outreach'
 import { SignalsDashboard } from './components/signals'
 import { AppLayout } from './components/layout'
 import { DealDetail } from './components/deals'
+import { IntegrationsSettings } from './components/settings'
+import { LanguageSelector } from './components/ui/LanguageSelector'
 import { api } from './services/api'
 import { useDarkMode } from './context/DarkModeContext'
 
 type Page = 'dashboard' | 'pipeline' | 'leads' | 'deals' | 'deal-detail' | 'contacts' | 'signals' | 'intent' | 'sequences' | 'analytics' | 'settings' | 'help'
 
 function App() {
+  const { t } = useTranslation(['common', 'dashboard', 'leads', 'deals', 'signals', 'outreach'])
   const { isDarkMode } = useDarkMode()
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return sessionStorage.getItem('isAuthenticated') === 'true'
@@ -48,7 +52,7 @@ function App() {
 
     try {
       setIngesting(true)
-      setIngestStatus('Loading data...')
+      setIngestStatus(t('common:status.loading'))
 
       const result = await api.ingestCompanies(
         searchQuery.trim(),
@@ -60,15 +64,15 @@ function App() {
       )
 
       if (result.error || !result.success) {
-        setIngestStatus(`Error: ${result.error || 'Unknown error'}`)
+        setIngestStatus(`${t('common:status.error')}: ${result.error || 'Unknown error'}`)
       } else {
-        setIngestStatus(`Loaded! Batch: ${result.batch_id || 'N/A'}`)
+        setIngestStatus(`${t('common:status.success')}! Batch: ${result.batch_id || 'N/A'}`)
         setTimeout(() => {
           window.location.reload()
         }, 2000)
       }
     } catch (err) {
-      setIngestStatus(`Error: ${err instanceof Error ? err.message : 'Unknown error'}`)
+      setIngestStatus(`${t('common:status.error')}: ${err instanceof Error ? err.message : 'Unknown error'}`)
     } finally {
       setIngesting(false)
     }
@@ -91,8 +95,8 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Dashboard</h1>
-                <p className="page-subtitle">Good morning, Hugo. Here's your pipeline overview.</p>
+                <h1 className="page-title">{t('common:navigation.dashboard')}</h1>
+                <p className="page-subtitle">{t('dashboard:greeting', { name: 'Hugo' })}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
@@ -103,7 +107,7 @@ function App() {
             {/* Search Companies Block */}
             <div className="card" style={{ marginTop: '24px' }}>
               <div className="card-header">
-                <h3 className="card-title">Search Companies</h3>
+                <h3 className="card-title">{t('dashboard:searchPlaceholder')}</h3>
               </div>
               <div className="card-content">
                 <div className="input-wrapper" style={{ marginBottom: '16px' }}>
@@ -163,11 +167,11 @@ function App() {
                   disabled={ingesting || !searchQuery.trim() || !useGoogle}
                   style={{ width: '100%' }}
                 >
-                  {ingesting ? 'Loading...' : 'Load Companies'}
+                  {ingesting ? t('common:status.loading') : 'Load Companies'}
                 </button>
 
                 {ingestStatus && (
-                  <div className={`badge ${ingestStatus.includes('Loaded') ? 'badge-green' : ingestStatus.includes('Error') ? 'badge-red' : 'badge-amber'}`} style={{ marginTop: '16px', display: 'block', textAlign: 'center', padding: '12px' }}>
+                  <div className={`badge ${ingestStatus.includes('Success') || ingestStatus.includes('Loaded') ? 'badge-green' : ingestStatus.includes('Error') ? 'badge-red' : 'badge-amber'}`} style={{ marginTop: '16px', display: 'block', textAlign: 'center', padding: '12px' }}>
                     {ingestStatus}
                   </div>
                 )}
@@ -181,8 +185,8 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Pipeline</h1>
-                <p className="page-subtitle">Manage your sales pipeline and track deal progress.</p>
+                <h1 className="page-title">{t('common:navigation.pipeline')}</h1>
+                <p className="page-subtitle">{t('dashboard:bowtie.subtitle')}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
@@ -197,11 +201,11 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Leads</h1>
-                <p className="page-subtitle">12 new leads requiring attention.</p>
+                <h1 className="page-title">{t('leads:title')}</h1>
+                <p className="page-subtitle">{t('leads:subtitle', { count: 12 })}</p>
               </div>
               <div className="page-actions">
-                <button className="btn btn-primary">Add Lead</button>
+                <button className="btn btn-primary">{t('leads:addLead')}</button>
                 <DarkModeToggle />
               </div>
             </div>
@@ -214,13 +218,13 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Deals</h1>
-                <p className="page-subtitle">47 active deals in your pipeline.</p>
+                <h1 className="page-title">{t('deals:title')}</h1>
+                <p className="page-subtitle">{t('deals:subtitle', { count: 47 })}</p>
               </div>
               <div className="page-actions">
-                <button className="btn btn-primary">Add Deal</button>
+                <button className="btn btn-primary">{t('deals:addDeal')}</button>
                 <button className="btn btn-secondary" onClick={() => handleViewDeal('demo')}>
-                  View Demo Deal
+                  {t('deals:viewDemoDeal')}
                 </button>
                 <DarkModeToggle />
               </div>
@@ -237,11 +241,11 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Contacts</h1>
-                <p className="page-subtitle">Manage your contacts and buying committees.</p>
+                <h1 className="page-title">{t('common:navigation.contacts')}</h1>
+                <p className="page-subtitle">{t('deals:buyingCommittee.title')}</p>
               </div>
               <div className="page-actions">
-                <button className="btn btn-primary">Add Contact</button>
+                <button className="btn btn-primary">{t('common:actions.add')}</button>
                 <DarkModeToggle />
               </div>
             </div>
@@ -254,8 +258,8 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Signals Intelligence</h1>
-                <p className="page-subtitle">Track buying signals and intent data across your accounts.</p>
+                <h1 className="page-title">{t('signals:title')}</h1>
+                <p className="page-subtitle">{t('signals:subtitle')}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
@@ -270,8 +274,8 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Intent Data</h1>
-                <p className="page-subtitle">Monitor buyer intent signals and engagement patterns.</p>
+                <h1 className="page-title">{t('signals:intentTitle')}</h1>
+                <p className="page-subtitle">{t('signals:intentSubtitle')}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
@@ -286,11 +290,11 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Outreach Sequences</h1>
-                <p className="page-subtitle">Create and manage automated outreach campaigns.</p>
+                <h1 className="page-title">{t('outreach:title')}</h1>
+                <p className="page-subtitle">{t('outreach:subtitle')}</p>
               </div>
               <div className="page-actions">
-                <button className="btn btn-primary">Create Sequence</button>
+                <button className="btn btn-primary">{t('outreach:createSequence')}</button>
                 <DarkModeToggle />
               </div>
             </div>
@@ -303,8 +307,8 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Analytics</h1>
-                <p className="page-subtitle">Measure performance and track key metrics.</p>
+                <h1 className="page-title">{t('dashboard:analytics.title')}</h1>
+                <p className="page-subtitle">{t('dashboard:analytics.subtitle')}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
@@ -319,22 +323,53 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Settings</h1>
-                <p className="page-subtitle">Configure your account and preferences.</p>
+                <h1 className="page-title">{t('dashboard:settings.title')}</h1>
+                <p className="page-subtitle">{t('dashboard:settings.subtitle')}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
               </div>
             </div>
+
+            {/* Integrations Section */}
             <div className="card">
+              <div className="card-header">
+                <h3 className="card-title">{t('dashboard:settings.integrations')}</h3>
+              </div>
               <div className="card-content">
-                <h3 style={{ marginBottom: '16px' }}>API Status</h3>
+                <p className="text-body-sm" style={{ marginBottom: '16px', color: 'var(--color-text-secondary)' }}>
+                  {t('dashboard:settings.integrationsDescription')}
+                </p>
+                <IntegrationsSettings />
+              </div>
+            </div>
+
+            {/* Language Section */}
+            <div className="card" style={{ marginTop: '24px' }}>
+              <div className="card-header">
+                <h3 className="card-title">{t('common:language.title')}</h3>
+              </div>
+              <div className="card-content">
+                <LanguageSelector variant="expanded" />
+              </div>
+            </div>
+
+            {/* API Status Section */}
+            <div className="card" style={{ marginTop: '24px' }}>
+              <div className="card-header">
+                <h3 className="card-title">{t('dashboard:settings.apiStatus')}</h3>
+              </div>
+              <div className="card-content">
                 <HealthStatus />
               </div>
             </div>
+
+            {/* Search Section */}
             <div className="card" style={{ marginTop: '24px' }}>
+              <div className="card-header">
+                <h3 className="card-title">{t('common:actions.search')}</h3>
+              </div>
               <div className="card-content">
-                <h3 style={{ marginBottom: '16px' }}>Search</h3>
                 <Search />
               </div>
             </div>
@@ -346,8 +381,8 @@ function App() {
           <div>
             <div className="page-header">
               <div>
-                <h1 className="page-title">Help & Support</h1>
-                <p className="page-subtitle">Get help with using Duinrell.</p>
+                <h1 className="page-title">{t('dashboard:help.title')}</h1>
+                <p className="page-subtitle">{t('dashboard:help.subtitle')}</p>
               </div>
               <div className="page-actions">
                 <DarkModeToggle />
@@ -355,8 +390,8 @@ function App() {
             </div>
             <div className="card">
               <div className="card-content">
-                <h3 style={{ marginBottom: '16px' }}>Documentation</h3>
-                <p>Contact support at support@duinrell.com</p>
+                <h3 style={{ marginBottom: '16px' }}>{t('dashboard:help.documentation')}</h3>
+                <p>{t('dashboard:help.contactSupport')}: support@duinrell.com</p>
               </div>
             </div>
           </div>

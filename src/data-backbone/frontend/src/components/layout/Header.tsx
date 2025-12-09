@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Search,
   Bell,
@@ -7,6 +8,7 @@ import {
   ChevronDown,
   Menu,
 } from 'lucide-react';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -21,6 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
   onMenuClick,
   user = { name: 'Hugo', email: 'hugo@duinrell.com' },
 }) => {
+  const { t } = useTranslation('common');
   const [searchQuery, setSearchQuery] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -61,10 +64,10 @@ export const Header: React.FC<HeaderProps> = ({
           <input
             type="text"
             className="search-input"
-            placeholder="Search deals, companies, contacts..."
+            placeholder={t('header.searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            aria-label="Search"
+            aria-label={t('actions.search')}
           />
           <kbd className="search-shortcut">
             <span>Cmd</span>K
@@ -73,16 +76,18 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       <div className="header-right">
+        <LanguageSelector variant="compact" />
+
         <button
           className="header-icon-btn"
           onClick={() => setShowNotifications(!showNotifications)}
-          aria-label="Notifications"
+          aria-label={t('header.notifications')}
         >
           <Bell size={20} />
           <span className="notification-badge">3</span>
         </button>
 
-        <button className="header-icon-btn" aria-label="Settings">
+        <button className="header-icon-btn" aria-label={t('navigation.settings')}>
           <Settings size={20} />
         </button>
 
@@ -111,10 +116,10 @@ export const Header: React.FC<HeaderProps> = ({
                 <div className="user-menu-email">{user.email}</div>
               </div>
               <div className="user-menu-divider" />
-              <a href="#profile" className="user-menu-item">Profile</a>
-              <a href="#preferences" className="user-menu-item">Preferences</a>
+              <a href="#profile" className="user-menu-item">{t('header.profile')}</a>
+              <a href="#preferences" className="user-menu-item">{t('header.preferences')}</a>
               <div className="user-menu-divider" />
-              <button className="user-menu-item user-menu-logout">Sign out</button>
+              <button className="user-menu-item user-menu-logout">{t('auth.signOut')}</button>
             </div>
           )}
         </div>
@@ -124,8 +129,8 @@ export const Header: React.FC<HeaderProps> = ({
       {showNotifications && (
         <div className="notifications-dropdown">
           <div className="notifications-header">
-            <h3>Notifications</h3>
-            <button className="mark-all-read">Mark all read</button>
+            <h3>{t('header.notifications')}</h3>
+            <button className="mark-all-read">{t('header.markAllRead')}</button>
           </div>
           <div className="notifications-list">
             <div className="notification-item unread">
@@ -134,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <div className="notification-content">
                 <div className="notification-title">ACME Corp reached Hot status</div>
-                <div className="notification-time">2 minutes ago</div>
+                <div className="notification-time">{t('time.minutesAgo', { count: 2 })}</div>
               </div>
             </div>
             <div className="notification-item unread">
@@ -143,7 +148,7 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <div className="notification-content">
                 <div className="notification-title">New signal: TechFlow sustainability initiative</div>
-                <div className="notification-time">15 minutes ago</div>
+                <div className="notification-time">{t('time.minutesAgo', { count: 15 })}</div>
               </div>
             </div>
             <div className="notification-item">
@@ -152,12 +157,12 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <div className="notification-content">
                 <div className="notification-title">Deal moved to SAL: Nordic Hotels</div>
-                <div className="notification-time">1 hour ago</div>
+                <div className="notification-time">{t('time.hoursAgo', { count: 1 })}</div>
               </div>
             </div>
           </div>
           <a href="#all-notifications" className="notifications-view-all">
-            View all notifications
+            {t('header.viewAllNotifications')}
           </a>
         </div>
       )}
