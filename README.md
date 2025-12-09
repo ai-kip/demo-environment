@@ -1,6 +1,6 @@
 # AI-KIP Sales Intelligence Platform
 
-First version of the sales intelligence platform - created for small partners up to 10 sales people.
+First version of the sales intelligence platform - created for ambitious organisations with big growth potential.
 
 A modern B2B sales intelligence platform with pipeline visualization, MEDDPICC scoring, signal tracking, and outreach automation.
 
