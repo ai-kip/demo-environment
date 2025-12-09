@@ -1,4 +1,4 @@
-# Duinrell Sales Intelligence Platform - Implementation Plan
+# iBood Sales Intelligence Platform - Implementation Plan
 
 ## Executive Summary
 
@@ -212,19 +212,19 @@ Real-time two-way sync with Salesforce and HubSpot.
 ```
 Week 7: Salesforce Sync
 ├── Deploy n8n container in docker-compose
-├── Create Salesforce → Duinrell sync workflow
+├── Create Salesforce → iBood sync workflow
 │   ├── Trigger: Salesforce webhook on record change
-│   ├── Transform: Map SF fields to Duinrell schema
+│   ├── Transform: Map SF fields to iBood schema
 │   └── Action: Upsert to Neo4j via API
-├── Create Duinrell → Salesforce sync workflow
+├── Create iBood → Salesforce sync workflow
 │   ├── Trigger: Neo4j change data capture
-│   ├── Transform: Map Duinrell to SF schema
+│   ├── Transform: Map iBood to SF schema
 │   └── Action: Upsert to Salesforce
 └── Handle conflict resolution (last-write-wins or field-level)
 
 Week 8: HubSpot Sync
-├── Create HubSpot → Duinrell sync workflow
-├── Create Duinrell → HubSpot sync workflow
+├── Create HubSpot → iBood sync workflow
+├── Create iBood → HubSpot sync workflow
 ├── Sync contacts, companies, deals, activities
 ├── Map custom properties bidirectionally
 └── Handle association sync (contact ↔ company)
@@ -696,5 +696,5 @@ All recommended vendors provide:
 ---
 
 *Last Updated: December 2024*
-*Generated for Duinrell Sales Intelligence Platform*
+*Generated for iBood Sales Intelligence Platform*
 *All vendors are European-based or offer EU data residency*

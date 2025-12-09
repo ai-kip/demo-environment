@@ -322,7 +322,7 @@ function App() {
             <div className="card">
               <div className="card-content">
                 <h3 style={{ marginBottom: '16px' }}>{t('dashboard:help.documentation')}</h3>
-                <p>{t('dashboard:help.contactSupport')}: support@duinrell.com</p>
+                <p>{t('dashboard:help.contactSupport')}: support@ibood.com</p>
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ set -e
 PROJECT_DIR="/Users/michaeluenk/Downloads/data-backbone-main"
 cd "$PROJECT_DIR"
 
-echo "🚀 Starting Duinrell Implementation Setup - $(date)"
+echo "🚀 Starting iBood Implementation Setup - $(date)"
 echo "================================================="
 
 # Colors

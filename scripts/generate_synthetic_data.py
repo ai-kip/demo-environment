@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Synthetic Data Generator for Duinrell Sales Intelligence Platform
+Synthetic Data Generator for iBood Sales Intelligence Platform
 
 Generates realistic data across all databases:
 - Neo4j: Companies, People, Deals, Relationships
 - Qdrant: Vector embeddings for semantic search
 - Redis: Cache and session data
 
-Designed for Dutch/European market focus (Duinrell theme park context)
+Designed for Dutch/European market focus (iBood e-commerce context)
 """
 
 import os
@@ -405,7 +405,7 @@ class SyntheticDataGenerator:
                     "expected_close_date": close_date.isoformat(),
                     "created_at": created_at.isoformat(),
                     "last_activity_at": (datetime.now() - timedelta(days=random.randint(0, 14))).isoformat(),
-                    "owner": random.choice(["Hugo van der Berg", "Sophie de Vries", "Michiel Jansen"]),
+                    "owner": random.choice(["Daan van der Berg", "Sophie de Vries", "Michiel Jansen"]),
                     "next_step": self._get_next_step(stage),
                     "competitors": random.sample(["Competitor A", "Competitor B", "Competitor C", "Internal Solution"], k=random.randint(0, 2)),
                     "loss_reason": self._get_loss_reason() if stage == "Closed Lost" else None,
@@ -900,8 +900,8 @@ class SyntheticDataGenerator:
 
         # Cache user session data (mock)
         user_session = {
-            "user_id": "hugo_van_der_berg",
-            "name": "Hugo van der Berg",
+            "user_id": "daan_van_der_berg",
+            "name": "Daan van der Berg",
             "role": "Sales Director",
             "last_login": datetime.now().isoformat(),
             "preferences": {

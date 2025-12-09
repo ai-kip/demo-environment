@@ -1,8 +1,8 @@
-# Data Ingestion Capabilities - Duinrell Sales Intelligence Platform
+# Data Ingestion Capabilities - iBood Sales Intelligence Platform
 
 ## Executive Summary
 
-The Duinrell platform ("Atlas") implements a modern data ingestion and ETL pipeline for B2B Sales Intelligence. The architecture separates data ingestion, transformation (ETL), and retrieval into distinct layers, designed for extensibility and new data source integrations.
+The iBood platform ("Atlas") implements a modern data ingestion and ETL pipeline for B2B Sales Intelligence. The architecture separates data ingestion, transformation (ETL), and retrieval into distinct layers, designed for extensibility and new data source integrations.
 
 ---
 

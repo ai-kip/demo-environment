@@ -36,7 +36,7 @@ echo '/Users/michaeluenk/Downloads/data-backbone-main/scripts/scheduled-implemen
 # Or add to crontab for recurring runs (every night at 22:00)
 crontab -e
 # Add this line:
-0 22 * * * /Users/michaeluenk/Downloads/data-backbone-main/scripts/scheduled-implementation.sh >> /tmp/duinrell-implementation.log 2>&1
+0 22 * * * /Users/michaeluenk/Downloads/data-backbone-main/scripts/scheduled-implementation.sh >> /tmp/ibood-implementation.log 2>&1
 ```
 
 ### Requirements for Cron:
@@ -46,7 +46,7 @@ crontab -e
 
 ### Check Cron Logs:
 ```bash
-tail -f /tmp/duinrell-implementation.log
+tail -f /tmp/ibood-implementation.log
 ```
 
 ### Reset Phase if Needed:

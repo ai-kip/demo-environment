@@ -1,4 +1,4 @@
-# Duinrell Sales Intelligence Platform
+# iBood Sales Intelligence Platform
 
 First version of the sales intelligence platform - created for small partners up to 10 sales people.
 
@@ -6,7 +6,7 @@ A modern B2B sales intelligence platform with pipeline visualization, MEDDPICC s
 
 ## Overview
 
-Duinrell is a full-stack sales intelligence application designed for B2B sales teams. It provides:
+iBood is a full-stack sales intelligence application designed for B2B sales teams. It provides:
 
 - **Pipeline Management** - Visual bowtie funnel with deal tracking
 - **MEDDPICC Scoring** - Comprehensive deal qualification methodology
@@ -207,4 +207,4 @@ MIT
 
 ## Support
 
-Contact: support@duinrell.com
+Contact: support@ibood.com

@@ -1,9 +1,9 @@
 #!/bin/bash
-# Scheduled Implementation Script for Duinrell Sales Intelligence Platform
+# Scheduled Implementation Script for iBood Sales Intelligence Platform
 # This script can be run via cron to execute Claude Code tasks automatically
 #
 # Setup cron job (run: crontab -e):
-# 0 22 * * * /Users/michaeluenk/Downloads/data-backbone-main/scripts/scheduled-implementation.sh >> /tmp/duinrell-implementation.log 2>&1
+# 0 22 * * * /Users/michaeluenk/Downloads/data-backbone-main/scripts/scheduled-implementation.sh >> /tmp/ibood-implementation.log 2>&1
 #
 # Or for one-time tonight at 22:00:
 # echo "/Users/michaeluenk/Downloads/data-backbone-main/scripts/scheduled-implementation.sh" | at 22:00
@@ -12,7 +12,7 @@ set -e
 
 # Configuration
 PROJECT_DIR="/Users/michaeluenk/Downloads/data-backbone-main"
-LOG_FILE="/tmp/duinrell-implementation-$(date +%Y%m%d-%H%M%S).log"
+LOG_FILE="/tmp/ibood-implementation-$(date +%Y%m%d-%H%M%S).log"
 PHASE_FILE="$PROJECT_DIR/.current-implementation-phase"
 
 # Colors for output
@@ -36,7 +36,7 @@ cd "$PROJECT_DIR"
 # Track current phase
 CURRENT_PHASE=$(cat "$PHASE_FILE" 2>/dev/null || echo "1")
 
-log "${GREEN}Starting Duinrell Implementation - Phase $CURRENT_PHASE${NC}"
+log "${GREEN}Starting iBood Implementation - Phase $CURRENT_PHASE${NC}"
 log "Project directory: $PROJECT_DIR"
 log "Log file: $LOG_FILE"
 

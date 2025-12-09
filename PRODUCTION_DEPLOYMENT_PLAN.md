@@ -1,6 +1,6 @@
-# Duinrell Production Deployment Plan
+# iBood Production Deployment Plan
 
-This document outlines the steps required to deploy Duinrell to a production environment.
+This document outlines the steps required to deploy iBood to a production environment.
 
 ---
 
@@ -93,7 +93,7 @@ For small teams (<10 users):
 ### 3.1 Domain & SSL
 
 ```bash
-# Purchase domain (e.g., app.duinrell.com)
+# Purchase domain (e.g., app.ibood.com)
 # Configure DNS with your registrar
 
 # Option 1: Let's Encrypt (free)
@@ -114,7 +114,7 @@ services:
       context: ./src/data-backbone/frontend
       dockerfile: Dockerfile.prod
     environment:
-      - VITE_API_URL=https://api.duinrell.com
+      - VITE_API_URL=https://api.ibood.com
     restart: always
 
   backend:
@@ -189,14 +189,14 @@ http {
     # Redirect HTTP to HTTPS
     server {
         listen 80;
-        server_name app.duinrell.com api.duinrell.com;
+        server_name app.ibood.com api.ibood.com;
         return 301 https://$server_name$request_uri;
     }
 
     # Frontend
     server {
         listen 443 ssl http2;
-        server_name app.duinrell.com;
+        server_name app.ibood.com;
 
         ssl_certificate /etc/nginx/certs/fullchain.pem;
         ssl_certificate_key /etc/nginx/certs/privkey.pem;
@@ -214,7 +214,7 @@ http {
     # API
     server {
         listen 443 ssl http2;
-        server_name api.duinrell.com;
+        server_name api.ibood.com;
 
         ssl_certificate /etc/nginx/certs/fullchain.pem;
         ssl_certificate_key /etc/nginx/certs/privkey.pem;
@@ -284,7 +284,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://app.duinrell.com"],
+    allow_origins=["https://app.ibood.com"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
@@ -300,7 +300,7 @@ app.add_middleware(HTTPSRedirectMiddleware)
 ```bash
 # AWS Secrets Manager
 aws secretsmanager create-secret \
-  --name duinrell/production \
+  --name ibood/production \
   --secret-string '{"NEO4J_PASSWORD":"xxx","OPENAI_API_KEY":"xxx"}'
 
 # Or use environment variables with Docker secrets
@@ -311,10 +311,10 @@ docker secret create neo4j_password ./secrets/neo4j_password.txt
 
 ```cypher
 // Neo4j - Create application user with limited permissions
-CREATE USER duinrell_app SET PASSWORD 'secure_password' CHANGE NOT REQUIRED;
-GRANT MATCH {*} ON GRAPH * TO duinrell_app;
-GRANT WRITE ON GRAPH * TO duinrell_app;
-DENY DROP ON DATABASE * TO duinrell_app;
+CREATE USER ibood_app SET PASSWORD 'secure_password' CHANGE NOT REQUIRED;
+GRANT MATCH {*} ON GRAPH * TO ibood_app;
+GRANT WRITE ON GRAPH * TO ibood_app;
+DENY DROP ON DATABASE * TO ibood_app;
 ```
 
 ---
@@ -334,7 +334,7 @@ on:
 
 env:
   AWS_REGION: eu-west-1
-  ECR_REPOSITORY: duinrell
+  ECR_REPOSITORY: ibood
 
 jobs:
   test:
@@ -408,13 +408,13 @@ jobs:
       - name: Deploy to ECS
         run: |
           aws ecs update-service \
-            --cluster duinrell-prod \
-            --service duinrell-frontend \
+            --cluster ibood-prod \
+            --service ibood-frontend \
             --force-new-deployment
 
           aws ecs update-service \
-            --cluster duinrell-prod \
-            --service duinrell-backend \
+            --cluster ibood-prod \
+            --service ibood-backend \
             --force-new-deployment
 ```
 
@@ -436,16 +436,16 @@ Configure in GitHub:
 
 ```bash
 # Create cluster
-aws ecs create-cluster --cluster-name duinrell-prod
+aws ecs create-cluster --cluster-name ibood-prod
 
 # Create task definition (see task-definition.json below)
 aws ecs register-task-definition --cli-input-json file://task-definition.json
 
 # Create service
 aws ecs create-service \
-  --cluster duinrell-prod \
-  --service-name duinrell-backend \
-  --task-definition duinrell-backend \
+  --cluster ibood-prod \
+  --service-name ibood-backend \
+  --task-definition ibood-backend \
   --desired-count 2 \
   --launch-type FARGATE \
   --network-configuration "awsvpcConfiguration={subnets=[subnet-xxx],securityGroups=[sg-xxx],assignPublicIp=ENABLED}"
@@ -464,7 +464,7 @@ aws ecs create-service \
 
 ```bash
 # 1. Provision server (e.g., DigitalOcean)
-doctl compute droplet create duinrell-prod \
+doctl compute droplet create ibood-prod \
   --size s-4vcpu-8gb \
   --image docker-20-04 \
   --region ams3
@@ -473,8 +473,8 @@ doctl compute droplet create duinrell-prod \
 ssh root@your-server-ip
 
 # 3. Clone and deploy
-git clone https://github.com/your-org/duinrell.git
-cd duinrell
+git clone https://github.com/your-org/ibood.git
+cd ibood
 
 # 4. Setup environment
 cp .env.example .env
@@ -484,7 +484,7 @@ nano .env  # Configure production values
 apt install certbot python3-certbot-nginx
 
 # 6. Get SSL certificate
-certbot certonly --standalone -d app.duinrell.com -d api.duinrell.com
+certbot certonly --standalone -d app.ibood.com -d api.ibood.com
 
 # 7. Start services
 docker compose -f docker-compose.prod.yml up -d
@@ -574,7 +574,7 @@ DATE=$(date +%Y%m%d)
 neo4j-admin database dump neo4j --to-path=/backups/neo4j-$DATE.dump
 
 # Upload to S3
-aws s3 cp /backups/neo4j-$DATE.dump s3://duinrell-backups/neo4j/
+aws s3 cp /backups/neo4j-$DATE.dump s3://ibood-backups/neo4j/
 ```
 
 **Redis:**
@@ -704,7 +704,7 @@ docker compose logs -f
 docker exec neo4j neo4j-admin database dump neo4j --to-path=/backups/
 
 # Health check
-curl https://api.duinrell.com/healthz
+curl https://api.ibood.com/healthz
 ```
 
 ---
@@ -717,4 +717,4 @@ curl https://api.duinrell.com/healthz
 4. **Deploy to staging** first for testing
 5. **Security audit** before production launch
 
-For questions or support, contact: devops@duinrell.com
+For questions or support, contact: devops@ibood.com
