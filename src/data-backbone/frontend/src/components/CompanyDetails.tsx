@@ -26,6 +26,93 @@ interface CompanyDetailsProps {
   onClose: () => void;
 }
 
+// Demo company data
+const DEMO_COMPANIES: Record<string, CompanyDetails> = {
+  'techflow.nl': {
+    company: {
+      id: 'c1',
+      name: 'TechFlow BV',
+      domain: 'techflow.nl',
+      industry: 'SaaS / B2B Software',
+      location: 'Amsterdam, Netherlands',
+      employee_count: 150,
+    },
+    people: [
+      { id: 'p1', full_name: 'Jan de Vries', title: 'CTO', department: 'Engineering' },
+      { id: 'p6', full_name: 'Emma de Groot', title: 'VP Sales', department: 'Sales' },
+      { id: 'p10', full_name: 'Daan Bos', title: 'Head of Digital Marketing', department: 'Marketing' },
+      { id: 'p13', full_name: 'Maaike de Jong', title: 'CFO', department: 'Finance' },
+      { id: 'p18', full_name: 'Julia Vermeer', title: 'Customer Success Manager', department: 'Customer Success' },
+    ],
+    emails: ['info@techflow.nl', 'sales@techflow.nl', 'support@techflow.nl'],
+  },
+  'cloudnine.nl': {
+    company: {
+      id: 'c2',
+      name: 'CloudNine Systems',
+      domain: 'cloudnine.nl',
+      industry: 'Cloud Infrastructure',
+      location: 'Rotterdam, Netherlands',
+      employee_count: 85,
+    },
+    people: [
+      { id: 'p2', full_name: 'Sarah van den Berg', title: 'VP Engineering', department: 'Engineering' },
+      { id: 'p5', full_name: 'Mark Peters', title: 'IT Director', department: 'Engineering' },
+      { id: 'p12', full_name: 'Bas Smit', title: 'Senior Product Manager', department: 'Product' },
+      { id: 'p17', full_name: 'Tim Dekker', title: 'VP Customer Success', department: 'Customer Success' },
+    ],
+    emails: ['info@cloudnine.nl', 'contact@cloudnine.nl'],
+  },
+  'datasphere.nl': {
+    company: {
+      id: 'c3',
+      name: 'DataSphere NL',
+      domain: 'datasphere.nl',
+      industry: 'Data Analytics',
+      location: 'Utrecht, Netherlands',
+      employee_count: 120,
+    },
+    people: [
+      { id: 'p3', full_name: 'Thomas Bakker', title: 'Senior Software Engineer', department: 'Engineering' },
+      { id: 'p8', full_name: 'Anna Visser', title: 'Enterprise Account Executive', department: 'Sales' },
+      { id: 'p11', full_name: 'Fleur Hendriks', title: 'Chief Product Officer', department: 'Product' },
+      { id: 'p16', full_name: 'Marloes van Leeuwen', title: 'HR Director', department: 'Human Resources' },
+    ],
+    emails: ['hello@datasphere.nl', 'sales@datasphere.nl'],
+  },
+  'innovatetech.nl': {
+    company: {
+      id: 'c4',
+      name: 'InnovateTech BV',
+      domain: 'innovatetech.nl',
+      industry: 'Technology',
+      location: 'Eindhoven, Netherlands',
+      employee_count: 200,
+    },
+    people: [
+      { id: 'p4', full_name: 'Lisa Jansen', title: 'Engineering Manager', department: 'Engineering' },
+      { id: 'p9', full_name: 'Sophie Mulder', title: 'CMO', department: 'Marketing' },
+      { id: 'p14', full_name: 'Rob Willems', title: 'Finance Director', department: 'Finance' },
+    ],
+    emails: ['info@innovatetech.nl', 'careers@innovatetech.nl'],
+  },
+  'scaleup.nl': {
+    company: {
+      id: 'c5',
+      name: 'ScaleUp Solutions',
+      domain: 'scaleup.nl',
+      industry: 'Consulting',
+      location: 'The Hague, Netherlands',
+      employee_count: 45,
+    },
+    people: [
+      { id: 'p7', full_name: 'Pieter van Dijk', title: 'Sales Director', department: 'Sales' },
+      { id: 'p15', full_name: 'Karin Vos', title: 'COO', department: 'Operations' },
+    ],
+    emails: ['contact@scaleup.nl'],
+  },
+};
+
 export default function CompanyDetails({ domain, onClose }: CompanyDetailsProps) {
   const [details, setDetails] = useState<CompanyDetails | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,9 +124,26 @@ export default function CompanyDetails({ domain, onClose }: CompanyDetailsProps)
         setLoading(true);
         setError(null);
         const data = await api.getCompanyByDomain(domain);
-        setDetails(data);
+        // Use API data if available, otherwise fall back to demo data
+        if (data && data.company) {
+          setDetails(data);
+        } else {
+          const demoData = DEMO_COMPANIES[domain];
+          if (demoData) {
+            setDetails(demoData);
+          } else {
+            setDetails(null);
+          }
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load company details');
+        // Fall back to demo data on error
+        const demoData = DEMO_COMPANIES[domain];
+        if (demoData) {
+          setDetails(demoData);
+          setError(null);
+        } else {
+          setError(err instanceof Error ? err.message : 'Failed to load company details');
+        }
       } finally {
         setLoading(false);
       }

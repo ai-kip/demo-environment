@@ -11,18 +11,20 @@ import { LeadsDashboard } from './components/leads'
 import { BowtieDashboard } from './components/bowtie'
 import { OutreachSequences } from './components/outreach'
 import { SignalsDashboard } from './components/signals'
+import IntentDashboard from './components/intent/IntentDashboard'
 import { AppLayout } from './components/layout'
 import { DealDetail } from './components/deals'
 import { IntegrationsSettings } from './components/settings'
 import { ThoughtLeadershipDashboard } from './components/thought-leadership'
+import { DeepWorkDashboard } from './components/deep-work'
 import { LanguageSelector } from './components/ui/LanguageSelector'
 import { api } from './services/api'
 import { useDarkMode } from './context/DarkModeContext'
 
-type Page = 'dashboard' | 'pipeline' | 'leads' | 'deals' | 'deal-detail' | 'contacts' | 'signals' | 'intent' | 'sequences' | 'thought-leadership' | 'analytics' | 'settings' | 'help'
+type Page = 'dashboard' | 'pipeline' | 'leads' | 'deals' | 'deal-detail' | 'contacts' | 'signals' | 'intent' | 'sequences' | 'thought-leadership' | 'deep-work' | 'analytics' | 'settings' | 'help'
 
 function App() {
-  const { t } = useTranslation(['common', 'dashboard', 'leads', 'deals', 'signals', 'outreach'])
+  const { t } = useTranslation(['common', 'dashboard', 'leads', 'deals', 'signals', 'outreach', 'deepWork'])
   const { isDarkMode } = useDarkMode()
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return sessionStorage.getItem('isAuthenticated') === 'true'
@@ -185,20 +187,7 @@ function App() {
         )
 
       case 'intent':
-        return (
-          <div>
-            <div className="page-header">
-              <div>
-                <h1 className="page-title">{t('signals:intentTitle')}</h1>
-                <p className="page-subtitle">{t('signals:intentSubtitle')}</p>
-              </div>
-              <div className="page-actions">
-                <DarkModeToggle />
-              </div>
-            </div>
-            <SignalsDashboard />
-          </div>
-        )
+        return <IntentDashboard />
 
       case 'sequences':
         return (
@@ -232,6 +221,9 @@ function App() {
             <ThoughtLeadershipDashboard />
           </div>
         )
+
+      case 'deep-work':
+        return <DeepWorkDashboard />
 
       case 'analytics':
         return (

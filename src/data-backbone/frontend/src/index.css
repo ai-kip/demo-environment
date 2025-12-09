@@ -19,6 +19,10 @@
   --color-brand-teal-light: #64D2D2;
   --color-brand-teal-dark: #008B8B;
 
+  /* Brand primary alias */
+  --color-brand-primary: #0A84FF;
+  --color-brand-600: #0066CC;
+
   /* ─────────────────────────────────────────────────────────────────────
      SEMANTIC COLORS
      ───────────────────────────────────────────────────────────────────── */
@@ -69,6 +73,63 @@
   --color-intent-cold: #CBD5E1;
 
   /* ─────────────────────────────────────────────────────────────────────
+     SIGNAL TYPE COLORS (from Design Audit)
+     ───────────────────────────────────────────────────────────────────── */
+  --color-signal-hot: #F97316;
+  --color-signal-strategic: #8B5CF6;
+  --color-signal-market: #14B8A6;
+  --color-signal-relationship: #6366F1;
+
+  /* Signal backgrounds (10% opacity) */
+  --color-signal-hot-bg: rgba(249, 115, 22, 0.1);
+  --color-signal-strategic-bg: rgba(139, 92, 246, 0.1);
+  --color-signal-market-bg: rgba(20, 184, 166, 0.1);
+  --color-signal-relationship-bg: rgba(99, 102, 241, 0.1);
+
+  /* ─────────────────────────────────────────────────────────────────────
+     SEVERITY/RISK COLORS (from Design Audit)
+     ───────────────────────────────────────────────────────────────────── */
+  --color-severity-critical: #DC2626;
+  --color-severity-high: #EA580C;
+  --color-severity-medium: #D97706;
+  --color-severity-low: #64748B;
+  --color-severity-mitigated: #10B981;
+
+  /* Severity backgrounds */
+  --color-severity-critical-bg: rgba(220, 38, 38, 0.1);
+  --color-severity-high-bg: rgba(234, 88, 12, 0.1);
+  --color-severity-medium-bg: rgba(217, 119, 6, 0.1);
+  --color-severity-low-bg: rgba(100, 116, 139, 0.1);
+  --color-severity-mitigated-bg: rgba(16, 185, 129, 0.1);
+
+  /* ─────────────────────────────────────────────────────────────────────
+     ENGAGEMENT SCALE (from Design Audit)
+     ───────────────────────────────────────────────────────────────────── */
+  --color-engagement-engaged: #2563EB;
+  --color-engagement-cautious: #D97706;
+  --color-engagement-blocking: #DC2626;
+  --color-engagement-unknown: #94A3B8;
+
+  /* ─────────────────────────────────────────────────────────────────────
+     PERSONA TYPE COLORS (from Design Audit)
+     ───────────────────────────────────────────────────────────────────── */
+  --color-persona-economic-buyer: #0A1628;
+  --color-persona-technical-buyer: #64748B;
+  --color-persona-user-buyer: #94A3B8;
+  --color-persona-champion: #F59E0B;
+  --color-persona-blocker: #DC2626;
+  --color-persona-gatekeeper: #8B5CF6;
+
+  /* ─────────────────────────────────────────────────────────────────────
+     CHART/VISUALIZATION COLORS
+     ───────────────────────────────────────────────────────────────────── */
+  --color-chart-1: #2563EB;
+  --color-chart-2: #8B5CF6;
+  --color-chart-3: #14B8A6;
+  --color-chart-4: #F97316;
+  --color-chart-5: #EC4899;
+
+  /* ─────────────────────────────────────────────────────────────────────
      NEUTRAL PALETTE (Light Theme)
      ───────────────────────────────────────────────────────────────────── */
   --color-gray-0: #FFFFFF;
@@ -109,6 +170,8 @@
      ───────────────────────────────────────────────────────────────────── */
   --border-primary: var(--color-gray-200);
   --border-secondary: var(--color-gray-100);
+  --border-light: var(--color-gray-200);
+  --border-hover: var(--color-gray-300);
   --border-focus: var(--color-brand-blue);
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -211,6 +274,8 @@ html.dark {
 
   --border-primary: var(--color-gray-700);
   --border-secondary: var(--color-gray-800);
+  --border-light: var(--color-gray-700);
+  --border-hover: var(--color-gray-600);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
@@ -4979,4 +5044,1039 @@ html.dark .tooltip {
 .signal-modal-actions .btn-secondary:hover {
   background: var(--surface-tertiary);
   color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SCORE INDICATOR COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.score-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-indicator-circular {
+  transform: rotate(-90deg);
+}
+
+.score-indicator-track {
+  fill: none;
+  stroke: var(--surface-tertiary);
+}
+
+.score-indicator-fill {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease-out;
+}
+
+.score-indicator-sm .score-indicator-track,
+.score-indicator-sm .score-indicator-fill {
+  stroke-width: 3;
+}
+
+.score-indicator-md .score-indicator-track,
+.score-indicator-md .score-indicator-fill {
+  stroke-width: 4;
+}
+
+.score-indicator-lg .score-indicator-track,
+.score-indicator-lg .score-indicator-fill {
+  stroke-width: 5;
+}
+
+.score-indicator-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(0deg);
+}
+
+.score-indicator-value {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.score-indicator-sm .score-indicator-value { font-size: var(--text-sm); }
+.score-indicator-md .score-indicator-value { font-size: var(--text-lg); }
+.score-indicator-lg .score-indicator-value { font-size: var(--text-2xl); }
+
+.score-indicator-max {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* Score color mapping based on value ranges */
+.score-indicator-excellent .score-indicator-fill { stroke: var(--color-success-500); }
+.score-indicator-good .score-indicator-fill { stroke: var(--color-chart-1); }
+.score-indicator-fair .score-indicator-fill { stroke: var(--color-warning-500); }
+.score-indicator-poor .score-indicator-fill { stroke: var(--color-danger-500); }
+
+/* Linear score indicator (for BANT style comparisons) */
+.score-indicator-linear {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.score-indicator-linear-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.score-indicator-linear-label {
+  flex: 0 0 80px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+.score-indicator-linear-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.score-indicator-linear-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease-out;
+}
+
+.score-indicator-linear-value {
+  flex: 0 0 50px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIGNAL CARD COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.signal-card-v2 {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: all 0.2s ease;
+}
+
+.signal-card-v2:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.signal-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.signal-card-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--surface-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.signal-card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signal-card-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.signal-card-company {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.signal-card-type {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.signal-card-badge {
+  flex-shrink: 0;
+}
+
+/* Signal type badges */
+.signal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.signal-badge-hot {
+  background: var(--color-signal-hot-bg);
+  color: var(--color-signal-hot);
+}
+
+.signal-badge-strategic {
+  background: var(--color-signal-strategic-bg);
+  color: var(--color-signal-strategic);
+}
+
+.signal-badge-market {
+  background: var(--color-signal-market-bg);
+  color: var(--color-signal-market);
+}
+
+.signal-badge-relationship {
+  background: var(--color-signal-relationship-bg);
+  color: var(--color-signal-relationship);
+}
+
+.signal-card-body {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+}
+
+.signal-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.signal-card-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.signal-card-confidence {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.signal-card-confidence-label {
+  color: var(--text-tertiary);
+}
+
+.signal-card-confidence-value {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.signal-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-secondary);
+}
+
+.signal-card-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.signal-card-time {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RISK CARD COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.risk-card {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.risk-card-critical { border-left-color: var(--color-severity-critical); }
+.risk-card-high { border-left-color: var(--color-severity-high); }
+.risk-card-medium { border-left-color: var(--color-severity-medium); }
+.risk-card-low { border-left-color: var(--color-severity-low); }
+.risk-card-mitigated { border-left-color: var(--color-severity-mitigated); }
+
+.risk-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.risk-card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.risk-card-critical .risk-card-icon {
+  background: var(--color-severity-critical-bg);
+  color: var(--color-severity-critical);
+}
+
+.risk-card-high .risk-card-icon {
+  background: var(--color-severity-high-bg);
+  color: var(--color-severity-high);
+}
+
+.risk-card-medium .risk-card-icon {
+  background: var(--color-severity-medium-bg);
+  color: var(--color-severity-medium);
+}
+
+.risk-card-low .risk-card-icon {
+  background: var(--color-severity-low-bg);
+  color: var(--color-severity-low);
+}
+
+.risk-card-mitigated .risk-card-icon {
+  background: var(--color-severity-mitigated-bg);
+  color: var(--color-severity-mitigated);
+}
+
+.risk-card-title-area {
+  flex: 1;
+}
+
+.risk-card-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.risk-card-description {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--leading-normal);
+}
+
+.risk-card-severity-badge {
+  flex-shrink: 0;
+}
+
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+}
+
+.severity-badge-critical {
+  background: var(--color-severity-critical-bg);
+  color: var(--color-severity-critical);
+}
+
+.severity-badge-high {
+  background: var(--color-severity-high-bg);
+  color: var(--color-severity-high);
+}
+
+.severity-badge-medium {
+  background: var(--color-severity-medium-bg);
+  color: var(--color-severity-medium);
+}
+
+.severity-badge-low {
+  background: var(--color-severity-low-bg);
+  color: var(--color-severity-low);
+}
+
+.severity-badge-mitigated {
+  background: var(--color-severity-mitigated-bg);
+  color: var(--color-severity-mitigated);
+}
+
+.risk-card-metrics {
+  display: flex;
+  gap: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.risk-card-metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.risk-card-metric-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.risk-card-metric-value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+.risk-card-probability-bar {
+  width: 200px;
+  height: 6px;
+  background: var(--surface-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.risk-card-probability-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.risk-card-critical .risk-card-probability-fill { background: var(--color-severity-critical); }
+.risk-card-high .risk-card-probability-fill { background: var(--color-severity-high); }
+.risk-card-medium .risk-card-probability-fill { background: var(--color-severity-medium); }
+.risk-card-low .risk-card-probability-fill { background: var(--color-severity-low); }
+
+.risk-card-evidence {
+  background: var(--surface-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.risk-card-evidence-title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.risk-card-evidence-list {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.risk-card-evidence-list li {
+  margin-bottom: var(--space-1);
+}
+
+.risk-card-evidence-list li:last-child {
+  margin-bottom: 0;
+}
+
+.risk-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.risk-card-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.risk-card-updated {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PERSONA CARD COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.persona-card {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.persona-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+/* Compact variant (for list views) */
+.persona-card-compact {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-3);
+}
+
+.persona-card-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--surface-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.persona-card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.persona-card-avatar-initials {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+}
+
+.persona-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.persona-card-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.persona-card-title {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.persona-card-meta-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+/* Persona type badges */
+.persona-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+}
+
+.persona-type-economic-buyer {
+  background: rgba(10, 22, 40, 0.1);
+  color: var(--color-persona-economic-buyer);
+}
+
+.persona-type-technical-buyer {
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--color-persona-technical-buyer);
+}
+
+.persona-type-user-buyer {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--color-persona-user-buyer);
+}
+
+.persona-type-champion {
+  background: rgba(245, 158, 11, 0.15);
+  color: #B45309;
+}
+
+.persona-type-blocker {
+  background: var(--color-severity-critical-bg);
+  color: var(--color-severity-critical);
+}
+
+.persona-type-gatekeeper {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--color-persona-gatekeeper);
+}
+
+/* Influence indicator */
+.persona-influence {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.persona-influence-dots {
+  display: flex;
+  gap: 2px;
+}
+
+.persona-influence-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--surface-tertiary);
+}
+
+.persona-influence-dot.active {
+  background: var(--color-chart-1);
+}
+
+.persona-influence-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* Engagement status */
+.persona-engagement {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+}
+
+.persona-engagement-engaged {
+  color: var(--color-engagement-engaged);
+}
+
+.persona-engagement-cautious {
+  color: var(--color-engagement-cautious);
+}
+
+.persona-engagement-blocking {
+  color: var(--color-engagement-blocking);
+}
+
+.persona-engagement-unknown {
+  color: var(--color-engagement-unknown);
+}
+
+/* Expanded variant (for detail views) */
+.persona-card-expanded {
+  padding: var(--space-5);
+}
+
+.persona-card-expanded-header {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.persona-card-avatar-lg {
+  width: 64px;
+  height: 64px;
+  font-size: var(--text-xl);
+}
+
+.persona-card-header-info {
+  flex: 1;
+}
+
+.persona-card-name-lg {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.persona-card-role {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.persona-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.persona-card-stat {
+  background: var(--surface-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  text-align: center;
+}
+
+.persona-card-stat-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-1);
+}
+
+.persona-card-stat-value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.persona-card-section {
+  margin-bottom: var(--space-4);
+}
+
+.persona-card-section:last-child {
+  margin-bottom: 0;
+}
+
+.persona-card-section-title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--space-2) 0;
+}
+
+.persona-card-list {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.persona-card-list li {
+  margin-bottom: var(--space-1);
+}
+
+.persona-card-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.persona-signal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+}
+
+.persona-signal-positive {
+  color: var(--color-success-600);
+}
+
+.persona-signal-negative {
+  color: var(--color-warning-600);
+}
+
+.persona-card-expanded-footer {
+  display: flex;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   EMPTY STATE COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+}
+
+.empty-state-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--text-placeholder);
+  margin-bottom: var(--space-4);
+}
+
+.empty-state-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.empty-state-description {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 0 var(--space-5) 0;
+  line-height: var(--leading-normal);
+}
+
+.empty-state-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.empty-state-compact {
+  padding: var(--space-6) var(--space-4);
+}
+
+.empty-state-compact .empty-state-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: var(--space-3);
+}
+
+.empty-state-compact .empty-state-title {
+  font-size: var(--text-md);
+}
+
+.empty-state-compact .empty-state-description {
+  font-size: var(--text-xs);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ERROR STATE COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.error-state {
+  background: var(--color-danger-50);
+  border: 1px solid var(--color-danger-100);
+  border-left: 4px solid var(--color-danger-500);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.error-state-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.error-state-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-danger-500);
+  flex-shrink: 0;
+}
+
+.error-state-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-danger-700);
+  margin: 0;
+}
+
+.error-state-description {
+  font-size: var(--text-sm);
+  color: var(--color-danger-700);
+  line-height: var(--leading-normal);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.error-state-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.error-state-code {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-danger-100);
+}
+
+.error-state-code-toggle {
+  font-size: var(--text-xs);
+  color: var(--color-danger-600);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.error-state-code-content {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-danger-600);
+  margin-top: var(--space-2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABS COMPONENT (Enhanced for consistency)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  background: var(--surface-secondary);
+  padding: var(--space-1);
+  border-radius: var(--radius-lg);
+}
+
+.tab {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.tab:hover:not(.tab-active) {
+  color: var(--text-primary);
+  background: var(--surface-tertiary);
+}
+
+.tab-active {
+  color: var(--text-primary);
+  background: var(--surface-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Pills variant (for tertiary navigation) */
+.tabs-pills {
+  display: flex;
+  gap: var(--space-2);
+  background: transparent;
+  padding: 0;
+}
+
+.tab-pill {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.tab-pill:hover:not(.tab-pill-active) {
+  border-color: var(--border-hover);
+  background: var(--surface-secondary);
+}
+
+.tab-pill-active {
+  color: var(--color-brand-blue);
+  background: rgba(10, 132, 255, 0.1);
+  border-color: rgba(10, 132, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFIDENCE METER COMPONENT (from Design Audit)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.confidence-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.confidence-meter-bar {
+  width: 60px;
+  height: 6px;
+  background: var(--surface-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.confidence-meter-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.confidence-meter-very-high .confidence-meter-fill {
+  background: var(--color-success-500);
+}
+
+.confidence-meter-high .confidence-meter-fill {
+  background: var(--color-chart-1);
+}
+
+.confidence-meter-medium .confidence-meter-fill {
+  background: var(--color-warning-500);
+}
+
+.confidence-meter-low .confidence-meter-fill {
+  background: var(--color-danger-500);
+}
+
+.confidence-meter-value {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.confidence-meter-very-high .confidence-meter-value {
+  color: var(--color-success-600);
+}
+
+.confidence-meter-high .confidence-meter-value {
+  color: var(--color-chart-1);
+}
+
+.confidence-meter-medium .confidence-meter-value {
+  color: var(--color-warning-600);
+}
+
+.confidence-meter-low .confidence-meter-value {
+  color: var(--color-danger-600);
+}
+
+.confidence-meter-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
 }

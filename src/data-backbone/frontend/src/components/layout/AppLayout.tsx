@@ -15,6 +15,7 @@ import {
   UserPlus,
   Radio,
   Brain,
+  Sparkles,
 } from 'lucide-react';
 import { Header } from './Header';
 
@@ -32,16 +33,18 @@ interface AppLayoutProps {
   onNavigate?: (page: string) => void;
 }
 
+// Full navigation - all menu items restored
 const mainNavItemsConfig: NavItem[] = [
   { id: 'dashboard', labelKey: 'navigation.dashboard', icon: <LayoutDashboard size={20} />, href: '/' },
   { id: 'pipeline', labelKey: 'navigation.pipeline', icon: <Target size={20} />, href: '/pipeline' },
-  { id: 'leads', labelKey: 'navigation.leads', icon: <UserPlus size={20} />, href: '/leads', badge: 12 },
+  { id: 'leads', labelKey: 'navigation.leads', icon: <UserPlus size={20} />, href: '/leads' },
   { id: 'deals', labelKey: 'navigation.deals', icon: <Building2 size={20} />, href: '/deals', badge: 47 },
   { id: 'contacts', labelKey: 'navigation.contacts', icon: <Users size={20} />, href: '/contacts' },
   { id: 'signals', labelKey: 'navigation.signals', icon: <Zap size={20} />, href: '/signals', badge: '3 Hot' },
   { id: 'intent', labelKey: 'navigation.intent', icon: <Radio size={20} />, href: '/intent' },
   { id: 'sequences', labelKey: 'navigation.sequences', icon: <Send size={20} />, href: '/sequences' },
-  { id: 'thought-leadership', labelKey: 'navigation.thoughtLeadership', icon: <Brain size={20} />, href: '/thought-leadership', badge: 'AI' },
+  { id: 'thought-leadership', labelKey: 'navigation.thoughtLeadership', icon: <Sparkles size={20} />, href: '/thought-leadership' },
+  { id: 'deep-work', labelKey: 'navigation.deepWork', icon: <Brain size={20} />, href: '/deep-work' },
   { id: 'analytics', labelKey: 'navigation.analytics', icon: <BarChart2 size={20} />, href: '/analytics' },
 ];
 

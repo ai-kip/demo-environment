@@ -1,5 +1,6 @@
 // UI Component Library
 // Based on Sales Intelligence Platform UI Design System
+// Updated with Design Audit Components (December 2024)
 
 export { Button } from './Button';
 export type { ButtonProps } from './Button';
@@ -45,3 +46,27 @@ export type { ProgressBarProps, CircularProgressProps, SpinnerProps, SkeletonPro
 
 export { Select } from './Select';
 export type { SelectProps, SelectOption } from './Select';
+
+// ═══════════════════════════════════════════════════════════════════════
+// NEW COMPONENTS FROM DESIGN AUDIT (December 2024)
+// ═══════════════════════════════════════════════════════════════════════
+
+// Score Indicator - Circular and linear progress indicators for scores
+export { ScoreIndicator, LinearScoreIndicator, BANTScorecard } from './ScoreIndicator';
+export type { ScoreIndicatorProps, LinearScoreIndicatorProps, LinearScoreItem, BANTScoreProps } from './ScoreIndicator';
+
+// Signal Card - Display deal signals with type badges and confidence meters
+export { SignalCard, SignalCardCompact } from './SignalCard';
+export type { SignalCardProps, SignalCardCompactProps, SignalType } from './SignalCard';
+
+// Risk Card - Display deal risks with severity levels and probability
+export { RiskCard, RiskCardCompact, RiskSummary } from './RiskCard';
+export type { RiskCardProps, RiskCardCompactProps, RiskSummaryProps, Severity } from './RiskCard';
+
+// Persona Card - Display buyer personas with engagement and influence indicators
+export { PersonaCard, PersonaCardExpanded, PersonaGrid } from './PersonaCard';
+export type { PersonaCardProps, PersonaCardExpandedProps, PersonaGridProps, PersonaType, EngagementLevel } from './PersonaCard';
+
+// Empty State - Consistent empty and error states
+export { EmptyState, ErrorState, LoadingState } from './EmptyState';
+export type { EmptyStateProps, EmptyStateType, ErrorStateProps, LoadingStateProps } from './EmptyState';
