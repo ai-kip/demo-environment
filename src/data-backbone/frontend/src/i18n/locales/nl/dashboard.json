@@ -111,5 +111,58 @@
     "healthy": "Gezond",
     "unhealthy": "Ongezond",
     "checking": "Controleren..."
+  },
+  "thoughtLeadership": {
+    "subtitle": "AI-gestuurde vergadervoorbereiding, inzichten en kennisbeheer",
+    "upcomingMeetings": "Aankomende Vergaderingen",
+    "meetingPrep": "Vergadervoorbereiding",
+    "knowledgeBase": "Kennisbank",
+    "autoResponses": "Automatische Antwoorden",
+    "contentLibrary": "Inhoudsbibliotheek",
+    "meetings": {
+      "today": "Vandaag",
+      "tomorrow": "Morgen",
+      "thisWeek": "Deze Week",
+      "prepReady": "Voorbereiding Klaar",
+      "prepPending": "Voorbereiding Lopend",
+      "viewBrief": "Bekijk Briefing",
+      "generateBrief": "Genereer Briefing",
+      "viewPresentation": "Bekijk Presentatie",
+      "viewMeetingPlan": "Bekijk Vergaderplan"
+    },
+    "knowledge": {
+      "searchPlaceholder": "Zoek transcripties, inzichten en content...",
+      "transcriptsIndexed": "Transcripties Geïndexeerd",
+      "insightsExtracted": "Inzichten Geëxtraheerd",
+      "articlesGenerated": "Artikelen Gegenereerd",
+      "recentInsights": "Recente Inzichten",
+      "topTopics": "Toponderwerpen",
+      "painPoint": "Pijnpunt",
+      "buyingSignal": "Koopsignaal",
+      "objection": "Bezwaar",
+      "competitorMention": "Concurrent Vermelding"
+    },
+    "responses": {
+      "pendingReview": "Wachtend op Review",
+      "autoSent": "Automatisch Verzonden",
+      "drafts": "Concepten",
+      "confidenceScore": "Betrouwbaarheidsscore",
+      "approve": "Goedkeuren",
+      "edit": "Bewerken",
+      "escalate": "Escaleren"
+    },
+    "calendar": {
+      "connectCalendar": "Kalender Koppelen",
+      "googleCalendar": "Google Agenda",
+      "outlookCalendar": "Outlook Agenda",
+      "syncNow": "Nu Synchroniseren",
+      "lastSync": "Laatst gesynchroniseerd {{time}}"
+    },
+    "metrics": {
+      "prepCompletion": "Voorbereiding Voltooid",
+      "followUpRate": "Follow-up Percentage",
+      "responseAccuracy": "Antwoord Nauwkeurigheid",
+      "knowledgeCoverage": "Kennisdekking"
+    }
   }
 }

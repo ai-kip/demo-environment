@@ -111,5 +111,58 @@
     "healthy": "Healthy",
     "unhealthy": "Unhealthy",
     "checking": "Checking..."
+  },
+  "thoughtLeadership": {
+    "subtitle": "AI-powered meeting prep, insights, and knowledge management",
+    "upcomingMeetings": "Upcoming Meetings",
+    "meetingPrep": "Meeting Prep",
+    "knowledgeBase": "Knowledge Base",
+    "autoResponses": "Auto Responses",
+    "contentLibrary": "Content Library",
+    "meetings": {
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "thisWeek": "This Week",
+      "prepReady": "Prep Ready",
+      "prepPending": "Prep Pending",
+      "viewBrief": "View Brief",
+      "generateBrief": "Generate Brief",
+      "viewPresentation": "View Presentation",
+      "viewMeetingPlan": "View Meeting Plan"
+    },
+    "knowledge": {
+      "searchPlaceholder": "Search transcripts, insights, and content...",
+      "transcriptsIndexed": "Transcripts Indexed",
+      "insightsExtracted": "Insights Extracted",
+      "articlesGenerated": "Articles Generated",
+      "recentInsights": "Recent Insights",
+      "topTopics": "Top Topics",
+      "painPoint": "Pain Point",
+      "buyingSignal": "Buying Signal",
+      "objection": "Objection",
+      "competitorMention": "Competitor Mention"
+    },
+    "responses": {
+      "pendingReview": "Pending Review",
+      "autoSent": "Auto-sent",
+      "drafts": "Drafts",
+      "confidenceScore": "Confidence Score",
+      "approve": "Approve",
+      "edit": "Edit",
+      "escalate": "Escalate"
+    },
+    "calendar": {
+      "connectCalendar": "Connect Calendar",
+      "googleCalendar": "Google Calendar",
+      "outlookCalendar": "Outlook Calendar",
+      "syncNow": "Sync Now",
+      "lastSync": "Last synced {{time}}"
+    },
+    "metrics": {
+      "prepCompletion": "Prep Completion",
+      "followUpRate": "Follow-up Rate",
+      "responseAccuracy": "Response Accuracy",
+      "knowledgeCoverage": "Knowledge Coverage"
+    }
   }
 }

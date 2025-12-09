@@ -13,11 +13,12 @@ import { SignalsDashboard } from './components/signals'
 import { AppLayout } from './components/layout'
 import { DealDetail } from './components/deals'
 import { IntegrationsSettings } from './components/settings'
+import { ThoughtLeadershipDashboard } from './components/thought-leadership'
 import { LanguageSelector } from './components/ui/LanguageSelector'
 import { api } from './services/api'
 import { useDarkMode } from './context/DarkModeContext'
 
-type Page = 'dashboard' | 'pipeline' | 'leads' | 'deals' | 'deal-detail' | 'contacts' | 'signals' | 'intent' | 'sequences' | 'analytics' | 'settings' | 'help'
+type Page = 'dashboard' | 'pipeline' | 'leads' | 'deals' | 'deal-detail' | 'contacts' | 'signals' | 'intent' | 'sequences' | 'thought-leadership' | 'analytics' | 'settings' | 'help'
 
 function App() {
   const { t } = useTranslation(['common', 'dashboard', 'leads', 'deals', 'signals', 'outreach'])
@@ -299,6 +300,22 @@ function App() {
               </div>
             </div>
             <OutreachSequences />
+          </div>
+        )
+
+      case 'thought-leadership':
+        return (
+          <div>
+            <div className="page-header">
+              <div>
+                <h1 className="page-title">{t('common:navigation.thoughtLeadership')}</h1>
+                <p className="page-subtitle">{t('dashboard:thoughtLeadership.subtitle')}</p>
+              </div>
+              <div className="page-actions">
+                <DarkModeToggle />
+              </div>
+            </div>
+            <ThoughtLeadershipDashboard />
           </div>
         )
 

@@ -14,6 +14,7 @@ import {
   ChevronRight,
   UserPlus,
   Radio,
+  Brain,
 } from 'lucide-react';
 import { Header } from './Header';
 
@@ -40,6 +41,7 @@ const mainNavItemsConfig: NavItem[] = [
   { id: 'signals', labelKey: 'navigation.signals', icon: <Zap size={20} />, href: '/signals', badge: '3 Hot' },
   { id: 'intent', labelKey: 'navigation.intent', icon: <Radio size={20} />, href: '/intent' },
   { id: 'sequences', labelKey: 'navigation.sequences', icon: <Send size={20} />, href: '/sequences' },
+  { id: 'thought-leadership', labelKey: 'navigation.thoughtLeadership', icon: <Brain size={20} />, href: '/thought-leadership', badge: 'AI' },
   { id: 'analytics', labelKey: 'navigation.analytics', icon: <BarChart2 size={20} />, href: '/analytics' },
 ];
 

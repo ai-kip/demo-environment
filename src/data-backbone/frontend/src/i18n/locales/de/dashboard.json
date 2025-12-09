@@ -108,5 +108,58 @@
     "title": "Benachrichtigungen",
     "markAllRead": "Alle als gelesen markieren",
     "noNew": "Keine neuen Benachrichtigungen"
+  },
+  "thoughtLeadership": {
+    "subtitle": "KI-gestützte Meeting-Vorbereitung, Einblicke und Wissensmanagement",
+    "upcomingMeetings": "Anstehende Meetings",
+    "meetingPrep": "Meeting-Vorbereitung",
+    "knowledgeBase": "Wissensbasis",
+    "autoResponses": "Automatische Antworten",
+    "contentLibrary": "Inhaltsbibliothek",
+    "meetings": {
+      "today": "Heute",
+      "tomorrow": "Morgen",
+      "thisWeek": "Diese Woche",
+      "prepReady": "Vorbereitung Fertig",
+      "prepPending": "Vorbereitung Ausstehend",
+      "viewBrief": "Briefing Ansehen",
+      "generateBrief": "Briefing Generieren",
+      "viewPresentation": "Präsentation Ansehen",
+      "viewMeetingPlan": "Meetingplan Ansehen"
+    },
+    "knowledge": {
+      "searchPlaceholder": "Transkripte, Einblicke und Inhalte durchsuchen...",
+      "transcriptsIndexed": "Transkripte Indexiert",
+      "insightsExtracted": "Einblicke Extrahiert",
+      "articlesGenerated": "Artikel Generiert",
+      "recentInsights": "Aktuelle Einblicke",
+      "topTopics": "Top-Themen",
+      "painPoint": "Schmerzpunkt",
+      "buyingSignal": "Kaufsignal",
+      "objection": "Einwand",
+      "competitorMention": "Wettbewerber-Erwähnung"
+    },
+    "responses": {
+      "pendingReview": "Zur Überprüfung",
+      "autoSent": "Automatisch Gesendet",
+      "drafts": "Entwürfe",
+      "confidenceScore": "Konfidenzwert",
+      "approve": "Genehmigen",
+      "edit": "Bearbeiten",
+      "escalate": "Eskalieren"
+    },
+    "calendar": {
+      "connectCalendar": "Kalender Verbinden",
+      "googleCalendar": "Google Kalender",
+      "outlookCalendar": "Outlook Kalender",
+      "syncNow": "Jetzt Synchronisieren",
+      "lastSync": "Zuletzt synchronisiert {{time}}"
+    },
+    "metrics": {
+      "prepCompletion": "Vorbereitung Abgeschlossen",
+      "followUpRate": "Follow-up Rate",
+      "responseAccuracy": "Antwort-Genauigkeit",
+      "knowledgeCoverage": "Wissensabdeckung"
+    }
   }
 }
