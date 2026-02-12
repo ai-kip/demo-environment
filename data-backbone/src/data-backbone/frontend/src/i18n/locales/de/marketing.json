@@ -1,0 +1,374 @@
+{
+  "title": "Marketing Intelligence",
+  "subtitle": "Erstellen, verwalten und optimieren Sie Ihre Marketinginhalte.",
+
+  "navigation": {
+    "dashboard": "Marketing Dashboard",
+    "contentLibrary": "Content Bibliothek",
+    "linkedin": "LinkedIn",
+    "articles": "Artikel",
+    "landingPages": "Landing Pages",
+    "abm": "ABM Content",
+    "campaigns": "Kampagnen",
+    "analytics": "Marketing Analytics"
+  },
+
+  "dashboard": {
+    "title": "Marketing Dashboard",
+    "subtitle": "Überblick über Ihre Marketinginhalte und Leistung.",
+    "kpis": {
+      "totalContent": "Gesamter Content",
+      "publishedContent": "Veröffentlicht",
+      "draftContent": "Entwürfe",
+      "scheduledPosts": "Geplant",
+      "activeCampaigns": "Aktive Kampagnen",
+      "totalImpressions": "Impressionen",
+      "totalEngagement": "Engagement",
+      "avgEngagementRate": "Durchschn. Engagement Rate"
+    },
+    "recentActivity": "Letzte Aktivität",
+    "upcomingPosts": "Geplante Beiträge",
+    "quickCreate": "Schnell Erstellen",
+    "performanceOverview": "Leistungsübersicht"
+  },
+
+  "contentLibrary": {
+    "title": "Content Bibliothek",
+    "subtitle": "Alle Ihre Marketinginhalte an einem Ort.",
+    "createContent": "Content Erstellen",
+    "filters": {
+      "allTypes": "Alle Typen",
+      "allStatuses": "Alle Status",
+      "allCategories": "Alle Kategorien"
+    },
+    "viewMode": {
+      "grid": "Rasteransicht",
+      "list": "Listenansicht"
+    },
+    "emptyState": {
+      "title": "Noch kein Content",
+      "description": "Erstellen Sie Ihren ersten Inhalt, um zu beginnen.",
+      "action": "Content Erstellen"
+    },
+    "bulkActions": {
+      "selected": "{{count}} ausgewählt",
+      "delete": "Löschen",
+      "archive": "Archivieren",
+      "addToCampaign": "Zur Kampagne hinzufügen"
+    }
+  },
+
+  "linkedin": {
+    "title": "LinkedIn",
+    "subtitle": "Erstellen und planen Sie LinkedIn-Beiträge.",
+    "newPost": "Neuer Beitrag",
+    "scheduledPosts": "Geplante Beiträge",
+    "publishedPosts": "Veröffentlichte Beiträge",
+    "drafts": "Entwürfe",
+    "editor": {
+      "title": "LinkedIn Beitrag Erstellen",
+      "editTitle": "LinkedIn Beitrag Bearbeiten",
+      "placeholder": "Worüber möchten Sie sprechen?",
+      "characterCount": "{{count}} / {{max}} Zeichen",
+      "hashtags": "Hashtags",
+      "hashtagsPlaceholder": "Hashtags hinzufügen...",
+      "suggestedHashtags": "Vorgeschlagene Hashtags",
+      "addImage": "Bild Hinzufügen",
+      "addVideo": "Video Hinzufügen",
+      "addDocument": "Dokument Hinzufügen",
+      "addLink": "Link Hinzufügen",
+      "callToAction": "Call to Action",
+      "ctaPlaceholder": "z.B. Kommentieren Sie unten, Teilen Sie Ihre Gedanken..."
+    },
+    "preview": {
+      "title": "Vorschau",
+      "description": "So wird Ihr Beitrag auf LinkedIn aussehen"
+    },
+    "scheduler": {
+      "title": "Beitrag Planen",
+      "selectDate": "Datum Auswählen",
+      "selectTime": "Zeit Auswählen",
+      "timezone": "Zeitzone",
+      "bestTimes": "Beste Zeiten zum Posten",
+      "scheduleNow": "Planen",
+      "removeSchedule": "Planung Entfernen"
+    },
+    "analytics": {
+      "title": "LinkedIn Analytics",
+      "impressions": "Impressionen",
+      "reactions": "Reaktionen",
+      "comments": "Kommentare",
+      "shares": "Teilungen",
+      "clicks": "Klicks",
+      "engagementRate": "Engagement Rate"
+    },
+    "validation": {
+      "tooLong": "Beitrag überschreitet das Limit von 3000 Zeichen",
+      "tooManyHashtags": "Mehr als 5 Hashtags können die Reichweite verringern",
+      "noHashtags": "Erwägen Sie, 2-5 relevante Hashtags hinzuzufügen"
+    }
+  },
+
+  "articles": {
+    "title": "Artikel",
+    "subtitle": "Erstellen und verwalten Sie Blog-Artikel.",
+    "newArticle": "Neuer Artikel",
+    "editor": {
+      "title": "Artikel Erstellen",
+      "editTitle": "Artikel Bearbeiten",
+      "titlePlaceholder": "Artikeltitel eingeben...",
+      "subtitlePlaceholder": "Untertitel eingeben (optional)",
+      "bodyPlaceholder": "Beginnen Sie mit dem Schreiben...",
+      "featuredImage": "Beitragsbild",
+      "seoSettings": "SEO Einstellungen"
+    },
+    "seo": {
+      "title": "SEO Einstellungen",
+      "metaTitle": "Meta-Titel",
+      "metaTitleHelp": "Empfohlen: 30-60 Zeichen",
+      "metaDescription": "Meta-Beschreibung",
+      "metaDescriptionHelp": "Empfohlen: 120-160 Zeichen",
+      "focusKeyword": "Fokus-Keyword",
+      "secondaryKeywords": "Sekundäre Keywords",
+      "slug": "URL Slug",
+      "score": "SEO Score"
+    }
+  },
+
+  "landingPages": {
+    "title": "Landing Pages",
+    "subtitle": "Erstellen Sie konversionsorientierte Landing Pages.",
+    "newPage": "Neue Landing Page",
+    "templates": "Vorlagen",
+    "selectTemplate": "Vorlage Auswählen",
+    "builder": {
+      "title": "Seiten-Builder",
+      "headline": "Überschrift",
+      "subheadline": "Unterüberschrift",
+      "heroImage": "Hero-Bild",
+      "valueProps": "Wertversprechen",
+      "testimonials": "Testimonials",
+      "form": "Formular",
+      "cta": "Call to Action"
+    },
+    "form": {
+      "title": "Formular Einstellungen",
+      "fields": "Formularfelder",
+      "addField": "Feld Hinzufügen",
+      "submitButton": "Absenden-Button Text",
+      "successMessage": "Erfolgsmeldung",
+      "redirectUrl": "Weiterleitungs-URL"
+    },
+    "abTest": {
+      "title": "A/B-Tests",
+      "createVariant": "Variante Erstellen",
+      "variantA": "Variante A (Kontrolle)",
+      "variantB": "Variante B",
+      "weight": "Traffic-Gewichtung",
+      "selectWinner": "Gewinner Auswählen"
+    }
+  },
+
+  "abm": {
+    "title": "ABM Content",
+    "subtitle": "Erstellen Sie personalisierte Account-Based Marketing Inhalte.",
+    "newContent": "Neuer ABM Content",
+    "editor": {
+      "title": "ABM Content Erstellen",
+      "editTitle": "ABM Content Bearbeiten",
+      "baseContent": "Basis-Content",
+      "baseHeadline": "Basis-Überschrift",
+      "baseBody": "Basis-Text",
+      "personalization": "Personalisierung",
+      "tokens": "Personalisierungs-Tokens",
+      "addToken": "Token Hinzufügen",
+      "variations": "Account-Variationen",
+      "addVariation": "Variation Hinzufügen"
+    },
+    "tokens": {
+      "companyName": "Firmenname",
+      "industry": "Branche",
+      "painPoint": "Schmerzpunkt",
+      "custom": "Benutzerdefinierter Token"
+    },
+    "targeting": {
+      "title": "Targeting",
+      "accounts": "Ziel-Accounts",
+      "personas": "Ziel-Personas",
+      "selectAccounts": "Accounts auswählen...",
+      "selectPersonas": "Personas auswählen..."
+    }
+  },
+
+  "campaigns": {
+    "title": "Kampagnen",
+    "subtitle": "Organisieren Sie Content in Marketing-Kampagnen.",
+    "newCampaign": "Neue Kampagne",
+    "editor": {
+      "title": "Kampagne Erstellen",
+      "editTitle": "Kampagne Bearbeiten",
+      "namePlaceholder": "Kampagnenname eingeben...",
+      "description": "Beschreibung",
+      "timeline": "Zeitplan",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "budget": "Budget",
+      "goals": "Ziele",
+      "goalType": "Zieltyp",
+      "goalValue": "Zielwert"
+    },
+    "content": {
+      "title": "Kampagnen-Content",
+      "addContent": "Content Hinzufügen",
+      "noContent": "Noch kein Content hinzugefügt"
+    },
+    "status": {
+      "planning": "Planung",
+      "active": "Aktiv",
+      "paused": "Pausiert",
+      "completed": "Abgeschlossen",
+      "archived": "Archiviert"
+    },
+    "metrics": {
+      "impressions": "Impressionen",
+      "engagement": "Engagement",
+      "leads": "Leads",
+      "conversions": "Conversions",
+      "roi": "ROI"
+    }
+  },
+
+  "analytics": {
+    "title": "Marketing Analytics",
+    "subtitle": "Verfolgen Sie Ihre Marketing-Leistung.",
+    "overview": "Übersicht",
+    "contentPerformance": "Content-Leistung",
+    "campaignPerformance": "Kampagnen-Leistung",
+    "topContent": "Top-Content",
+    "trends": "Trends",
+    "timeRange": {
+      "last7Days": "Letzte 7 Tage",
+      "last30Days": "Letzte 30 Tage",
+      "last90Days": "Letzte 90 Tage",
+      "yearToDate": "Jahr bis heute",
+      "allTime": "Gesamter Zeitraum"
+    }
+  },
+
+  "quickActions": {
+    "newLinkedInPost": "LinkedIn Beitrag",
+    "newArticle": "Artikel",
+    "newLandingPage": "Landing Page",
+    "newCampaign": "Kampagne"
+  },
+
+  "ai": {
+    "title": "KI Content Generator",
+    "generateContent": "Content Generieren",
+    "generateVariations": "Variationen Generieren",
+    "suggestHashtags": "Hashtags Vorschlagen",
+    "improveContent": "Content Verbessern",
+    "prompt": "Was möchten Sie erstellen?",
+    "promptPlaceholder": "Beschreiben Sie den Content, den Sie generieren möchten...",
+    "tone": "Ton",
+    "tones": {
+      "professional": "Professionell",
+      "casual": "Locker",
+      "formal": "Formell",
+      "friendly": "Freundlich"
+    },
+    "generating": "Generiere...",
+    "generated": "Content erfolgreich generiert!"
+  },
+
+  "sort": {
+    "updatedNewest": "Kürzlich Aktualisiert",
+    "updatedOldest": "Älteste Aktualisiert",
+    "createdNewest": "Kürzlich Erstellt",
+    "createdOldest": "Älteste Erstellt",
+    "titleAZ": "Titel (A-Z)",
+    "titleZA": "Titel (Z-A)",
+    "status": "Status"
+  },
+
+  "contentTypes": {
+    "linkedinPost": "LinkedIn Beitrag",
+    "article": "Artikel",
+    "landingPage": "Landing Page",
+    "abmContent": "ABM Content",
+    "caseStudy": "Fallstudie"
+  },
+
+  "contentStatus": {
+    "draft": "Entwurf",
+    "review": "In Prüfung",
+    "approved": "Genehmigt",
+    "scheduled": "Geplant",
+    "published": "Veröffentlicht",
+    "archived": "Archiviert"
+  },
+
+  "contentCategory": {
+    "thoughtLeadership": "Thought Leadership",
+    "product": "Produkt",
+    "caseStudy": "Fallstudie",
+    "industry": "Branche",
+    "companyNews": "Unternehmensnews",
+    "educational": "Bildungsinhalte",
+    "promotional": "Werbung"
+  },
+
+  "personas": {
+    "executive": "Executive",
+    "decisionMaker": "Entscheider",
+    "influencer": "Influencer",
+    "practitioner": "Anwender",
+    "technical": "Technisch",
+    "financial": "Finanzen"
+  },
+
+  "mergeFields": {
+    "title": "Content-Titel",
+    "url": "Content-URL",
+    "cta": "Call to Action",
+    "summary": "Content-Zusammenfassung"
+  },
+
+  "sequenceIntegration": {
+    "title": "Mit Sequenz Verknüpfen",
+    "linkContent": "Content Verknüpfen",
+    "selectContent": "Content zum Verknüpfen auswählen",
+    "linkedTo": "Verknüpft mit Sequenz",
+    "mergeFields": "Verfügbare Merge-Felder"
+  },
+
+  "actions": {
+    "create": "Erstellen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "duplicate": "Duplizieren",
+    "archive": "Archivieren",
+    "publish": "Veröffentlichen",
+    "unpublish": "Zurückziehen",
+    "schedule": "Planen",
+    "preview": "Vorschau",
+    "submitForReview": "Zur Prüfung Einreichen",
+    "approve": "Genehmigen",
+    "reject": "Ablehnen"
+  },
+
+  "confirmations": {
+    "delete": "Sind Sie sicher, dass Sie diesen Content löschen möchten?",
+    "archive": "Sind Sie sicher, dass Sie diesen Content archivieren möchten?",
+    "publish": "Sind Sie sicher, dass Sie diesen Content veröffentlichen möchten?"
+  },
+
+  "notifications": {
+    "contentCreated": "Content erfolgreich erstellt",
+    "contentUpdated": "Content erfolgreich aktualisiert",
+    "contentDeleted": "Content erfolgreich gelöscht",
+    "contentPublished": "Content erfolgreich veröffentlicht",
+    "contentScheduled": "Content geplant für {{time}}",
+    "campaignCreated": "Kampagne erfolgreich erstellt"
+  }
+}

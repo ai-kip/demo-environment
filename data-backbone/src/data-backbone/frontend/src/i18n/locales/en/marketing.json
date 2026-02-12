@@ -1,0 +1,374 @@
+{
+  "title": "Marketing Intelligence",
+  "subtitle": "Create, manage, and optimize your marketing content.",
+
+  "navigation": {
+    "dashboard": "Marketing Dashboard",
+    "contentLibrary": "Content Library",
+    "linkedin": "LinkedIn",
+    "articles": "Articles",
+    "landingPages": "Landing Pages",
+    "abm": "ABM Content",
+    "campaigns": "Campaigns",
+    "analytics": "Marketing Analytics"
+  },
+
+  "dashboard": {
+    "title": "Marketing Dashboard",
+    "subtitle": "Overview of your marketing content and performance.",
+    "kpis": {
+      "totalContent": "Total Content",
+      "publishedContent": "Published",
+      "draftContent": "Drafts",
+      "scheduledPosts": "Scheduled",
+      "activeCampaigns": "Active Campaigns",
+      "totalImpressions": "Impressions",
+      "totalEngagement": "Engagement",
+      "avgEngagementRate": "Avg. Engagement Rate"
+    },
+    "recentActivity": "Recent Activity",
+    "upcomingPosts": "Upcoming Posts",
+    "quickCreate": "Quick Create",
+    "performanceOverview": "Performance Overview"
+  },
+
+  "contentLibrary": {
+    "title": "Content Library",
+    "subtitle": "All your marketing content in one place.",
+    "createContent": "Create Content",
+    "filters": {
+      "allTypes": "All Types",
+      "allStatuses": "All Statuses",
+      "allCategories": "All Categories"
+    },
+    "viewMode": {
+      "grid": "Grid View",
+      "list": "List View"
+    },
+    "emptyState": {
+      "title": "No content yet",
+      "description": "Create your first piece of content to get started.",
+      "action": "Create Content"
+    },
+    "bulkActions": {
+      "selected": "{{count}} selected",
+      "delete": "Delete",
+      "archive": "Archive",
+      "addToCampaign": "Add to Campaign"
+    }
+  },
+
+  "linkedin": {
+    "title": "LinkedIn",
+    "subtitle": "Create and schedule LinkedIn posts.",
+    "newPost": "New Post",
+    "scheduledPosts": "Scheduled Posts",
+    "publishedPosts": "Published Posts",
+    "drafts": "Drafts",
+    "editor": {
+      "title": "Create LinkedIn Post",
+      "editTitle": "Edit LinkedIn Post",
+      "placeholder": "What do you want to talk about?",
+      "characterCount": "{{count}} / {{max}} characters",
+      "hashtags": "Hashtags",
+      "hashtagsPlaceholder": "Add hashtags...",
+      "suggestedHashtags": "Suggested Hashtags",
+      "addImage": "Add Image",
+      "addVideo": "Add Video",
+      "addDocument": "Add Document",
+      "addLink": "Add Link",
+      "callToAction": "Call to Action",
+      "ctaPlaceholder": "e.g., Comment below, Share your thoughts..."
+    },
+    "preview": {
+      "title": "Preview",
+      "description": "How your post will appear on LinkedIn"
+    },
+    "scheduler": {
+      "title": "Schedule Post",
+      "selectDate": "Select Date",
+      "selectTime": "Select Time",
+      "timezone": "Timezone",
+      "bestTimes": "Best Times to Post",
+      "scheduleNow": "Schedule",
+      "removeSchedule": "Remove Schedule"
+    },
+    "analytics": {
+      "title": "LinkedIn Analytics",
+      "impressions": "Impressions",
+      "reactions": "Reactions",
+      "comments": "Comments",
+      "shares": "Shares",
+      "clicks": "Clicks",
+      "engagementRate": "Engagement Rate"
+    },
+    "validation": {
+      "tooLong": "Post exceeds 3000 character limit",
+      "tooManyHashtags": "More than 5 hashtags may reduce reach",
+      "noHashtags": "Consider adding 2-5 relevant hashtags"
+    }
+  },
+
+  "articles": {
+    "title": "Articles",
+    "subtitle": "Create and manage blog articles.",
+    "newArticle": "New Article",
+    "editor": {
+      "title": "Create Article",
+      "editTitle": "Edit Article",
+      "titlePlaceholder": "Enter article title...",
+      "subtitlePlaceholder": "Enter subtitle (optional)",
+      "bodyPlaceholder": "Start writing your article...",
+      "featuredImage": "Featured Image",
+      "seoSettings": "SEO Settings"
+    },
+    "seo": {
+      "title": "SEO Settings",
+      "metaTitle": "Meta Title",
+      "metaTitleHelp": "Recommended: 30-60 characters",
+      "metaDescription": "Meta Description",
+      "metaDescriptionHelp": "Recommended: 120-160 characters",
+      "focusKeyword": "Focus Keyword",
+      "secondaryKeywords": "Secondary Keywords",
+      "slug": "URL Slug",
+      "score": "SEO Score"
+    }
+  },
+
+  "landingPages": {
+    "title": "Landing Pages",
+    "subtitle": "Create conversion-focused landing pages.",
+    "newPage": "New Landing Page",
+    "templates": "Templates",
+    "selectTemplate": "Select a Template",
+    "builder": {
+      "title": "Page Builder",
+      "headline": "Headline",
+      "subheadline": "Subheadline",
+      "heroImage": "Hero Image",
+      "valueProps": "Value Propositions",
+      "testimonials": "Testimonials",
+      "form": "Form",
+      "cta": "Call to Action"
+    },
+    "form": {
+      "title": "Form Settings",
+      "fields": "Form Fields",
+      "addField": "Add Field",
+      "submitButton": "Submit Button Text",
+      "successMessage": "Success Message",
+      "redirectUrl": "Redirect URL"
+    },
+    "abTest": {
+      "title": "A/B Testing",
+      "createVariant": "Create Variant",
+      "variantA": "Variant A (Control)",
+      "variantB": "Variant B",
+      "weight": "Traffic Weight",
+      "selectWinner": "Select Winner"
+    }
+  },
+
+  "abm": {
+    "title": "ABM Content",
+    "subtitle": "Create personalized account-based marketing content.",
+    "newContent": "New ABM Content",
+    "editor": {
+      "title": "Create ABM Content",
+      "editTitle": "Edit ABM Content",
+      "baseContent": "Base Content",
+      "baseHeadline": "Base Headline",
+      "baseBody": "Base Body",
+      "personalization": "Personalization",
+      "tokens": "Personalization Tokens",
+      "addToken": "Add Token",
+      "variations": "Account Variations",
+      "addVariation": "Add Variation"
+    },
+    "tokens": {
+      "companyName": "Company Name",
+      "industry": "Industry",
+      "painPoint": "Pain Point",
+      "custom": "Custom Token"
+    },
+    "targeting": {
+      "title": "Targeting",
+      "accounts": "Target Accounts",
+      "personas": "Target Personas",
+      "selectAccounts": "Select accounts...",
+      "selectPersonas": "Select personas..."
+    }
+  },
+
+  "campaigns": {
+    "title": "Campaigns",
+    "subtitle": "Organize content into marketing campaigns.",
+    "newCampaign": "New Campaign",
+    "editor": {
+      "title": "Create Campaign",
+      "editTitle": "Edit Campaign",
+      "namePlaceholder": "Enter campaign name...",
+      "description": "Description",
+      "timeline": "Timeline",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "budget": "Budget",
+      "goals": "Goals",
+      "goalType": "Goal Type",
+      "goalValue": "Target Value"
+    },
+    "content": {
+      "title": "Campaign Content",
+      "addContent": "Add Content",
+      "noContent": "No content added yet"
+    },
+    "status": {
+      "planning": "Planning",
+      "active": "Active",
+      "paused": "Paused",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "metrics": {
+      "impressions": "Impressions",
+      "engagement": "Engagement",
+      "leads": "Leads",
+      "conversions": "Conversions",
+      "roi": "ROI"
+    }
+  },
+
+  "analytics": {
+    "title": "Marketing Analytics",
+    "subtitle": "Track your marketing performance.",
+    "overview": "Overview",
+    "contentPerformance": "Content Performance",
+    "campaignPerformance": "Campaign Performance",
+    "topContent": "Top Performing Content",
+    "trends": "Trends",
+    "timeRange": {
+      "last7Days": "Last 7 Days",
+      "last30Days": "Last 30 Days",
+      "last90Days": "Last 90 Days",
+      "yearToDate": "Year to Date",
+      "allTime": "All Time"
+    }
+  },
+
+  "quickActions": {
+    "newLinkedInPost": "LinkedIn Post",
+    "newArticle": "Article",
+    "newLandingPage": "Landing Page",
+    "newCampaign": "Campaign"
+  },
+
+  "ai": {
+    "title": "AI Content Generator",
+    "generateContent": "Generate Content",
+    "generateVariations": "Generate Variations",
+    "suggestHashtags": "Suggest Hashtags",
+    "improveContent": "Improve Content",
+    "prompt": "What would you like to create?",
+    "promptPlaceholder": "Describe the content you want to generate...",
+    "tone": "Tone",
+    "tones": {
+      "professional": "Professional",
+      "casual": "Casual",
+      "formal": "Formal",
+      "friendly": "Friendly"
+    },
+    "generating": "Generating...",
+    "generated": "Content generated successfully!"
+  },
+
+  "sort": {
+    "updatedNewest": "Recently Updated",
+    "updatedOldest": "Oldest Updated",
+    "createdNewest": "Recently Created",
+    "createdOldest": "Oldest Created",
+    "titleAZ": "Title (A-Z)",
+    "titleZA": "Title (Z-A)",
+    "status": "Status"
+  },
+
+  "contentTypes": {
+    "linkedinPost": "LinkedIn Post",
+    "article": "Article",
+    "landingPage": "Landing Page",
+    "abmContent": "ABM Content",
+    "caseStudy": "Case Study"
+  },
+
+  "contentStatus": {
+    "draft": "Draft",
+    "review": "In Review",
+    "approved": "Approved",
+    "scheduled": "Scheduled",
+    "published": "Published",
+    "archived": "Archived"
+  },
+
+  "contentCategory": {
+    "thoughtLeadership": "Thought Leadership",
+    "product": "Product",
+    "caseStudy": "Case Study",
+    "industry": "Industry",
+    "companyNews": "Company News",
+    "educational": "Educational",
+    "promotional": "Promotional"
+  },
+
+  "personas": {
+    "executive": "Executive",
+    "decisionMaker": "Decision Maker",
+    "influencer": "Influencer",
+    "practitioner": "Practitioner",
+    "technical": "Technical",
+    "financial": "Financial"
+  },
+
+  "mergeFields": {
+    "title": "Content Title",
+    "url": "Content URL",
+    "cta": "Call to Action",
+    "summary": "Content Summary"
+  },
+
+  "sequenceIntegration": {
+    "title": "Link to Sequence",
+    "linkContent": "Link Content",
+    "selectContent": "Select content to link",
+    "linkedTo": "Linked to sequence",
+    "mergeFields": "Available Merge Fields"
+  },
+
+  "actions": {
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "duplicate": "Duplicate",
+    "archive": "Archive",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "schedule": "Schedule",
+    "preview": "Preview",
+    "submitForReview": "Submit for Review",
+    "approve": "Approve",
+    "reject": "Reject"
+  },
+
+  "confirmations": {
+    "delete": "Are you sure you want to delete this content?",
+    "archive": "Are you sure you want to archive this content?",
+    "publish": "Are you sure you want to publish this content?"
+  },
+
+  "notifications": {
+    "contentCreated": "Content created successfully",
+    "contentUpdated": "Content updated successfully",
+    "contentDeleted": "Content deleted successfully",
+    "contentPublished": "Content published successfully",
+    "contentScheduled": "Content scheduled for {{time}}",
+    "campaignCreated": "Campaign created successfully"
+  }
+}

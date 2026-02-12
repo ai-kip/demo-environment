@@ -1,0 +1,374 @@
+{
+  "title": "Marketing Intelligence",
+  "subtitle": "Creëer, beheer en optimaliseer je marketingcontent.",
+
+  "navigation": {
+    "dashboard": "Marketing Dashboard",
+    "contentLibrary": "Content Bibliotheek",
+    "linkedin": "LinkedIn",
+    "articles": "Artikelen",
+    "landingPages": "Landingspagina's",
+    "abm": "ABM Content",
+    "campaigns": "Campagnes",
+    "analytics": "Marketing Analytics"
+  },
+
+  "dashboard": {
+    "title": "Marketing Dashboard",
+    "subtitle": "Overzicht van je marketingcontent en prestaties.",
+    "kpis": {
+      "totalContent": "Totale Content",
+      "publishedContent": "Gepubliceerd",
+      "draftContent": "Concepten",
+      "scheduledPosts": "Gepland",
+      "activeCampaigns": "Actieve Campagnes",
+      "totalImpressions": "Impressies",
+      "totalEngagement": "Engagement",
+      "avgEngagementRate": "Gem. Engagement Rate"
+    },
+    "recentActivity": "Recente Activiteit",
+    "upcomingPosts": "Geplande Posts",
+    "quickCreate": "Snel Aanmaken",
+    "performanceOverview": "Prestatie Overzicht"
+  },
+
+  "contentLibrary": {
+    "title": "Content Bibliotheek",
+    "subtitle": "Al je marketingcontent op één plek.",
+    "createContent": "Content Aanmaken",
+    "filters": {
+      "allTypes": "Alle Types",
+      "allStatuses": "Alle Statussen",
+      "allCategories": "Alle Categorieën"
+    },
+    "viewMode": {
+      "grid": "Grid Weergave",
+      "list": "Lijst Weergave"
+    },
+    "emptyState": {
+      "title": "Nog geen content",
+      "description": "Maak je eerste content aan om te beginnen.",
+      "action": "Content Aanmaken"
+    },
+    "bulkActions": {
+      "selected": "{{count}} geselecteerd",
+      "delete": "Verwijderen",
+      "archive": "Archiveren",
+      "addToCampaign": "Toevoegen aan Campagne"
+    }
+  },
+
+  "linkedin": {
+    "title": "LinkedIn",
+    "subtitle": "Maak en plan LinkedIn posts.",
+    "newPost": "Nieuwe Post",
+    "scheduledPosts": "Geplande Posts",
+    "publishedPosts": "Gepubliceerde Posts",
+    "drafts": "Concepten",
+    "editor": {
+      "title": "LinkedIn Post Maken",
+      "editTitle": "LinkedIn Post Bewerken",
+      "placeholder": "Waar wil je over praten?",
+      "characterCount": "{{count}} / {{max}} tekens",
+      "hashtags": "Hashtags",
+      "hashtagsPlaceholder": "Hashtags toevoegen...",
+      "suggestedHashtags": "Voorgestelde Hashtags",
+      "addImage": "Afbeelding Toevoegen",
+      "addVideo": "Video Toevoegen",
+      "addDocument": "Document Toevoegen",
+      "addLink": "Link Toevoegen",
+      "callToAction": "Call to Action",
+      "ctaPlaceholder": "bijv. Reageer hieronder, Deel je gedachten..."
+    },
+    "preview": {
+      "title": "Voorbeeld",
+      "description": "Hoe je post eruitziet op LinkedIn"
+    },
+    "scheduler": {
+      "title": "Post Plannen",
+      "selectDate": "Selecteer Datum",
+      "selectTime": "Selecteer Tijd",
+      "timezone": "Tijdzone",
+      "bestTimes": "Beste Tijden om te Posten",
+      "scheduleNow": "Plannen",
+      "removeSchedule": "Planning Verwijderen"
+    },
+    "analytics": {
+      "title": "LinkedIn Analytics",
+      "impressions": "Impressies",
+      "reactions": "Reacties",
+      "comments": "Opmerkingen",
+      "shares": "Delingen",
+      "clicks": "Kliks",
+      "engagementRate": "Engagement Rate"
+    },
+    "validation": {
+      "tooLong": "Post overschrijdt de limiet van 3000 tekens",
+      "tooManyHashtags": "Meer dan 5 hashtags kan het bereik verminderen",
+      "noHashtags": "Overweeg 2-5 relevante hashtags toe te voegen"
+    }
+  },
+
+  "articles": {
+    "title": "Artikelen",
+    "subtitle": "Maak en beheer blog artikelen.",
+    "newArticle": "Nieuw Artikel",
+    "editor": {
+      "title": "Artikel Maken",
+      "editTitle": "Artikel Bewerken",
+      "titlePlaceholder": "Voer artikel titel in...",
+      "subtitlePlaceholder": "Voer ondertitel in (optioneel)",
+      "bodyPlaceholder": "Begin met schrijven...",
+      "featuredImage": "Uitgelichte Afbeelding",
+      "seoSettings": "SEO Instellingen"
+    },
+    "seo": {
+      "title": "SEO Instellingen",
+      "metaTitle": "Meta Titel",
+      "metaTitleHelp": "Aanbevolen: 30-60 tekens",
+      "metaDescription": "Meta Beschrijving",
+      "metaDescriptionHelp": "Aanbevolen: 120-160 tekens",
+      "focusKeyword": "Focus Trefwoord",
+      "secondaryKeywords": "Secundaire Trefwoorden",
+      "slug": "URL Slug",
+      "score": "SEO Score"
+    }
+  },
+
+  "landingPages": {
+    "title": "Landingspagina's",
+    "subtitle": "Maak conversiegerichte landingspagina's.",
+    "newPage": "Nieuwe Landingspagina",
+    "templates": "Templates",
+    "selectTemplate": "Selecteer een Template",
+    "builder": {
+      "title": "Pagina Builder",
+      "headline": "Kop",
+      "subheadline": "Subkop",
+      "heroImage": "Hero Afbeelding",
+      "valueProps": "Waardeproposities",
+      "testimonials": "Testimonials",
+      "form": "Formulier",
+      "cta": "Call to Action"
+    },
+    "form": {
+      "title": "Formulier Instellingen",
+      "fields": "Formulier Velden",
+      "addField": "Veld Toevoegen",
+      "submitButton": "Verzendknop Tekst",
+      "successMessage": "Succes Bericht",
+      "redirectUrl": "Redirect URL"
+    },
+    "abTest": {
+      "title": "A/B Testen",
+      "createVariant": "Variant Maken",
+      "variantA": "Variant A (Controle)",
+      "variantB": "Variant B",
+      "weight": "Verkeersgewicht",
+      "selectWinner": "Winnaar Selecteren"
+    }
+  },
+
+  "abm": {
+    "title": "ABM Content",
+    "subtitle": "Maak gepersonaliseerde account-based marketing content.",
+    "newContent": "Nieuwe ABM Content",
+    "editor": {
+      "title": "ABM Content Maken",
+      "editTitle": "ABM Content Bewerken",
+      "baseContent": "Basis Content",
+      "baseHeadline": "Basis Kop",
+      "baseBody": "Basis Tekst",
+      "personalization": "Personalisatie",
+      "tokens": "Personalisatie Tokens",
+      "addToken": "Token Toevoegen",
+      "variations": "Account Variaties",
+      "addVariation": "Variatie Toevoegen"
+    },
+    "tokens": {
+      "companyName": "Bedrijfsnaam",
+      "industry": "Industrie",
+      "painPoint": "Pijnpunt",
+      "custom": "Aangepaste Token"
+    },
+    "targeting": {
+      "title": "Targeting",
+      "accounts": "Doelaccounts",
+      "personas": "Doelpersona's",
+      "selectAccounts": "Selecteer accounts...",
+      "selectPersonas": "Selecteer persona's..."
+    }
+  },
+
+  "campaigns": {
+    "title": "Campagnes",
+    "subtitle": "Organiseer content in marketingcampagnes.",
+    "newCampaign": "Nieuwe Campagne",
+    "editor": {
+      "title": "Campagne Maken",
+      "editTitle": "Campagne Bewerken",
+      "namePlaceholder": "Voer campagnenaam in...",
+      "description": "Beschrijving",
+      "timeline": "Tijdlijn",
+      "startDate": "Startdatum",
+      "endDate": "Einddatum",
+      "budget": "Budget",
+      "goals": "Doelen",
+      "goalType": "Doeltype",
+      "goalValue": "Doelwaarde"
+    },
+    "content": {
+      "title": "Campagne Content",
+      "addContent": "Content Toevoegen",
+      "noContent": "Nog geen content toegevoegd"
+    },
+    "status": {
+      "planning": "Planning",
+      "active": "Actief",
+      "paused": "Gepauzeerd",
+      "completed": "Voltooid",
+      "archived": "Gearchiveerd"
+    },
+    "metrics": {
+      "impressions": "Impressies",
+      "engagement": "Engagement",
+      "leads": "Leads",
+      "conversions": "Conversies",
+      "roi": "ROI"
+    }
+  },
+
+  "analytics": {
+    "title": "Marketing Analytics",
+    "subtitle": "Volg je marketingprestaties.",
+    "overview": "Overzicht",
+    "contentPerformance": "Content Prestaties",
+    "campaignPerformance": "Campagne Prestaties",
+    "topContent": "Best Presterende Content",
+    "trends": "Trends",
+    "timeRange": {
+      "last7Days": "Afgelopen 7 Dagen",
+      "last30Days": "Afgelopen 30 Dagen",
+      "last90Days": "Afgelopen 90 Dagen",
+      "yearToDate": "Jaar tot Heden",
+      "allTime": "Alle Tijd"
+    }
+  },
+
+  "quickActions": {
+    "newLinkedInPost": "LinkedIn Post",
+    "newArticle": "Artikel",
+    "newLandingPage": "Landingspagina",
+    "newCampaign": "Campagne"
+  },
+
+  "ai": {
+    "title": "AI Content Generator",
+    "generateContent": "Content Genereren",
+    "generateVariations": "Variaties Genereren",
+    "suggestHashtags": "Hashtags Voorstellen",
+    "improveContent": "Content Verbeteren",
+    "prompt": "Wat wil je maken?",
+    "promptPlaceholder": "Beschrijf de content die je wilt genereren...",
+    "tone": "Toon",
+    "tones": {
+      "professional": "Professioneel",
+      "casual": "Informeel",
+      "formal": "Formeel",
+      "friendly": "Vriendelijk"
+    },
+    "generating": "Genereren...",
+    "generated": "Content succesvol gegenereerd!"
+  },
+
+  "sort": {
+    "updatedNewest": "Recent Bijgewerkt",
+    "updatedOldest": "Oudst Bijgewerkt",
+    "createdNewest": "Recent Aangemaakt",
+    "createdOldest": "Oudst Aangemaakt",
+    "titleAZ": "Titel (A-Z)",
+    "titleZA": "Titel (Z-A)",
+    "status": "Status"
+  },
+
+  "contentTypes": {
+    "linkedinPost": "LinkedIn Post",
+    "article": "Artikel",
+    "landingPage": "Landingspagina",
+    "abmContent": "ABM Content",
+    "caseStudy": "Case Study"
+  },
+
+  "contentStatus": {
+    "draft": "Concept",
+    "review": "In Review",
+    "approved": "Goedgekeurd",
+    "scheduled": "Gepland",
+    "published": "Gepubliceerd",
+    "archived": "Gearchiveerd"
+  },
+
+  "contentCategory": {
+    "thoughtLeadership": "Thought Leadership",
+    "product": "Product",
+    "caseStudy": "Case Study",
+    "industry": "Industrie",
+    "companyNews": "Bedrijfsnieuws",
+    "educational": "Educatief",
+    "promotional": "Promotioneel"
+  },
+
+  "personas": {
+    "executive": "Executive",
+    "decisionMaker": "Beslisser",
+    "influencer": "Influencer",
+    "practitioner": "Uitvoerder",
+    "technical": "Technisch",
+    "financial": "Financieel"
+  },
+
+  "mergeFields": {
+    "title": "Content Titel",
+    "url": "Content URL",
+    "cta": "Call to Action",
+    "summary": "Content Samenvatting"
+  },
+
+  "sequenceIntegration": {
+    "title": "Koppelen aan Sequence",
+    "linkContent": "Content Koppelen",
+    "selectContent": "Selecteer content om te koppelen",
+    "linkedTo": "Gekoppeld aan sequence",
+    "mergeFields": "Beschikbare Merge Velden"
+  },
+
+  "actions": {
+    "create": "Aanmaken",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "duplicate": "Dupliceren",
+    "archive": "Archiveren",
+    "publish": "Publiceren",
+    "unpublish": "Depubliceren",
+    "schedule": "Plannen",
+    "preview": "Voorbeeld",
+    "submitForReview": "Indienen voor Review",
+    "approve": "Goedkeuren",
+    "reject": "Afwijzen"
+  },
+
+  "confirmations": {
+    "delete": "Weet je zeker dat je deze content wilt verwijderen?",
+    "archive": "Weet je zeker dat je deze content wilt archiveren?",
+    "publish": "Weet je zeker dat je deze content wilt publiceren?"
+  },
+
+  "notifications": {
+    "contentCreated": "Content succesvol aangemaakt",
+    "contentUpdated": "Content succesvol bijgewerkt",
+    "contentDeleted": "Content succesvol verwijderd",
+    "contentPublished": "Content succesvol gepubliceerd",
+    "contentScheduled": "Content gepland voor {{time}}",
+    "campaignCreated": "Campagne succesvol aangemaakt"
+  }
+}

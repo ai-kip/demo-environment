@@ -1,0 +1,122 @@
+Category,Rank,Company,HQ City,Region,Country,What They Make / Sell,Approx Employees,Approx Revenue EUR,Niche Leadership,In DB,Source
+MANUFACTURER,1,Wandres GmbH micro-cleaning,Stegen,BW,DE,Industrial surface cleaning systems (brush & air-based),140,23M,World market leader micro-cleaning,No,Web
+MANUFACTURER,2,Paul Maschinenfabrik GmbH,Dürmentingen,BW,DE,Woodworking machinery & prestressed concrete machines,285,34M,Global leader industrial circular saws,No,Web
+MANUFACTURER,3,Peter Huber Kältemaschinenbau SE,Offenburg,BW,DE,High-precision temperature control systems (-125 to +425°C),400,43M,World technology leader tempering,No,Web
+MANUFACTURER,4,Hahn Gasfedern GmbH,Aichwald,BW,DE,Industrial gas springs & dampers (custom batch 1-5000),280,40M,Leading global provider pneumatic springs,No,Web
+MANUFACTURER,5,KRIWAN Industrie-Elektronik,Forchtenberg,BW,DE,Sensors for refrigerant compressors & motor protection,200,25M,World market leader compressor sensors,No,Web
+MANUFACTURER,6,SIKO GmbH,Buchenbach,BW,DE,Industrial sensors & positioning (angle/length/rotary encoders),250,25M,Leading manufacturer angle/length measurement,No,Web
+MANUFACTURER,7,Christian Maier GmbH,Heidenheim,BW,DE,Rotary joints for hydraulic/pneumatic/electrical media,160,20M,Technology leader rotary joints,No,Web
+MANUFACTURER,8,microsonic GmbH,Dortmund,NRW,DE,Ultrasonic sensors for industrial automation,160,15M,Worldwide specialist ultrasonic sensors,No,Web
+MANUFACTURER,9,"L&R Kältetechnik GmbH",Sundern,NRW,DE,Industrial refrigeration & cryotherapy systems,150,30M,World leader ultra-light powder bagging,No,Web
+MANUFACTURER,10,Greif-Velox Maschinenfabrik,Lübeck,SH,DE,Bagging & filling machines (vacuum technology),150,20M,World leader vacuum bagging tech,No,Web
+MANUFACTURER,11,Ruf Maschinenbau GmbH,Zaisertshofen,Bavaria,DE,Hydraulic briquetting presses for wood/metal/residuals,190,30M,World leader briquetting (6000+ machines),No,Web
+MANUFACTURER,12,Deutsche Holzveredelung Schmeing,Kirchhundem,NRW,DE,Compressed laminated wood for LNG tanks & transformers,120,20M,World leader compressed laminated wood,No,Web
+MANUFACTURER,13,Witte Barskamp GmbH,Bleckede,Niedersachsen,DE,Modular fixturing & measuring systems (ALUFIX),230,25M,Global leader modular fixturing,No,Web
+MANUFACTURER,14,August Steinmeyer GmbH,Albstadt,BW,DE,Precision ball screws for linear drive technology,410,50M,World leading precision ball screws,No,Web
+MANUFACTURER,15,Carl Hirschmann GmbH,Fluorn-Winzeln,BW,DE,High-precision rotary tables & clamping systems,200,20M,Leading precision rotary tables,No,Web
+MANUFACTURER,16,Beck Packautomaten GmbH,Frickenhausen,BW,DE,Film & shrink-wrap packaging machines,75,15M,Niche leader film packaging automation,No,Web
+MANUFACTURER,17,"Dr. O.K. Wack Chemie / ZESTRON",Ingolstadt,Bavaria,DE,Electronics cleaning chemicals (PCB cleaning),250,50M,World leader electronics precision cleaning,No,Web
+MANUFACTURER,18,Perma-tec GmbH,Euerdorf,Bavaria,DE,Automatic single-point lubrication systems,160,20M,World leader automatic lubrication,No,Web
+MANUFACTURER,19,ALANOD GmbH,Ennepetal,NRW,DE,Functional aluminium surface coatings (coil-coated),415,65M,World leader coil-coated aluminium,No,Web
+MANUFACTURER,20,Elma Schmidbauer GmbH,Singen,BW,DE,Ultrasonic cleaning devices for industrial fine cleaning,280,50M,World leader ultrasonic cleaning,No,Web
+MANUFACTURER,21,BJB GmbH,Arnsberg,NRW,DE,Lamp sockets & LED connectors for lighting industry,400,83M,World leader lamp sockets & LED connectors,No,Web
+MANUFACTURER,22,Gruner AG,Wehingen,BW,DE,Polarized bistable relays for energy management,400,50M,World leader bistable relays up to 200A,No,Web
+MANUFACTURER,23,Nagel Technologies,Nürtingen,BW,DE,Honing & superfinishing machines for precision surfaces,330,48M,World leader honing & superfinishing,No,Web
+MANUFACTURER,24,Braunform GmbH,Bahlingen,BW,DE,High-performance injection molding tools (medical/packaging),380,40M,Innovation leader multi-cavity molds,No,Web
+MANUFACTURER,25,Otto Männer GmbH,Bahlingen,BW,DE,Needle valve hot runner systems & precision molds,500,50M,World specialist hot runner systems,No,Web
+MANUFACTURER,26,Hugo Beck Maschinenbau,Dettingen/Erms,BW,DE,Flow-wrapping & packaging machines,200,30M,Leading horizontal flow-wrapping machines,No,Web
+MANUFACTURER,27,Lippert GmbH,Hallstadt,Bavaria,DE,Tube filling & sealing machines (cosmetics/pharma/food),120,15M,Leading tube filling technology,No,Web
+MANUFACTURER,28,Illig Maschinenbau,Heilbronn,BW,DE,Thermoforming machines for packaging & technical parts,400,50M,Technology leader thermoforming,No,Web
+MANUFACTURER,29,Klaschka GmbH,Neuhausen,BW,DE,Customized industrial sensors (inductive/capacitive/camera),120,15M,Specialist custom industrial sensors,No,Web
+MANUFACTURER,30,Proxitron GmbH,Oldenburg,Niedersachsen,DE,Hot metal detection & IR sensors for steel/glass industry,50,10M,Niche leader extreme-temp sensing,No,Web
+MANUFACTURER,31,Sensitec GmbH,Lahnau,Hessen,DE,Magnetoresistive sensor solutions (AMR/GMR/TMR),200,25M,Technology leader magnetic sensor chips,No,Web
+MANUFACTURER,32,Förster Group,Reutlingen,BW,DE,Non-destructive testing instruments (eddy current/magnetic),350,40M,World leader NDT instruments,No,Web
+MANUFACTURER,33,Zoller GmbH,Pleidelsheim,BW,DE,Tool presetting & measuring machines for CNC,400,40M,Leading tool measurement technology,No,Web
+MANUFACTURER,34,Herbert Hänchen GmbH,Ostfildern,BW,DE,High-performance hydraulic cylinders & servo-hydraulic systems,250,30M,Technology leader custom hydraulic cylinders,No,Web
+MANUFACTURER,35,Stüwe GmbH,Hattingen,NRW,DE,Clamping elements & shrink discs for shaft-hub connections,80,12M,European leader friction shaft-hub connections,No,Web
+MANUFACTURER,36,OTT-JAKOB Spanntechnik,Lengenwang,Bavaria,DE,Tool clamping systems for CNC spindles,200,30M,Leading precision tool clamping for CNC,No,Web
+MANUFACTURER,37,JAKOB Antriebstechnik,Kleinwallstadt,Bavaria,DE,Servo couplings & safety couplings for drives,200,25M,Niche leader precision servo couplings,No,Web
+MANUFACTURER,38,Mädler GmbH,Stuttgart,BW,DE,Mechanical drive components (gears/chains/bearings) from stock,150,25M,Leading standard drive components supplier,No,Web
+MANUFACTURER,39,DIRAK GmbH,Ennepetal,NRW,DE,Mechanical & electronic locking for industrial enclosures,350,40M,Leading industrial cabinet locking,No,Web
+MANUFACTURER,40,Rose Systemtechnik,Porta Westfalica,NRW,DE,Industrial enclosures & explosion-proof housings,250,30M,Specialist custom industrial enclosures,No,Web
+MANUFACTURER,41,Rampf Holding GmbH,Grafenberg,BW,DE,Reactive resin systems & polymer mineral machine bases,400,45M,Leading polymer mineral machine bases,No,Web
+MANUFACTURER,42,Weicon GmbH,Münster,NRW,DE,Industrial adhesives & sealants & technical sprays,350,45M,Hidden Champion industrial adhesives,No,Web
+MANUFACTURER,43,acp systems AG,Ditzingen,BW,DE,CO2 snow jet cleaning for industrial parts,80,12M,Technology leader dry CO2 cleaning,No,Web
+MANUFACTURER,44,Netzsch Pumpen & Systeme,Waldkraiburg,Bavaria,DE,Progressive cavity pumps for industrial fluids,250,40M,Technology leader progressive cavity pumps,No,Web
+MANUFACTURER,45,Andreas Hettich GmbH,Tuttlingen,BW,DE,Laboratory centrifuges for medical/pharma/research,320,50M,World leader lab centrifuges,No,Web
+MANUFACTURER,46,Memmert GmbH,Schwabach,Bavaria,DE,Heating ovens & climate chambers & incubators for labs,400,45M,Leading lab temperature control equipment,No,Web
+MANUFACTURER,47,Adams Armaturen GmbH,Herne,NRW,DE,Triple-eccentric butterfly valves for extreme conditions,350,40M,WMF Future Champion 2025 - specialist valves,No,Web
+MANUFACTURER,48,AVANCO GmbH,Herford,NRW,DE,Technical aluminium & fiber composite tubes/profiles,200,25M,WMF Future Champion 2025 - composite tubes,No,Web
+MANUFACTURER,49,Poly-clip System,Hattersheim,Hessen,DE,Clip closure systems for food industry,126,50M,World leader clip closures for food,No,Web
+MANUFACTURER,50,BSW Berleburger Schaumstoffwerk,Bad Berleburg,NRW,DE,Recycled rubber mats (sports flooring/vibration protection),500,50M,World leader recycled rubber surfaces,No,Web
+MANUFACTURER,51,aquatherm GmbH,Attendorn,NRW,DE,Polypropylene piping systems (PP-R),500,50M,World leader PP-R piping systems,No,Web
+MANUFACTURER,52,Puls GmbH,Munich,Bavaria,DE,DIN-rail power supplies for industrial automation,400,50M,Innovation leader DIN-rail power supplies,No,Web
+MANUFACTURER,53,Turck Duotec GmbH,Halver,NRW,DE,Hybrid microelectronics & sensor modules for harsh environments,250,30M,Specialist hybrid electronics assembly,No,Web
+MANUFACTURER,54,Marbach Werkzeugbau,Heilbronn,BW,DE,Punching dies & thermoforming tools for packaging,400,45M,World leader packaging die-cutting tools,No,Web
+MANUFACTURER,55,Theegarten-Pactec,Dresden,Sachsen,DE,High-speed packaging machines for small confectionery,400,50M,World leader high-speed confectionery wrapping,No,Web
+MANUFACTURER,56,Novexx Solutions,Eching,Bavaria,DE,Industrial labeling & print-and-apply systems,150,47M,Specialist industrial labeling systems,No,Web
+MANUFACTURER,57,KOEPFER Zahnradtechnik,Furtwangen,BW,DE,High-precision gears & assemblies for engine/transmission,400,50M,World leader precision gear manufacturing,No,Web
+MANUFACTURER,58,LASCO Umformtechnik,Coburg,Bavaria,DE,Forming machines (screw presses/forging hammers),250,35M,Specialist forging & powder metallurgy,No,Web
+MANUFACTURER-AT,59,Schiebel Elektronische Geräte,Vienna,,AT,Mine-hunting equipment & unmanned helicopters,300,40M,World leader mine detection & unmanned rotary,No,Web
+MANUFACTURER-AT,60,OMICRON electronics,Klaus,Vorarlberg,AT,Power system testing & diagnostics,450,50M,Global leader power system testing,No,Web
+MANUFACTURER-AT,61,Linsinger Maschinenbau,Steyrmuhl,OÖ,AT,Rail milling machines & tube manufacturing systems,350,45M,World leader mobile rail milling,No,Web
+MANUFACTURER-AT,62,Pollmann International,Karlstein/Thaya,NÖ,AT,Electromechanical components for automotive,350,45M,Hidden Champion automotive electromechanics,No,Web
+MANUFACTURER-AT,63,Haidlmair GmbH,Nussbach,OÖ,AT,Injection molds for beverage crates & containers,400,45M,World leader molds for beverage crates,No,Web
+MANUFACTURER-AT,64,Wintersteiger AG,Ried im Innkreis,OÖ,AT,Ski service machines & seed technology & wood thin-cutting,350,50M,World leader sports/seedmech/woodtech,No,Web
+MANUFACTURER-AT,65,Wittmann Technology,Kottingbrunn,NÖ,AT,Robots & automation for injection molding,400,45M,European leader injection molding peripherals,No,Web
+MANUFACTURER-AT,66,IFE Aufbereitungstechnik,Waidhofen/Ybbs,NÖ,AT,Vibrating screens & feeders for mining/recycling,200,25M,Technology leader vibrating conveying,No,Web
+MANUFACTURER-AT,67,Pankl Racing Systems,Kapfenberg,Steiermark,AT,Racing drivetrain & engine components,300,40M,World leader racing drivetrain components,No,Web
+MANUFACTURER-CH,68,Sylvac SA,Malleray,Jura,CH,Digital precision measuring instruments (sub-micron),100,28M,Globally recognized digital measuring,No,Web
+MANUFACTURER-CH,69,Erowa AG,Büron,Luzern,CH,Clamping systems & robot loading for toolmaking,280,50M,World's best workholding for toolmaking,No,Web
+MANUFACTURER-CH,70,Rego-Fix AG,Tenniken,Basel,CH,Tool holders & collet chucks for CNC,150,30M,Technology leader CNC tool holding,No,Web
+B2B-SAAS,1,ams.Solution AG,Kaarst,NRW,DE,ERP for engineer-to-order manufacturers,250,30M,Purpose-built for single-item mfg,No,Web
+B2B-SAAS,2,GFOS mbH,Essen,NRW,DE,MES + workforce management for manufacturing,200,38M,4500 customers in 30 countries,No,Web
+B2B-SAAS,3,Intershop Communications AG,Jena,Thüringen,DE,B2B digital commerce platform for manufacturers,261,39M,Publicly listed (ISH2),No,Web
+B2B-SAAS,4,SupplyOn AG,Hallbergmoos,Bavaria,DE,Cloud SCM for automotive/aerospace supply chains,300,35M,Industry standard automotive SCM,No,Web
+B2B-SAAS,5,NEVARIS Bausoftware,Bremen,,DE,Construction management software (AVA/BIM/ERP),200,32M,Nemetschek Group,No,Web
+B2B-SAAS,6,Asseco Solutions (APplus),Karlsruhe,BW,DE,ERP for upper mid-market manufacturers,300,35M,Strong in series production,No,Web
+B2B-SAAS,7,iTAC Software AG,Montabaur,RLP,DE,MES/MOM for smart factories,126,25M,Part of Dürr Group,No,Web
+B2B-SAAS,8,encoway GmbH,Bremen,,DE,CPQ + variant management for manufacturing,200,24M,Part of Lenze Group,No,Web
+B2B-SAAS,9,AUCOTEC AG,Isernhagen,Niedersachsen,DE,Engineering software for plant/machine lifecycle,208,30M,35+ years experience,No,Web
+B2B-SAAS,10,PeakAvenue GmbH,Lübeck/Bühl,BW,DE,eQMS + FMEA + CAQ for manufacturing,200,25M,PE-backed (Main Capital),No,Web
+B2B-SAAS,11,FORCAM ENISCO,Ravensburg,BW,DE,MES for production digitization,150,20M,"Airbus BMW Schaeffler customers",No,Web
+B2B-SAAS,12,Boehme & Weihs,Wuppertal,NRW,DE,Combined CAQ + MES (CASQ-it / MESQ-it),180,20M,Since 1985,No,Web
+B2B-SAAS,13,Babtec Informationssysteme,Wuppertal,NRW,DE,CAQ / QMS platform (BabtecQ),176,16M,25+ years experience,Yes,Web
+B2B-SAAS,14,camos Software,Stuttgart,BW,DE,CPQ for complex multi-variant products,125,16M,"Siemens Liebherr Kone customers",No,Web
+B2B-SAAS,15,Industrie Informatik,Linz,,AT,cronetwork MES (Austrian pure-play),130,14M,Since 1991,No,Web
+B2B-SAAS,16,Xentral ERP,Augsburg,Bavaria,DE,Cloud ERP for SMB product companies,217,12M,VC-backed Sequoia/Tiger Global,No,Web
+B2B-SAAS,17,OPEN MIND Technologies,Wessling,Bavaria,DE,hyperMILL CAD/CAM for 5-axis CNC,280,30M,High-end CAM specialist,No,Web
+B2B-SAAS,18,CONTACT Software,Bremen,,DE,CIM Database PLM platform,300,50M,Leading German PLM vendor,No,Web
+B2B-SAAS,19,Tebis AG,Martinsried,Bavaria,DE,CAD/CAM + ProLeiS MES for die/mould,249,68M,Global leader die/mould CAM,No,Web
+B2B-SAAS,20,Onventis GmbH,Stuttgart,BW,DE,Cloud procurement (source-to-pay),100,12M,EUR 20B+ transaction volume,No,Web
+B2B-SAAS,21,COPA-DATA GmbH,Salzburg,,AT,zenon SCADA/HMI platform,450,99M,Family-owned since 1987,No,Web
+B2B-SAAS,22,MARKT-PILOT,Stuttgart,BW,DE,Spare parts pricing intelligence for OEMs,170,29M,AI-powered parts pricing,Yes,Web
+B2B-SAAS,23,Pickert & Partner,Pfinztal,BW,DE,Integrated MES + CAQ + traceability (RQM),65,8M,Family-owned since 1981,No,Web
+B2B-SAAS,24,Spryker Systems,Berlin,,DE,Composable B2B commerce platform,300,24M,"METRO ALDI customers",Yes,Web
+B2B-SAAS,25,IntelliShop AG,Karlsruhe,BW,DE,B2B Commerce Cloud for spare parts shops,42,10M,Purpose-built B2B since 2004,No,Web
+DB-MFG,1,Knick Elektronische Messgeräte,Berlin,,DE,Precision electronic measurement instruments,250,30M,,Yes,DB
+DB-MFG,2,imc Test & Measurement,Berlin,,DE,Industrial test & measurement systems,250,15M,,Yes,DB
+DB-MFG,3,PicoQuant,Berlin,,DE,Photonics instruments (time-resolved),52,35M,,Yes,DB
+DB-MFG,4,Jonas & Redmann,Berlin,,DE,Automation machinery,160,30M,,Yes,DB
+DB-MFG,5,Optris,Berlin,,DE,Infrared temperature sensors,66,17M,,Yes,DB
+DB-MFG,6,DoorBird,Berlin,,DE,IP video door stations (B2B/OEM),63,24M,,Yes,DB
+DB-MFG,7,DSA Systemtechnik,Aachen,,DE,Industrial system technology,230,35M,,Yes,DB
+DB-MFG,8,BigRep,Berlin,,DE,Large-format industrial 3D printers,92,14M,,Yes,DB
+DB-MFG,9,Pyramid Computer,Freiburg,BW,DE,OEM/ODM industrial PCs & kiosks,96,40M,,Yes,DB
+DB-MFG,10,Promwad Engineering,Essen,NRW,DE,Electronic product development & manufacturing,160,10M,,Yes,DB
+DB-SAAS,1,Abas Software,Karlsruhe,BW,DE,ERP for mid-size discrete manufacturers,510,50M,,Yes,DB
+DB-SAAS,2,SYSTEMA,Dresden,Sachsen,DE,MES for discrete manufacturing,210,45M,,Yes,DB
+DB-SAAS,3,G DATA CyberDefense,Bochum,NRW,DE,Cybersecurity for Mittelstand,400,45M,,Yes,DB
+DB-SAAS,4,ModuleWorks,Aachen,NRW,DE,CAD/CAM components for CNC machine builders,260,33M,,Yes,DB
+DB-SAAS,5,Jedox,Freiburg,BW,DE,Enterprise planning & analytics,380,44M,,Yes,DB
+DB-SAAS,6,osapiens,Mannheim,BW,DE,ESG & supply chain compliance SaaS,540,37M,,Yes,DB
+DB-SAAS,7,MARKT-PILOT,Stuttgart,BW,DE,Spare parts pricing for OEMs,170,29M,,Yes,DB
+DB-SAAS,8,GBTEC Group,Bochum,NRW,DE,Business process management,300,29M,,Yes,DB
+DB-SAAS,9,SimScale,München,Bavaria,DE,Cloud engineering simulation,160,22M,,Yes,DB
+DB-SAAS,10,proLogistik,Dortmund,NRW,DE,Warehouse & logistics software,210,19M,,Yes,DB
+DB-SAAS,11,KONUX,München,Bavaria,DE,AI for railway/infrastructure maintenance,140,18M,,Yes,DB
+DB-SAAS,12,Babtec,Wuppertal,NRW,DE,Quality management software (CAQ),140,17M,,Yes,DB
+DB-SAAS,13,Kontron AIS,Dresden,Sachsen,DE,Industrial IoT / MES,93,14M,,Yes,DB
+DB-SAAS,14,ecosio,Vienna,,AT,EDI & supply chain integration for mfg,180,15M,,Yes,DB
+DB-SAAS,15,Implico Group,Hamburg,,DE,Oil & gas supply chain software,150,21M,,Yes,DB
+DB-SAAS,16,PlanRadar,Vienna,,AT,Construction management SaaS,400,32M,,Yes,DB

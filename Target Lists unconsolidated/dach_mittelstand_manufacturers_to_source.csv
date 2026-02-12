@@ -1,0 +1,51 @@
+Rank,Company,HQ City,State/Region,Country,What They Make / Niche,Approx Employees,Approx Revenue (EUR),World Market Leader?,In DB Already?,Priority,Notes
+1,UZIN UTZ SE,Ulm,Baden-Württemberg,DE,Flooring adhesives / building chemistry,1500,479M,Yes - flooring systems DE+NL,No,HIGH - already in pipeline,Current pipeline prospect
+2,Harro Höfliger,Allmersbach im Tal,Baden-Württemberg,DE,Pharma packaging machinery,1765,335M,Yes - pharma packaging,No,HIGH,Packaging Valley - 79% pharma/medtech revenue
+3,Gerhard Schubert GmbH,Crailsheim,Baden-Württemberg,DE,Robotic top-loading packaging machines,1700,350M,Yes - 30% global share,No,HIGH,Pioneer modular packaging robotics
+4,DELO Industrie Klebstoffe,Windach (Munich),Bavaria,DE,High-tech industrial adhesives,1000,229M,Yes - 80% smart cards / 50%+ iPhones,No,HIGH,Owner-managed pure B2B specialty chemicals
+5,Blickle Räder + Rollen,Rosenfeld,Baden-Württemberg,DE,Industrial wheels & castors (30k+ products),1350,200M,Yes - global leader,No,HIGH,Family-owned Made in Germany
+6,Balluff GmbH,Neuhausen a.d.F.,Baden-Württemberg,DE,Industrial sensors / RFID / IO-Link,3900,567M,Top 3 globally,No,HIGH,4th generation family-owned - 38 subsidiaries
+7,Schunk SE & Co. KG,Lauffen am Neckar,Baden-Württemberg,DE,Gripping systems / clamping technology,3700,700M,Yes - world's largest range,No,HIGH,11000+ standard components
+8,Dürr Dental SE,Bietigheim-Bissingen,Baden-Württemberg,DE,Dental practice equipment,1350,374M,Innovation Champion #1 2025,No,HIGH,WiWo #1 innovator - exports to 174 countries
+9,OPTIMA packaging group,Schwäbisch Hall,Baden-Württemberg,DE,Pharma filling & packaging machines,3150,620M,Yes - pharma packaging,No,HIGH,Family-owned Packaging Valley
+10,Schmalz GmbH,Glatten,Baden-Württemberg,DE,Vacuum automation technology,1800,200M,Yes - vacuum gripping,No,HIGH,Products embedded in mfg lines globally
+11,Pilz GmbH & Co. KG,Ostfildern,Baden-Württemberg,DE,Safety automation / safety PLCs,2500,400M,Yes - invented safety relay,No,HIGH,Family-owned pure B2B industrial
+12,Wafios AG,Reutlingen,Baden-Württemberg,DE,Wire/tube bending & spring coiling machines,1000,200M,Yes - 120+ machine types,No,HIGH,Hidden champion - coils in every car
+13,GEMÜ,Ingelfingen-Criesbach,Baden-Württemberg,DE,Sterile valves for pharma/biotech/food,2000,400M,Yes - sterile valves (~Global Champion 2024),No,HIGH,Family-owned pure B2B process industry
+14,Wenglor Sensoric,Tettnang,Baden-Württemberg,DE,Industrial sensors (2D/3D/photo/inductive),950,150M,Hidden Champion listed,No,HIGH,Fast-growing sensor specialist family-owned
+15,Schoeck Bauteile,Baden-Baden,Baden-Württemberg,DE,Structural thermal breaks (Isokorb),1100,200M,Yes - thermal break tech,No,HIGH,Active in 40 markets - family-owned
+16,Reifenhäuser Group,Troisdorf,NRW,DE,Plastics extrusion lines for film/nonwoven,1750,500M,Yes - world's largest network,No,HIGH,Family-owned since 1911
+17,Brückner Maschinenbau,Siegsdorf,Bavaria,DE,Film stretching lines (BOPP/BOPET),2500,550M,Yes - oriented film lines,No,HIGH,Family-owned niche global dominance
+18,Klingspor AG,Haiger,Hesse,DE,Abrasive technology - cutting/grinding discs,2800,300M,Top 3 globally,No,HIGH,Founded 1893 - 36 locations
+19,Siempelkamp GmbH,Krefeld,NRW,DE,Press systems / foundry castings,3000,400M,Yes - ~60% wood panel presses,No,HIGH,DDW #49 - family-owned (26 family members)
+20,Leistritz AG,Nuremberg,Bavaria,DE,Extrusion systems / screw pumps / turbines,1800,300M,Top 3 in twin-screw extruders,No,HIGH,Family-owned since 1905
+21,SÜDPACK SE,Ochsenhausen,Baden-Württemberg,DE,High-barrier flexible packaging films,1700,400M,WiWo Innovation Champion #5,No,HIGH,Family-owned B2B to food/packaging producers
+22,EMKA Beschlagteile,Velbert,NRW,DE,Industrial locking systems & cabinet hardware,1500,200M,Yes - cabinet hardware,No,MEDIUM,Products in virtually every switchgear cabinet
+23,Römheld GmbH,Laubach,Hesse,DE,Hydraulic clamping / quick die change,800,150M,Yes - die change systems,No,MEDIUM,150+ year history
+24,Gebr. Kemper GmbH,Olpe,NRW,DE,Drinking water valves & building tech,900,150M,IHK Weltmarktführer,No,MEDIUM,Hidden Champion - family-owned
+25,Helmut Fischer GmbH,Sindelfingen,Baden-Württemberg,DE,Coating thickness measurement instruments,750,100M,Yes - non-destructive measurement,No,MEDIUM,DDW listed Hidden Champion
+26,Plasmatreat GmbH,Steinhagen,NRW,DE,Atmospheric plasma surface treatment,400,80M,Yes - DDW Weltmarktführer,No,MEDIUM,Ultra-niche hidden champion
+27,Mink Bürsten,Göppingen,Baden-Württemberg,DE,Industrial/technical brushes (250k+ types),750,100M,Yes - industrial brush tech,No,MEDIUM,Founded 1845 ultra-niche
+28,EOS GmbH,Krailling (Munich),Bavaria,DE,Industrial 3D printing (SLS/SLM),2000,300M,Yes - metal/polymer 3D printing,No,HIGH,WiWo Innovation Champion
+29,Pfleiderer GmbH,Neumarkt i.d.Opf.,Bavaria,DE,Wood-based panels / MDF / laminates,2000,700M,European leader,No,MEDIUM,B2B building materials
+30,Leitz GmbH,Oberkochen,Baden-Württemberg,DE,Precision cutting tools for wood processing,4000,400M,Yes - world's leading,No,HIGH,150 countries - pure B2B tooling
+31,Windmöller & Hölscher,Lengerich,NRW,DE,Flexible packaging machinery,3400,1B,Yes - flexible packaging,No,HIGH,5000+ customers in 130+ countries
+32,Doppelmayr Holding,Wolfurt,Vorarlberg,AT,Ropeway systems / gondolas / cable cars,2700,500M,Yes - since 1892,No,MEDIUM,Austrian hidden champion
+33,ifm electronic,Essen,NRW,DE,Industrial sensors & IIoT platforms,4000,500M,Weltmarktführer,No,HIGH,Family-owned pure B2B automation
+34,Igus GmbH,Cologne,NRW,DE,Motion plastics - energy chains / bearings,4500,1B,Hidden Champion,No,HIGH,245000 products - family-owned since 1964
+35,Weidmüller,Detmold,NRW,DE,Industrial connectors & terminal blocks,5000,830M,Yes - industrial connectivity,No,MEDIUM,Family-owned since 1850
+36,Hawo GmbH,Obrigheim,Baden-Württemberg,DE,Medical packaging sealing machines,300,50M,DDW Weltmarktführer,No,MEDIUM,Ultra-niche family-owned
+37,Erwin Halder KG,Achstetten,Baden-Württemberg,DE,Standard parts / clamping / SIMPLEX mallets,220,50M,Niche leader - mallets,No,MEDIUM,85+ year family business
+38,Maschinenfabrik Reinhausen,Regensburg,Bavaria,DE,On-load tap-changers for power transformers,4800,850M,Yes - ~60% global share,No,HIGH,6th generation family-owned
+39,BHS Corrugated,Weiherhammer,Bavaria,DE,Corrugated board production lines,2500,575M,Yes - ~50% corrugator share,No,HIGH,Pure B2B packaging machinery
+40,Arburg GmbH,Lossburg,Baden-Württemberg,DE,Injection molding machines,3450,750M,Top 3 globally,No,HIGH,Family-owned since 1923 - 100+ countries
+41,Ziehl-Abegg SE,Künzelsau,Baden-Württemberg,DE,Fans / EC motors / elevator drives,4500,500M,Pioneer of EC motors,No,HIGH,Family-owned pure B2B OEM
+42,Koenig & Bauer AG,Würzburg,Bavaria,DE,Printing presses (95% of banknotes),5000,1.3B,Yes - oldest press manufacturer,No,MEDIUM,Founded 1817
+43,Groz-Beckert KG,Albstadt,Baden-Württemberg,DE,Industrial textile machine needles,9400,839M,Yes - world's leading,No,MEDIUM,Founded 1852 family-owned
+44,Viega GmbH,Attendorn,NRW,DE,Press connection piping systems,4500,1.8B,IHK Weltmarktführer,No,MEDIUM,17000+ products family-owned
+45,Klingelnberg AG,Zurich (mfg in Hückeswagen),NRW/CH,CH,Precision gear cutting/measuring machines,1200,300M,Yes - bevel gear tech,No,HIGH,200+ patents since 1863
+46,Herrenknecht AG,Schwanau,Baden-Württemberg,DE,Tunnel boring machines (TBMs),5000,1.2B,Most valuable Hidden Champion brand,No,MEDIUM,Family-owned
+47,Palfinger AG,Bergheim/Salzburg,,AT,Truck-mounted cranes / lifting solutions,4500,2B,Global leader - lifting,No,MEDIUM,Austrian Mittelstand DNA
+48,Engel Austria GmbH,Schwertberg,Upper Austria,AT,Injection molding machines & automation,7000,1B,Top 3 globally,No,MEDIUM,Austrian family-owned since 1945
+49,STO SE & Co. KGaA,Stühlingen,Baden-Württemberg,DE,External wall insulation / facade coatings,5500,1.6B,European leader ETICS,No,MEDIUM,Building materials B2B
+50,Winterhalter,Meckenbeuren,Baden-Württemberg,DE,Commercial dishwashers & warewashing,2000,368M,European leader commercial dishwash,Yes - in DB,HIGH,Already in DB as Machinery

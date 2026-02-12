@@ -1,0 +1,20 @@
+# Environment variables (contain passwords/secrets)
+.env
+!.env.example
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+nul
+
+# IDE
+.vscode/
+.idea/
