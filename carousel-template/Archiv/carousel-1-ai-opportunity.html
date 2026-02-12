@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carousel 1 - The AI Opportunity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: 1080px 1350px;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            page-break-inside: avoid;
+            overflow: hidden;
+        }
+
+        .slide:last-child {
+            page-break-after: auto;
+        }
+
+        .slide-1 { background: linear-gradient(135deg, #0B0F1A 0%, #0D1220 30%, #0F1428 50%, #111833 70%, #0B1A2A 100%); }
+        .slide-1::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 10% 90%, rgba(0, 255, 255, 0.15) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-2 { background: linear-gradient(135deg, #0B1A2A 0%, #0E1830 30%, #111D38 50%, #142040 70%, #0F1A35 100%); }
+        .slide-2::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 70%, rgba(0, 255, 255, 0.12) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-3 { background: linear-gradient(135deg, #0F1A35 0%, #121E3A 30%, #152242 50%, #18254A 70%, #141F40 100%); }
+        .slide-3::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 50% 60%, rgba(71, 166, 252, 0.12) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-4 { background: linear-gradient(135deg, #141F40 0%, #172345 30%, #1A264D 50%, #1D2955 70%, #192448 100%); }
+        .slide-4::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 70% 50%, rgba(60, 97, 238, 0.12) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-5 { background: linear-gradient(135deg, #192448 0%, #1C2750 30%, #1F2A58 50%, #222D60 70%, #1E2855 100%); }
+        .slide-5::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 80% 40%, rgba(100, 80, 200, 0.12) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-6 { background: linear-gradient(135deg, #1E2855 0%, #212B5D 30%, #252E65 50%, #29316D 70%, #242C62 100%); }
+        .slide-6::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 85% 35%, rgba(140, 60, 180, 0.12) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-7 { background: linear-gradient(135deg, #242C62 0%, #282F6A 30%, #2C3272 50%, #30357A 70%, #2A3070 100%); }
+        .slide-7::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 90% 25%, rgba(180, 50, 200, 0.15) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-8 { background: linear-gradient(135deg, #2A3070 0%, #2E3378 30%, #323680 50%, #363988 70%, #302F75 100%); }
+        .slide-8::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 95% 15%, rgba(255, 0, 255, 0.18) 0%, transparent 50%); pointer-events: none; }
+
+        .slide-header {
+            height: 337px;
+            padding: 50px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .logo {
+            height: 72px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-number {
+            font-family: 'Rubik', sans-serif;
+            font-size: 32px;
+            color: #00FFFF;
+            font-weight: 600;
+        }
+
+        .slide-content {
+            height: 675px;
+            padding: 0 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 10;
+        }
+
+        .label {
+            font-family: 'Rubik', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .label-underline {
+            width: 130px;
+            height: 6px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            border-radius: 3px;
+            margin-bottom: 32px;
+        }
+
+        .headline {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            color: #F2F4F8;
+            line-height: 1.05;
+            margin-bottom: 40px;
+        }
+
+        .headline-xl {
+            font-size: 76px;
+        }
+
+        .headline-lg {
+            font-size: 62px;
+        }
+
+        .headline-gradient {
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subline {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            color: #A0A7B5;
+            line-height: 1.4;
+        }
+
+        .body-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 38px;
+            color: #C8CDD5;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .body-text strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            color: #C8CDD5;
+            font-style: italic;
+            padding-left: 36px;
+            border-left: 6px solid;
+            border-image: linear-gradient(180deg, #00FFFF, #FF00FF) 1;
+            margin: 24px 0;
+            line-height: 1.45;
+        }
+
+        .source {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            color: #7A8290;
+            margin-top: 16px;
+        }
+
+        .bullets {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+        }
+
+        .bullets li {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            color: #C8CDD5;
+            padding-left: 48px;
+            position: relative;
+            margin-bottom: 20px;
+            line-height: 1.45;
+        }
+
+        .bullets li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00FFFF;
+            font-weight: bold;
+            font-size: 38px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 24px 48px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            border-radius: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-size: 28px;
+            color: #0B0F1A;
+            font-weight: 700;
+            margin-top: 32px;
+        }
+
+        .slide-footer-area {
+            height: 338px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .flow-line {
+            position: absolute;
+            top: 120px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+        }
+
+        .slide-1 .flow-line {
+            left: 50%;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .slide-1 .flow-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 26px;
+            background: #00FFFF;
+            border-radius: 50%;
+            box-shadow: 0 0 24px #00FFFF, 0 0 48px #00FFFF;
+        }
+
+        .slide-8 .flow-line {
+            right: 50%;
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .slide-8 .flow-line::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(50%, -50%);
+            width: 26px;
+            height: 26px;
+            background: #FF00FF;
+            border-radius: 50%;
+            box-shadow: 0 0 24px #FF00FF, 0 0 48px #FF00FF;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 50px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .swipe-hint {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            color: #6A7080;
+        }
+
+        .swipe-hint span {
+            color: #00FFFF;
+            margin-left: 12px;
+        }
+
+        .website {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            color: #8A90A0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: Hook -->
+    <div class="slide slide-1">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">1/8</span>
+        </div>
+
+        <div class="slide-content">
+            <h1 class="headline headline-xl headline-gradient">
+                95% of AI Projects<br>Fail to Deliver ROI
+            </h1>
+            <p class="subline">Here’s Why Yours Might Be Next</p>
+            <p class="source">— MIT Media Lab / Project NANDA (2025)</p>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide slide-2">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">2/8</span>
+        </div>
+
+        <div class="slide-content">
+            <span class="label">A Common Situation</span>
+            <div class="label-underline"></div>
+            <h2 class="headline headline-lg">
+                More Dashboards,<br>Same Results
+            </h2>
+            <p class="body-text">
+                The average B2B sales team uses <strong>10+ tools</strong>, yet reps still spend most of their day researching instead of selling.
+            </p>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide slide-3">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">3/8</span>
+        </div>
+
+        <div class="slide-content">
+            <span class="label">The Insight</span>
+            <div class="label-underline"></div>
+            <h2 class="headline headline-lg">
+                Generic AI Is Only<br>Step One in B2B Sales
+            </h2>
+            <p class="body-text">
+                ChatGPT can write emails. But it can’t tell you <strong>which of your prospects is ready to buy</strong> this quarter.
+            </p>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide slide-4">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">4/8</span>
+        </div>
+
+        <div class="slide-content">
+            <span class="label">The Real Opportunity</span>
+            <div class="label-underline"></div>
+            <h2 class="headline headline-lg">
+                70% of Sales Time<br>Is Non-Selling
+            </h2>
+            <p class="body-text">
+                Lead research, CRM updates, list building, and admin still consume most of a rep’s week.
+            </p>
+            <p class="body-text">
+                <strong>Automating this unlocks massive upside.</strong>
+            </p>
+            <p class="source">— Salesforce State of Sales Report (2024)</p>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide slide-5">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">5/8</span>
+        </div>
+
+        <div class="slide-content">
+            <span class="label">What You Need</span>
+            <div class="label-underline"></div>
+            <h2 class="headline headline-lg">
+                Answers, Not<br>More Data
+            </h2>
+            <p class="body-text">
+                That’s where AI creates ROI.
+            </p>
+            <ul class="bullets">
+                <li>Who should I call today?</li>
+                <li>Why is this account relevant now?</li>
+                <li>What’s the best angle to use?</li>
+            </ul>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide slide-6">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">6/8</span>
+        </div>
+
+        <div class="slide-content">
+            <span class="label">The Performance Gap</span>
+            <div class="label-underline"></div>
+            <h2 class="headline headline-lg">
+                3× Higher ROI with<br>Orchestrated Agents
+            </h2>
+            <p class="body-text">
+                Companies using orchestrated AI agents see <strong>3x higher ROI</strong> than those using standalone AI tools.
+            </p>
+            <p class="source">— BCG "The Agentic AI Playbook" (2025)</p>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide slide-7">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">7/8</span>
+        </div>
+
+        <div class="slide-content">
+            <span class="label">The Impact</span>
+            <div class="label-underline"></div>
+            <h2 class="headline headline-lg">
+                Up to 20%<br>More Revenue
+            </h2>
+            <p class="body-text">
+                AI-powered pipeline optimization drives up to <strong>20% revenue increase</strong> in B2B sales.
+            </p>
+            <p class="body-text">
+                That’s not hype – that’s McKinsey data.
+            </p>
+            <p class="source">— McKinsey "The state of AI in early 2025"</p>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe <span>→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: CTA -->
+    <div class="slide slide-8">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">8/8</span>
+        </div>
+
+        <div class="slide-content">
+            <h2 class="headline headline-xl">
+                AI Should Create<br>Leverage
+            </h2>
+            <p class="body-text">
+                Not more complexity.
+            </p>
+            <span class="cta-button">Follow for More Insights</span>
+        </div>
+
+        <div class="slide-footer-area">
+            <div class="flow-line"></div>
+            <div class="slide-footer">
+                <span class="website">ai-kip.com</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

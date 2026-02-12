@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-KIP — Competitive Intelligence Action Plan (N=17)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-void:#04060e;
+  --bg-deep:#070a16;
+  --bg-base:#0a0f1e;
+  --bg-card:#0d1326;
+  --bg-card-alt:#101730;
+  --bg-elevated:#141c3a;
+  --accent:#4f8fff;
+  --accent-light:#7eadff;
+  --accent-dim:rgba(79,143,255,.12);
+  --green:#00d68f;
+  --green-light:#3eeab4;
+  --green-dim:rgba(0,214,143,.1);
+  --amber:#ffb020;
+  --amber-dim:rgba(255,176,32,.1);
+  --rose:#ff4d6a;
+  --rose-dim:rgba(255,77,106,.08);
+  --purple:#b07fff;
+  --purple-dim:rgba(176,127,255,.1);
+  --text-primary:#e8ecf4;
+  --text-secondary:#8793a8;
+  --text-muted:#5a6578;
+  --text-faint:#3d4659;
+  --border:#1a2040;
+  --border-light:#252e4a;
+  --radius:10px;
+  --radius-lg:16px;
+  --serif:'DM Serif Display', Georgia, serif;
+  --sans:'IBM Plex Sans', -apple-system, sans-serif;
+  --mono:'IBM Plex Mono', 'Consolas', monospace;
+}
+html{scroll-behavior:smooth;background:var(--bg-void)}
+body{
+  font-family:var(--sans);color:var(--text-primary);
+  background:var(--bg-void);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+/* Micro-grid background */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(79,143,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,143,255,.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(4,6,14,.88);backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid rgba(26,32,64,.6);
+}
+nav .inner{
+  max-width:1280px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;height:52px;padding:0 2rem;
+}
+nav .brand{
+  font-family:var(--mono);font-weight:600;font-size:.78rem;
+  letter-spacing:.08em;color:var(--accent);text-transform:uppercase;
+}
+nav .brand span{color:var(--text-muted);font-weight:400}
+nav .links{display:flex;gap:1.5rem;list-style:none}
+nav .links a{
+  color:var(--text-muted);text-decoration:none;font-size:.72rem;
+  font-family:var(--mono);font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;transition:color .2s;
+}
+nav .links a:hover{color:var(--text-primary)}
+
+.container{max-width:1280px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+section{padding:5.5rem 0}
+
+/* SECTION HEADERS */
+.section-label{
+  font-family:var(--mono);font-size:.68rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;
+}
+.section-label::before{
+  content:'';width:20px;height:1px;background:var(--accent);
+}
+.section-title{
+  font-family:var(--serif);font-size:2.4rem;line-height:1.12;
+  color:var(--text-primary);margin-bottom:.6rem;font-weight:400;
+}
+.section-subtitle{
+  font-size:.95rem;color:var(--text-secondary);max-width:620px;
+  line-height:1.7;font-weight:300;
+}
+
+/* HERO */
+.hero{
+  padding:9rem 0 5rem;position:relative;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;top:-300px;right:-200px;width:800px;height:800px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(79,143,255,.06) 0%,rgba(0,214,143,.03) 40%,transparent 70%);
+  animation:heroFloat 20s ease-in-out infinite;
+}
+@keyframes heroFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+.hero-glow-2{
+  position:absolute;bottom:-200px;left:-100px;width:600px;height:600px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(0,214,143,.04) 0%,transparent 70%);
+}
+.hero .container{position:relative;z-index:1}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.7rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:2rem;
+  display:inline-flex;align-items:center;gap:.75rem;
+  padding:.45rem 1rem;border:1px solid rgba(79,143,255,.2);
+  border-radius:4px;background:rgba(79,143,255,.04);
+}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(2.6rem,5vw,4.2rem);
+  line-height:1.1;font-weight:400;margin-bottom:1.25rem;max-width:820px;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--accent-light),var(--green-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-desc{
+  font-size:1.05rem;color:var(--text-secondary);max-width:640px;
+  line-height:1.75;font-weight:300;margin-bottom:3rem;
+}
+.hero-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:800px}
+.hero-stat{
+  padding:1.25rem 0;position:relative;
+}
+.hero-stat+.hero-stat{border-left:1px solid var(--border-light);padding-left:1.5rem}
+.hero-stat-value{
+  font-family:var(--mono);font-size:1.8rem;font-weight:600;
+  color:var(--text-primary);line-height:1;letter-spacing:-.02em;
+}
+.hero-stat-value .counter{display:inline}
+.hero-stat-label{
+  font-size:.7rem;color:var(--text-muted);margin-top:.4rem;
+  font-weight:500;text-transform:uppercase;letter-spacing:.06em;
+  font-family:var(--mono);
+}
+.hero-stat-label--alert{color:var(--rose)}
+
+/* DIVIDER */
+.divider{
+  height:1px;margin:0 auto;max-width:100%;
+  background:linear-gradient(90deg,transparent,var(--border-light) 20%,var(--border-light) 80%,transparent);
+}
+
+/* TIER TABS */
+.tier-tabs{display:flex;gap:.35rem;margin-top:2rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.tier-tab{
+  padding:.45rem 1rem;border-radius:6px;font-size:.72rem;
+  font-family:var(--mono);font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--border);color:var(--text-muted);
+  background:transparent;transition:all .2s;
+}
+.tier-tab:hover{border-color:var(--accent);color:var(--text-secondary)}
+.tier-tab.active{
+  background:var(--accent-dim);border-color:var(--accent);
+  color:var(--accent-light);
+}
+
+/* HEATMAP */
+.heatmap-panel{display:none}
+.heatmap-panel.active{display:block}
+.heatmap-wrap{overflow-x:auto;padding-bottom:.5rem;-webkit-overflow-scrolling:touch}
+.heatmap{display:grid;gap:2px;min-width:720px}
+.heatmap-header{
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-muted);padding:.65rem .4rem;text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.heatmap-header:first-child{text-align:left;padding-left:.75rem}
+.heatmap-row-label{
+  font-size:.78rem;font-weight:500;color:var(--text-secondary);
+  padding:.55rem .75rem;display:flex;align-items:center;
+  border-bottom:1px solid rgba(26,32,64,.4);
+  background:rgba(10,15,30,.4);
+}
+.heatmap-cell{
+  padding:.5rem .3rem;text-align:center;border-radius:4px;
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  letter-spacing:.03em;cursor:default;
+  border-bottom:1px solid rgba(26,32,64,.15);
+  transition:transform .12s,box-shadow .12s;
+}
+.heatmap-cell:hover{transform:scale(1.1);z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.heat-vh{background:rgba(0,214,143,.2);color:var(--green-light)}
+.heat-h{background:rgba(0,214,143,.1);color:rgba(62,234,180,.75)}
+.heat-m{background:rgba(255,176,32,.1);color:var(--amber)}
+.heat-l{background:rgba(255,77,106,.07);color:rgba(255,77,106,.6)}
+.heat-0{background:rgba(90,101,120,.04);color:rgba(90,101,120,.3)}
+
+.ws-banner{
+  margin-top:1.75rem;padding:1.15rem 1.5rem;
+  border:1px solid rgba(0,214,143,.2);border-radius:var(--radius);
+  background:rgba(0,214,143,.03);
+  display:flex;align-items:flex-start;gap:1rem;
+}
+.ws-banner-marker{
+  flex-shrink:0;margin-top:3px;width:8px;height:8px;
+  border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(0,214,143,.4);
+}
+.ws-banner p{color:var(--text-secondary);font-size:.85rem;line-height:1.65}
+.ws-banner strong{color:var(--green-light);font-weight:600}
+
+/* ACTION CARDS */
+.actions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1rem;margin-top:2.5rem}
+.action-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.75rem 1.75rem 1.5rem;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.action-card:hover{
+  border-color:rgba(79,143,255,.3);transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(79,143,255,.06);
+}
+.action-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),var(--green),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.action-card:hover::before{opacity:.6}
+.action-number{
+  font-family:var(--serif);font-size:2.4rem;font-style:italic;
+  line-height:1;color:rgba(79,143,255,.08);position:absolute;top:.75rem;right:1.25rem;
+}
+.action-badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.6rem;font-family:var(--mono);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.25rem .6rem;border-radius:3px;margin-bottom:.85rem;
+}
+.badge-now{background:rgba(0,214,143,.12);color:var(--green-light);border:1px solid rgba(0,214,143,.15)}
+.badge-soon{background:var(--accent-dim);color:var(--accent-light);border:1px solid rgba(79,143,255,.15)}
+.action-card h3{
+  font-family:var(--serif);font-size:1.25rem;font-weight:400;
+  line-height:1.3;margin-bottom:.65rem;padding-right:2rem;
+}
+.action-card p{color:var(--text-secondary);font-size:.84rem;line-height:1.65;margin-bottom:1rem}
+.action-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.action-tag{
+  font-size:.65rem;font-family:var(--mono);font-weight:600;
+  padding:.25rem .55rem;border-radius:4px;letter-spacing:.02em;
+}
+.tag-cost{background:var(--green-dim);color:var(--green-light)}
+.tag-time{background:var(--accent-dim);color:var(--accent-light)}
+.tag-data{background:var(--purple-dim);color:var(--purple)}
+
+/* POSITIONING MAP */
+.map-outer{
+  margin-top:2.5rem;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:2rem;position:relative;overflow:hidden;
+}
+.map-container{position:relative;width:100%;aspect-ratio:16/9;min-height:480px}
+.map-axis{
+  position:absolute;font-size:.62rem;font-family:var(--mono);
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);
+}
+.map-axis--x{bottom:-.5rem;left:50%;transform:translateX(-50%)}
+.map-axis--y{top:50%;left:-1.5rem;transform:translateY(-50%) rotate(-90deg);white-space:nowrap}
+.map-corner{
+  position:absolute;font-size:.58rem;font-family:var(--mono);
+  color:rgba(90,101,120,.3);font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+}
+.map-corner--tl{top:.5rem;left:.5rem}
+.map-corner--tr{top:.5rem;right:.5rem;text-align:right}
+.map-corner--bl{bottom:.5rem;left:.5rem}
+.map-corner--br{bottom:.5rem;right:.5rem;text-align:right}
+.map-grid-lines{position:absolute;inset:2rem 1rem 2rem 2rem}
+.map-grid-lines::before,.map-grid-lines::after{content:'';position:absolute;background:var(--border)}
+.map-grid-lines::before{left:50%;top:0;bottom:0;width:1px}
+.map-grid-lines::after{top:50%;left:0;right:0;height:1px}
+.map-zone{
+  position:absolute;border:1.5px dashed rgba(0,214,143,.2);
+  border-radius:var(--radius);background:rgba(0,214,143,.015);
+  top:2%;left:1%;width:40%;height:44%;
+}
+.map-zone-label{
+  position:absolute;top:6%;left:3%;font-size:.6rem;font-family:var(--mono);
+  font-weight:600;color:rgba(0,214,143,.35);letter-spacing:.08em;text-transform:uppercase;
+}
+.map-dot{
+  position:absolute;transform:translate(-50%,-50%);
+  z-index:2;cursor:default;transition:transform .2s;
+}
+.map-dot:hover{transform:translate(-50%,-50%) scale(1.2);z-index:10}
+.map-dot:hover .map-tooltip{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.dot-core{width:10px;height:10px;border-radius:50%;border:2px solid;position:relative}
+.dot-label{
+  position:absolute;white-space:nowrap;
+  font-size:.64rem;font-family:var(--mono);font-weight:500;color:var(--text-muted);
+  top:50%;left:calc(100% + 5px);transform:translateY(-50%);
+}
+.dot-label.l{left:auto;right:calc(100% + 5px)}
+.dot-label.b{top:calc(100% + 3px);left:50%;transform:translateX(-50%)}
+.dot-label.t{top:auto;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%)}
+.map-tooltip{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);
+  background:var(--bg-elevated);border:1px solid var(--border-light);border-radius:6px;
+  padding:.5rem .7rem;white-space:nowrap;font-size:.68rem;color:var(--text-secondary);
+  opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:20;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.map-dot.is-kip .dot-core{
+  width:16px;height:16px;background:rgba(0,214,143,.15);border-color:var(--green);
+  box-shadow:0 0 16px rgba(0,214,143,.25),0 0 40px rgba(0,214,143,.08);
+}
+.map-dot.is-kip .dot-label{color:var(--green-light);font-weight:700;font-size:.72rem}
+.map-dot.is-kip{animation:kipPulse 3s ease-in-out infinite}
+@keyframes kipPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+.map-dot.is-dead .dot-core{opacity:.35}
+.map-dot.is-dead .dot-label{opacity:.35;font-style:italic}
+
+.map-legend{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.map-legend-item{display:flex;align-items:center;gap:.35rem;font-size:.66rem;font-family:var(--mono);color:var(--text-muted)}
+.map-legend-dot{width:8px;height:8px;border-radius:50%;border:2px solid}
+
+/* WHITE SPACE CARDS */
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2.5rem}
+.ws-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.5rem;
+  position:relative;overflow:hidden;transition:border-color .3s,transform .3s;
+}
+.ws-card:hover{border-color:rgba(0,214,143,.25);transform:translateY(-2px)}
+.ws-card-glow{
+  position:absolute;top:-40px;right:-40px;width:120px;height:120px;
+  background:radial-gradient(circle,rgba(0,214,143,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.ws-card-tag{
+  display:inline-block;font-size:.58rem;font-family:var(--mono);font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.2rem .5rem;border-radius:3px;margin-bottom:.85rem;
+  background:var(--green-dim);color:var(--green-light);
+  border:1px solid rgba(0,214,143,.12);
+}
+.ws-card h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;line-height:1.3;margin-bottom:.5rem}
+.ws-card p{color:var(--text-secondary);font-size:.82rem;line-height:1.6}
+.ws-card-meter{
+  margin-top:.85rem;display:flex;align-items:center;gap:.6rem;
+}
+.ws-card-meter-bar{
+  flex:1;height:4px;background:rgba(90,101,120,.12);border-radius:2px;overflow:hidden;
+}
+.ws-card-meter-fill{
+  height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--green),var(--green-light));
+  transition:width 1s ease;
+}
+.ws-card-meter-val{
+  font-size:.68rem;font-family:var(--mono);font-weight:600;color:var(--green-light);
+  min-width:3rem;
+}
+
+/* SCOREBOARD */
+.scoreboard{margin-top:2rem}
+.scoreboard-row{
+  display:flex;align-items:center;gap:1rem;
+  padding:.8rem 0;border-bottom:1px solid var(--border);
+  transition:background .2s;
+}
+.scoreboard-row:hover{background:rgba(255,255,255,.008)}
+.sb-practice{
+  width:170px;flex-shrink:0;font-size:.82rem;font-weight:500;color:var(--text-primary);
+}
+.sb-companies{display:flex;gap:.3rem;flex-wrap:wrap;flex:1}
+.sb-pill{
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  padding:.2rem .45rem;border-radius:3px;letter-spacing:.02em;
+}
+.pill-leader{background:rgba(79,143,255,.12);color:var(--accent-light)}
+.pill-strong{background:var(--green-dim);color:var(--green-light)}
+.pill-emerging{background:var(--amber-dim);color:var(--amber)}
+.sb-bar-wrap{width:130px;flex-shrink:0;display:flex;align-items:center;gap:.4rem}
+.sb-bar{flex:1;height:4px;background:rgba(90,101,120,.08);border-radius:2px;overflow:hidden}
+.sb-bar-fill{height:100%;border-radius:2px;transition:width .8s ease;background:linear-gradient(90deg,var(--accent),var(--accent-light))}
+.sb-bar-val{font-size:.65rem;font-family:var(--mono);color:var(--text-muted);font-weight:600;width:2.5rem;text-align:right}
+
+/* ROADMAP */
+.roadmap{margin-top:2.5rem;position:relative;padding-left:3rem}
+.roadmap::before{
+  content:'';position:absolute;left:8px;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,var(--accent),var(--green) 50%,var(--accent));
+}
+.rm-phase{margin-bottom:2.5rem;position:relative}
+.rm-dot{
+  position:absolute;left:-3rem;top:.3rem;width:17px;height:17px;
+  border-radius:50%;border:3px solid var(--bg-void);z-index:2;
+}
+.rm-phase:nth-child(1) .rm-dot{background:var(--accent)}
+.rm-phase:nth-child(2) .rm-dot{background:var(--green)}
+.rm-phase:nth-child(3) .rm-dot{background:var(--accent-light)}
+.rm-phase:nth-child(4) .rm-dot{background:var(--green-light)}
+.rm-label{
+  font-size:.65rem;font-family:var(--mono);font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;
+}
+.rm-phase:nth-child(1) .rm-label{color:var(--accent-light)}
+.rm-phase:nth-child(2) .rm-label{color:var(--green-light)}
+.rm-phase:nth-child(3) .rm-label{color:var(--accent-light)}
+.rm-phase:nth-child(4) .rm-label{color:var(--green-light)}
+.rm-phase h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:.65rem}
+.rm-items{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.rm-items li{
+  display:flex;align-items:baseline;gap:.55rem;
+  font-size:.84rem;color:var(--text-secondary);line-height:1.55;
+}
+.rm-items li::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--text-faint);flex-shrink:0;margin-top:.6rem;
+}
+.rm-items .data-ref{
+  font-family:var(--mono);font-size:.68rem;color:var(--purple);
+  background:var(--purple-dim);padding:.1rem .35rem;border-radius:3px;
+  white-space:nowrap;
+}
+
+/* CTA */
+.cta-section{text-align:center;padding:5rem 0 6rem}
+.cta-section h2{font-family:var(--serif);font-size:2.4rem;font-weight:400;margin-bottom:.75rem}
+.cta-section h2 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--accent-light),var(--green-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cta-section p{color:var(--text-secondary);font-size:1rem;max-width:540px;margin:0 auto;line-height:1.7}
+.cta-date{
+  margin-top:2rem;font-family:var(--mono);font-size:.7rem;
+  color:var(--text-faint);letter-spacing:.06em;
+}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+.reveal-d4{transition-delay:.32s}
+.reveal-d5{transition-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  section{padding:3.5rem 0}
+  .container{padding:0 1rem}
+  .hero{padding:6.5rem 0 3.5rem}
+  .hero h1{font-size:2rem}
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:.5rem}
+  .section-title{font-size:1.7rem}
+  .actions-grid{grid-template-columns:1fr}
+  .ws-grid{grid-template-columns:1fr}
+  .sb-practice{width:110px;font-size:.75rem}
+  .sb-bar-wrap{width:70px}
+  nav .links{display:none}
+  .map-container{aspect-ratio:auto;min-height:400px}
+  .tier-tabs{gap:.25rem}
+  .tier-tab{padding:.35rem .65rem;font-size:.65rem}
+}
+@media(max-width:480px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .scoreboard-row{flex-wrap:wrap}
+  .sb-bar-wrap{width:100%;order:3}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="brand">AI-KIP <span>// Intelligence Brief</span></div>
+    <ul class="links">
+      <li><a href="#matrix">Channels</a></li>
+      <li><a href="#actions">Actions</a></li>
+      <li><a href="#positioning">Map</a></li>
+      <li><a href="#whitespace">White Space</a></li>
+      <li><a href="#scoreboard">Scoreboard</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-eyebrow reveal">Competitive Intelligence Report -- N=17</div>
+    <h1 class="reveal reveal-d1">Action Plan for<br><em>Market Visibility</em></h1>
+    <p class="hero-desc reveal reveal-d2">Cross-analysis of 17 competitors across 3 revenue tiers. Distilled into concrete, data-backed actions AI-KIP can execute to capture uncontested territory in European B2B intelligence.</p>
+    <div class="hero-stats reveal reveal-d3">
+      <div class="hero-stat">
+        <div class="hero-stat-value"><span class="counter" data-target="17">0</span></div>
+        <div class="hero-stat-label">Competitors</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value"><span class="counter" data-target="18">0</span></div>
+        <div class="hero-stat-label">Channels Mapped</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value"><span class="counter" data-target="8">0</span></div>
+        <div class="hero-stat-label">DACH White Spaces</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">0/17</div>
+        <div class="hero-stat-label hero-stat-label--alert">DACH Community</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">15/17</div>
+        <div class="hero-stat-label hero-stat-label--alert">Zero German Content</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- CHANNEL MATRIX -->
+<section id="matrix">
+  <div class="container">
+    <div class="section-label reveal">01 -- Channel Analysis</div>
+    <h2 class="section-title reveal">Competitive Channel Matrix</h2>
+    <p class="section-subtitle reveal">Channel intensity across 17 competitors, organized by revenue tier. The redder the cell, the bigger the gap.</p>
+
+    <div class="tier-tabs reveal">
+      <button class="tier-tab active" onclick="showTier('t1',this)">Tier 1: Enterprise ($200M+)</button>
+      <button class="tier-tab" onclick="showTier('t2',this)">Tier 2: Growth ($40-200M)</button>
+      <button class="tier-tab" onclick="showTier('t3',this)">Tier 3: Early Stage (&lt;$40M)</button>
+    </div>
+
+    <div class="heatmap-panel active" id="panel-t1">
+      <div class="heatmap-wrap reveal"><div class="heatmap" id="heatmap-t1"></div></div>
+    </div>
+    <div class="heatmap-panel" id="panel-t2">
+      <div class="heatmap-wrap reveal"><div class="heatmap" id="heatmap-t2"></div></div>
+    </div>
+    <div class="heatmap-panel" id="panel-t3">
+      <div class="heatmap-wrap reveal"><div class="heatmap" id="heatmap-t3"></div></div>
+    </div>
+
+    <div class="ws-banner reveal">
+      <div class="ws-banner-marker"></div>
+      <p><strong>8 DACH-specific channels have zero competition across all 17 competitors:</strong> German-language content (15/17 absent), DACH community (0/17), DACH podcast (0/17), DACH newsletter (0/17), DACH events (0/17), German academy (0/17), German SEO glossary (16/17 absent), and YouTube-native B2B content (0/17 do it well).</p>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ACTIONS -->
+<section id="actions">
+  <div class="container">
+    <div class="section-label reveal">02 -- Immediate Priorities</div>
+    <h2 class="section-title reveal">5 Actions to Execute Now</h2>
+    <p class="section-subtitle reveal">High-impact, low-cost moves derived from analysis of 17 competitors. Ranked by speed-to-impact.</p>
+
+    <div class="actions-grid">
+
+      <div class="action-card reveal">
+        <span class="action-number">01</span>
+        <div class="action-badge badge-now">Start this week</div>
+        <h3>Launch Founder-Led LinkedIn Strategy</h3>
+        <p>Lemlist's founder (200K+ followers) built $40M ARR without paid ads. 8 of 17 competitors use founder personal brands as a primary channel. Post 3-5x/week, split tech + sales lanes.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">0 EUR</span>
+          <span class="action-tag tag-time">2-4 wk impact</span>
+          <span class="action-tag tag-data">8/17 do this</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d1">
+        <span class="action-number">02</span>
+        <div class="action-badge badge-now">Start this week</div>
+        <h3>Dogfood AI-KIP for Marketing Intelligence</h3>
+        <p>6 of 17 competitors dogfood their own product (6sense, Clay, 11x, Artisan, Amplemarket, Demandbase). Publish findings as a recurring "AI-KIP for AI-KIP" content series.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">0 EUR</span>
+          <span class="action-tag tag-time">Immediate</span>
+          <span class="action-tag tag-data">6/17 do this</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d2">
+        <span class="action-number">03</span>
+        <div class="action-badge badge-soon">Month 1-2</div>
+        <h3>Build German-Language SEO Pages</h3>
+        <p>Only 2 of 17 produce German SEO content (Dealfront, Cognism). Create 20-30 glossary pages: "Was ist Sales Intelligence?", "MEDDPICC erklaert". Single largest content gap.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">Low cost</span>
+          <span class="action-tag tag-time">3-6 mo impact</span>
+          <span class="action-tag tag-data">15/17 absent</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d3">
+        <span class="action-number">04</span>
+        <div class="action-badge badge-soon">Month 1-2</div>
+        <h3>Create 15 Competitor Comparison Pages</h3>
+        <p>11 of 17 have comparison pages. Amplemarket leads with 19+. Create "AI-KIP vs. X" in German and English -- zero competitors do German comparison pages.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">Low cost</span>
+          <span class="action-tag tag-time">1-3 mo impact</span>
+          <span class="action-tag tag-data">11/17 do this</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d4">
+        <span class="action-number">05</span>
+        <div class="action-badge badge-soon">Month 2-3</div>
+        <h3>Launch DACH B2B Community</h3>
+        <p>Zero of 17 have a German-language B2B community. Clay (12-15K) and Apollo (6K+) prove community is the most defensible moat. Start with 20-50 hand-picked DACH pros.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">0 EUR</span>
+          <span class="action-tag tag-time">6+ mo compound</span>
+          <span class="action-tag tag-data">0/17 in DACH</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- POSITIONING MAP -->
+<section id="positioning">
+  <div class="container">
+    <div class="section-label reveal">03 -- Market Positioning</div>
+    <h2 class="section-title reveal">Competitive Positioning Map</h2>
+    <p class="section-subtitle reveal">All 17 competitors + AI-KIP plotted on maturity vs. European focus. The upper-left quadrant is the opportunity zone.</p>
+
+    <div class="map-outer reveal">
+      <div class="map-container">
+        <div class="map-axis map-axis--x">Company Maturity &#8594;</div>
+        <div class="map-axis map-axis--y">European Focus &#8594;</div>
+        <div class="map-corner map-corner--tl">Europe-First / Early Stage</div>
+        <div class="map-corner map-corner--tr">Europe-First / Enterprise</div>
+        <div class="map-corner map-corner--bl">US-First / Early Stage</div>
+        <div class="map-corner map-corner--br">US-First / Enterprise</div>
+
+        <div class="map-grid-lines">
+          <div class="map-zone"></div>
+          <div class="map-zone-label">Opportunity Zone</div>
+
+          <!-- Tier 1: Enterprise blue -->
+          <div class="map-dot" style="left:92%;top:88%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label l">ZoomInfo</div>
+            <div class="map-tooltip">$1.24B rev -- US-centric, no DE content</div>
+          </div>
+          <div class="map-dot" style="left:85%;top:82%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label l">6sense</div>
+            <div class="map-tooltip">$200M+ ARR -- "Dark Funnel" category creator</div>
+          </div>
+          <div class="map-dot" style="left:82%;top:72%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label">Gong</div>
+            <div class="map-tooltip">$332M ARR -- Revenue AI OS, no DACH office</div>
+          </div>
+          <div class="map-dot" style="left:88%;top:86%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label">Outreach</div>
+            <div class="map-tooltip">$301M rev -- Sales Engagement leader</div>
+          </div>
+          <div class="map-dot" style="left:78%;top:80%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label b">Demandbase</div>
+            <div class="map-tooltip">$253M rev -- ABM/Smarter GTM, own B2B DSP</div>
+          </div>
+
+          <!-- Tier 2: Growth amber -->
+          <div class="map-dot" style="left:68%;top:78%">
+            <div class="dot-core" style="border-color:var(--amber);background:rgba(255,176,32,.1)"></div>
+            <div class="dot-label">Apollo</div>
+            <div class="map-tooltip">$150M ARR -- 3M+ free users, PLG king</div>
+          </div>
+          <div class="map-dot" style="left:62%;top:75%">
+            <div class="dot-core" style="border-color:var(--amber);background:rgba(255,176,32,.1)"></div>
+            <div class="dot-label">Clay</div>
+            <div class="map-tooltip">$100M+ ARR -- "GTM Engineer" category</div>
+          </div>
+          <div class="map-dot" style="left:58%;top:28%">
+            <div class="dot-core" style="border-color:var(--amber);background:rgba(255,176,32,.1)"></div>
+            <div class="dot-label">Cognism</div>
+            <div class="map-tooltip">$83M rev -- 194% DACH growth, Diamond Data</div>
+          </div>
+          <div class="map-dot" style="left:48%;top:12%">
+            <div class="dot-core" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div>
+            <div class="dot-label">Dealfront</div>
+            <div class="map-tooltip">$41M ARR -- Only bilingual EN/DE player</div>
+          </div>
+          <div class="map-dot" style="left:45%;top:35%">
+            <div class="dot-core" style="border-color:var(--amber);background:rgba(255,176,32,.1)"></div>
+            <div class="dot-label">Lemlist</div>
+            <div class="map-tooltip">$40M ARR -- Bootstrapped, founder-brand-led</div>
+          </div>
+
+          <!-- Tier 3: Early US = rose, Early EU = green -->
+          <div class="map-dot" style="left:30%;top:72%">
+            <div class="dot-core" style="border-color:var(--rose);background:var(--rose-dim)"></div>
+            <div class="dot-label">Amplemarket</div>
+            <div class="map-tooltip">$15M rev -- AI Sales Copilot "Duo"</div>
+          </div>
+          <div class="map-dot" style="left:35%;top:76%">
+            <div class="dot-core" style="border-color:var(--rose);background:var(--rose-dim)"></div>
+            <div class="dot-label b">11x</div>
+            <div class="map-tooltip">~$10M est. -- "Digital Workers" positioning</div>
+          </div>
+          <div class="map-dot" style="left:22%;top:82%">
+            <div class="dot-core" style="border-color:var(--rose);background:var(--rose-dim)"></div>
+            <div class="dot-label">Artisan</div>
+            <div class="map-tooltip">$5M ARR -- "Stop Hiring Humans" campaign</div>
+          </div>
+          <div class="map-dot" style="left:18%;top:35%">
+            <div class="dot-core" style="border-color:var(--green);background:rgba(0,214,143,.08)"></div>
+            <div class="dot-label">Humanlinker</div>
+            <div class="map-tooltip">&lt;$5M -- DISC personality analysis, FR-based</div>
+          </div>
+          <div class="map-dot" style="left:10%;top:14%">
+            <div class="dot-core" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div>
+            <div class="dot-label">Venta AI</div>
+            <div class="map-tooltip">Pre-revenue -- GDPR-first AI SDR, Germany</div>
+          </div>
+          <div class="map-dot" style="left:8%;top:10%">
+            <div class="dot-core" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div>
+            <div class="dot-label t">42db</div>
+            <div class="map-tooltip">Pre-revenue -- Dual-founder LinkedIn, Germany</div>
+          </div>
+          <div class="map-dot is-dead" style="left:25%;top:48%">
+            <div class="dot-core" style="border-color:var(--text-muted);background:rgba(90,101,120,.08)"></div>
+            <div class="dot-label">Luna.ai</div>
+            <div class="map-tooltip">Sunsetted Mar 2025</div>
+          </div>
+
+          <!-- AI-KIP -->
+          <div class="map-dot is-kip" style="left:22%;top:18%">
+            <div class="dot-core"></div>
+            <div class="dot-label">AI-KIP</div>
+            <div class="map-tooltip">Agentic Sales Intelligence -- DACH/Benelux</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-legend">
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div> Enterprise ($200M+)</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--amber);background:rgba(255,176,32,.1)"></div> Growth ($40-200M)</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--rose);background:var(--rose-dim)"></div> Early Stage US</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div> Early Stage EU</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--text-muted);background:rgba(90,101,120,.08)"></div> Sunsetted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- WHITE SPACE -->
+<section id="whitespace">
+  <div class="container">
+    <div class="section-label reveal">04 -- Uncontested Territory</div>
+    <h2 class="section-title reveal">DACH White Space Opportunities</h2>
+    <p class="section-subtitle reveal">Niches where zero or near-zero of 17 competitors have meaningful presence. First-mover advantage is real.</p>
+
+    <div class="ws-grid">
+
+      <div class="ws-card reveal">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">15/17 absent</div>
+        <h3>German-Language B2B Content</h3>
+        <p>Only Dealfront and Cognism produce systematic German content. 15 of 17 operate in English only. A German SEO moat US competitors cannot replicate.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="88%"></div></div>
+          <div class="ws-card-meter-val">88% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d1">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/17 present</div>
+        <h3>DACH Sales &amp; Marketing Community</h3>
+        <p>No Slack, Discord, or forum exists for German-speaking B2B professionals. Clay (12-15K), Apollo (6K+) prove the model. Nobody owns DACH.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d2">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/17 present</div>
+        <h3>DACH-Focused Podcast / Newsletter</h3>
+        <p>5 of 17 run English podcasts (Cognism, 6sense, Outreach, Gong, Demandbase). Zero run a German-language B2B podcast or newsletter.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d3">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/17 present</div>
+        <h3>Events in DACH</h3>
+        <p>8 of 17 run owned events -- all in the US. Zero host events in Germany, Austria, or Switzerland. Intimate roundtables in Munich/Berlin are uncontested.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d4">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">Category available</div>
+        <h3>European B2B Intelligence Category</h3>
+        <p>9 of 17 have created category vocabulary (6sense: "Dark Funnel", Gong: "Revenue AI"). No one owns "European B2B Intelligence." Category is unclaimed.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">Open</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d5">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/17 do it well</div>
+        <h3>YouTube-Native B2B Content</h3>
+        <p>All 17 use YouTube as a content dump. Nobody runs a YouTube-first strategy with native, optimized content. A German B2B YouTube channel has zero competition.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- SCOREBOARD -->
+<section id="scoreboard">
+  <div class="container">
+    <div class="section-label reveal">05 -- Competitor Strengths</div>
+    <h2 class="section-title reveal">Best Practices Scoreboard</h2>
+    <p class="section-subtitle reveal">Who leads in each marketing discipline across 17 companies. Learn from the best, exploit the gaps.</p>
+
+    <div class="scoreboard reveal" id="scoreboard-content"></div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-label reveal">06 -- Execution Plan</div>
+    <h2 class="section-title reveal">90-Day Visibility Roadmap</h2>
+    <p class="section-subtitle reveal">A phased plan calibrated to the N=17 competitive landscape. Each phase compounds on the last.</p>
+
+    <div class="roadmap reveal">
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Week 1-2 -- Foundation</div>
+        <h3>Activate Founder Presence &amp; Dogfooding</h3>
+        <ul class="rm-items">
+          <li>Start founder LinkedIn posting cadence (3-5x/week) -- follow Lemlist/42db model <span class="data-ref">8/17</span></li>
+          <li>Define content lanes: one founder on technology/product, one on sales/DACH market</li>
+          <li>Set up dogfooding workflow: use AI-KIP daily for competitive intelligence <span class="data-ref">6/17</span></li>
+          <li>Publish first "AI-KIP for AI-KIP" insight post on LinkedIn</li>
+          <li>Audit website messaging against the 17 competitor positioning statements</li>
+          <li>Claim G2, Capterra, and OMR Reviews profiles <span class="data-ref">14/17</span></li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Week 3-4 -- Category &amp; Positioning</div>
+        <h3>Define the DACH Intelligence Category</h3>
+        <ul class="rm-items">
+          <li>Create proprietary category vocabulary <span class="data-ref">9/17</span></li>
+          <li>Write positioning: "Agentic Sales Intelligence for DACH" -- sharper than 10+ generic "AI Sales Platform" competitors</li>
+          <li>Design updated website with GDPR-first messaging</li>
+          <li>Create differentiation doc vs. ZoomInfo, 6sense, Gong, Dealfront, Cognism</li>
+          <li>Start drafting first 10 German-language glossary page outlines</li>
+          <li>Exploit: ZoomInfo's Data Passport, Apollo's EU data accuracy, Gong's US-only data residency</li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Month 2 -- German SEO Engine</div>
+        <h3>Build the Organic Discovery Machine</h3>
+        <ul class="rm-items">
+          <li>Publish first 10 glossary pages in German <span class="data-ref">15/17 absent</span></li>
+          <li>Create first 5 competitor comparison pages ("AI-KIP vs. X") in DE + EN</li>
+          <li>Publish 2-3 blog posts based on dogfooding insights</li>
+          <li>Begin outreach for first 3 DACH case studies or testimonials</li>
+          <li>Start bilingual content repurposing: German first, then English (Dealfront model)</li>
+          <li>Launch newsletter signup for DACH B2B intelligence insights <span class="data-ref">0/17</span></li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Month 3 -- Community &amp; Scale</div>
+        <h3>Launch DACH Community and Amplify</h3>
+        <ul class="rm-items">
+          <li>Launch Slack/Discord with 20-50 hand-picked DACH B2B professionals <span class="data-ref">0/17</span></li>
+          <li>Publish first data report from AI-KIP platform insights <span class="data-ref">4/17</span></li>
+          <li>Start YouTube channel with first 3-4 product walkthroughs in German <span class="data-ref">0/17</span></li>
+          <li>Add 10 more glossary + 5 more comparison pages</li>
+          <li>Host first virtual event or office hours for the DACH community</li>
+          <li>Evaluate 90-day results, plan Q2 content calendar + paid LinkedIn test (Cognism model)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">The DACH market is <em>wide open</em></h2>
+    <p class="reveal reveal-d1">Across 8 DACH-specific dimensions, zero of 17 competitors fully serve this market. The European B2B Intelligence category is waiting to be defined. AI-KIP has a structural advantage that US competitors cannot easily replicate.</p>
+    <div class="cta-date reveal reveal-d2">Report generated 2026-02-09 // N=17 // AI-KIP Competitive Intelligence</div>
+  </div>
+</section>
+
+<script>
+// ===== TIER TABS =====
+function showTier(id, btn) {
+  document.querySelectorAll('.tier-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.heatmap-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ===== HEATMAP DATA =====
+const channels = ['LinkedIn','SEO','Community','Events','YouTube','Content','PLG','Podcast','Paid Ads','Review Sites'];
+const heatLabels = {vh:'V.High',h:'High',m:'Med',l:'Low','0':'--'};
+
+const t1Data = {
+  competitors: ['ZoomInfo','6sense','Gong','Outreach','Demandbase'],
+  matrix: {
+    'ZoomInfo':   ['h','vh','m','h','m','vh','m','m','vh','vh'],
+    '6sense':     ['vh','vh','h','vh','m','vh','m','h','h','h'],
+    'Gong':       ['vh','vh','m','h','m','vh','0','h','h','h'],
+    'Outreach':   ['vh','vh','h','vh','m','vh','m','h','m','h'],
+    'Demandbase': ['vh','vh','m','h','m','vh','m','h','h','h'],
+  }
+};
+const t2Data = {
+  competitors: ['Apollo','Clay','Cognism','Dealfront','Lemlist'],
+  matrix: {
+    'Apollo':   ['h','vh','vh','m','m','vh','vh','l','m','h'],
+    'Clay':     ['vh','vh','vh','m','m','vh','vh','0','l','m'],
+    'Cognism':  ['vh','vh','m','h','m','vh','m','h','vh','h'],
+    'Dealfront':['h','vh','l','m','m','vh','h','l','m','h'],
+    'Lemlist':  ['vh','vh','h','l','m','vh','h','l','l','m'],
+  }
+};
+const t3Data = {
+  competitors: ['Amplemarket','11x','Artisan','Humanlinker','Venta AI','42db','Luna.ai'],
+  matrix: {
+    'Amplemarket': ['h','h','0','l','l','h','l','l','0','m'],
+    '11x':         ['h','h','0','m','l','h','0','0','m','l'],
+    'Artisan':     ['h','h','l','m','l','h','0','0','m','l'],
+    'Humanlinker': ['h','m','l','m','l','h','h','m','l','m'],
+    'Venta AI':    ['h','l','0','l','0','h','m','0','0','l'],
+    '42db':        ['vh','0','0','0','0','m','0','0','0','0'],
+    'Luna.ai':     ['m','m','m','0','l','vh','vh','0','l','m'],
+  }
+};
+
+function renderHeatmap(containerId, tierData) {
+  const el = document.getElementById(containerId);
+  el.style.gridTemplateColumns = '140px repeat(' + channels.length + ',1fr)';
+  let html = '<div class="heatmap-header"></div>';
+  channels.forEach(function(ch) { html += '<div class="heatmap-header">' + ch + '</div>'; });
+  tierData.competitors.forEach(function(comp) {
+    html += '<div class="heatmap-row-label">' + comp + '</div>';
+    tierData.matrix[comp].forEach(function(val) {
+      html += '<div class="heatmap-cell heat-' + val + '" title="' + heatLabels[val] + '">' + heatLabels[val] + '</div>';
+    });
+  });
+  el.innerHTML = html;
+}
+
+renderHeatmap('heatmap-t1', t1Data);
+renderHeatmap('heatmap-t2', t2Data);
+renderHeatmap('heatmap-t3', t3Data);
+
+// ===== SCOREBOARD =====
+var practices = [
+  {name:'SEO / Organic', companies:[{n:'6sense',t:'leader'},{n:'ZoomInfo',t:'leader'},{n:'Gong',t:'leader'},{n:'Clay',t:'leader'},{n:'Apollo',t:'strong'},{n:'Cognism',t:'strong'},{n:'Dealfront',t:'strong'},{n:'Lemlist',t:'strong'}], count:'12/17'},
+  {name:'Category Creation', companies:[{n:'6sense',t:'leader'},{n:'Clay',t:'leader'},{n:'Gong',t:'leader'},{n:'Demandbase',t:'strong'},{n:'Outreach',t:'strong'},{n:'ZoomInfo',t:'strong'},{n:'Apollo',t:'strong'},{n:'Cognism',t:'emerging'},{n:'11x',t:'emerging'}], count:'9/17'},
+  {name:'Founder Branding', companies:[{n:'Lemlist',t:'leader'},{n:'Cognism',t:'leader'},{n:'42db',t:'strong'},{n:'Artisan',t:'strong'},{n:'Venta AI',t:'strong'},{n:'Humanlinker',t:'strong'},{n:'Demandbase',t:'strong'},{n:'Apollo',t:'emerging'}], count:'10/17'},
+  {name:'Community', companies:[{n:'Clay',t:'leader'},{n:'Outreach',t:'leader'},{n:'Apollo',t:'strong'},{n:'Lemlist',t:'strong'},{n:'6sense',t:'strong'},{n:'Demandbase',t:'emerging'},{n:'Gong',t:'emerging'},{n:'Cognism',t:'emerging'}], count:'8/17'},
+  {name:'Events', companies:[{n:'6sense',t:'leader'},{n:'Outreach',t:'leader'},{n:'Gong',t:'strong'},{n:'Demandbase',t:'strong'},{n:'ZoomInfo',t:'strong'},{n:'Cognism',t:'strong'},{n:'Apollo',t:'emerging'},{n:'Clay',t:'emerging'}], count:'8/17'},
+  {name:'Product-Led Growth', companies:[{n:'Apollo',t:'leader'},{n:'Clay',t:'leader'},{n:'Dealfront',t:'strong'},{n:'Lemlist',t:'strong'},{n:'Humanlinker',t:'strong'},{n:'Demandbase',t:'emerging'}], count:'6/17'},
+  {name:'GDPR / Compliance', companies:[{n:'Dealfront',t:'leader'},{n:'Cognism',t:'leader'},{n:'Venta AI',t:'strong'},{n:'42db',t:'emerging'},{n:'Humanlinker',t:'emerging'},{n:'Lemlist',t:'emerging'}], count:'6/17'},
+  {name:'Dogfooding', companies:[{n:'6sense',t:'leader'},{n:'Clay',t:'strong'},{n:'Demandbase',t:'strong'},{n:'11x',t:'strong'},{n:'Artisan',t:'strong'},{n:'Amplemarket',t:'emerging'}], count:'6/17'},
+  {name:'Creator Ecosystem', companies:[{n:'Clay',t:'leader'},{n:'Lemlist',t:'strong'},{n:'Apollo',t:'strong'},{n:'Cognism',t:'emerging'},{n:'Humanlinker',t:'emerging'}], count:'5/17'},
+  {name:'Podcasts', companies:[{n:'Cognism',t:'leader'},{n:'6sense',t:'strong'},{n:'Outreach',t:'strong'},{n:'Gong',t:'strong'},{n:'Demandbase',t:'strong'}], count:'5/17'},
+  {name:'Data Research', companies:[{n:'Gong',t:'leader'},{n:'Outreach',t:'leader'},{n:'6sense',t:'strong'},{n:'Demandbase',t:'strong'}], count:'4/17'},
+  {name:'DACH Localization', companies:[{n:'Dealfront',t:'leader'},{n:'Cognism',t:'strong'},{n:'42db',t:'emerging'},{n:'Venta AI',t:'emerging'}], count:'4/17'},
+];
+
+var sb = document.getElementById('scoreboard-content');
+practices.forEach(function(p) {
+  var pills = p.companies.map(function(c) {
+    return '<span class="sb-pill pill-' + c.t + '">' + c.n + '</span>';
+  }).join('');
+  var pct = (parseInt(p.count) * 100 / 17).toFixed(0);
+  sb.innerHTML += '<div class="scoreboard-row">' +
+    '<div class="sb-practice">' + p.name + '</div>' +
+    '<div class="sb-companies">' + pills + '</div>' +
+    '<div class="sb-bar-wrap">' +
+      '<div class="sb-bar"><div class="sb-bar-fill" style="width:0%" data-width="' + pct + '%"></div></div>' +
+      '<div class="sb-bar-val">' + p.count + '</div>' +
+    '</div>' +
+  '</div>';
+});
+
+// ===== COUNTER ANIMATION =====
+function animateCounters() {
+  document.querySelectorAll('.counter').forEach(function(el) {
+    var target = parseInt(el.dataset.target);
+    var current = 0;
+    var step = Math.ceil(target / 20);
+    var interval = setInterval(function() {
+      current += step;
+      if (current >= target) { current = target; clearInterval(interval); }
+      el.textContent = current;
+    }, 40);
+  });
+}
+
+// ===== SCROLL ANIMATIONS =====
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate bars
+      entry.target.querySelectorAll('.sb-bar-fill').forEach(function(bar) {
+        setTimeout(function() { bar.style.width = bar.dataset.width; }, 200);
+      });
+      // Animate meters
+      entry.target.querySelectorAll('.ws-card-meter-fill').forEach(function(fill) {
+        setTimeout(function() { fill.style.width = fill.dataset.width; }, 300);
+      });
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+// Trigger counters when hero becomes visible
+var heroObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) { animateCounters(); heroObs.disconnect(); }
+  });
+}, { threshold: 0.3 });
+var heroEl = document.querySelector('.hero-stats');
+if (heroEl) heroObs.observe(heroEl);
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('nav a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>

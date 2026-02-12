@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080">
+    <meta name="color-scheme" content="dark">
+    <title>AI-KIP Carousel – Anti-Stitch Optimized</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================
+           ANTI-STITCHING GLOBAL RESET
+           - No margin (padding only for spacing)
+           - No border, outline, box-shadow on any element
+           - All values integer px (no sub-pixel)
+           - shape-rendering for geometric precision
+           ========================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            box-shadow: none;
+            box-sizing: border-box;
+            shape-rendering: geometricPrecision;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* ==========================================================
+           SINGLE BACKGROUND SOURCE – body only
+           No element below may define its own background-color.
+           Decorative gradient fills use background (not bg-color).
+           ========================================================== */
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #111111;
+            color: #FFFFFF;
+        }
+
+        /* ==========================================================
+           SLIDE – transparent container, spacing via padding
+           No overflow:hidden (prevents gradient-text clip artifacts)
+           ========================================================== */
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        .slide:last-child {
+            page-break-after: auto;
+        }
+
+        /* ==========================================================
+           HEADER
+           ========================================================== */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* gradient text: no overflow clipping on this or parents */
+        }
+
+        .slide-number {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.30);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+        }
+
+        /* ==========================================================
+           CONTENT – flex column, gap for spacing (no margin)
+           ========================================================== */
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- Label with integrated underline (pseudo-element) --- */
+        .label {
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-bottom: 48px;
+            position: relative;
+        }
+
+        .label::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 28px;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            border-radius: 2px;
+        }
+
+        /* --- Headlines --- */
+        .headline {
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1;
+            padding-bottom: 32px;
+        }
+
+        .headline-xl { font-size: 72px; }
+        .headline-lg { font-size: 56px; }
+
+        .headline-gradient {
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- Subline --- */
+        .subline {
+            font-size: 38px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1;
+        }
+
+        /* --- Body text --- */
+        .body-text {
+            font-size: 34px;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.55;
+            padding-bottom: 16px;
+        }
+
+        .body-text:last-child { padding-bottom: 0; }
+
+        .body-text strong {
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        /* --- Quote (gradient bar via pseudo-element, no border) --- */
+        .quote {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.72);
+            font-style: italic;
+            line-height: 1.5;
+            padding: 16px 0 16px 28px;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00FFFF, #FF00FF);
+            border-radius: 2px;
+        }
+
+        /* --- Source --- */
+        .source {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.28);
+            line-height: 1;
+            padding-top: 8px;
+        }
+
+        /* --- Bullets (arrow via pseudo-element) --- */
+        .bullets {
+            list-style: none;
+            padding: 16px 0;
+        }
+
+        .bullets li {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.72);
+            padding: 0 0 16px 40px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .bullets li:last-child { padding-bottom: 0; }
+
+        .bullets li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #00FFFF;
+            font-weight: 700;
+        }
+
+        /* --- CTA Button --- */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 44px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            border-radius: 14px;
+            font-size: 26px;
+            color: #111111;
+            font-weight: 700;
+            align-self: flex-start;
+        }
+
+        .cta-spacer { padding-top: 24px; }
+
+        /* ==========================================================
+           FOOTER
+           ========================================================== */
+        .slide-footer-area {
+            flex-shrink: 0;
+        }
+
+        .flow-line-wrap {
+            position: relative;
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .flow-line {
+            height: 4px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+        }
+
+        /* --- Slide 1: line starts at center, cyan dot --- */
+        .slide-1 .flow-line {
+            width: 50%;
+            position: absolute;
+            right: 0;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .flow-dot-cyan {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: #00FFFF;
+            border-radius: 50%;
+            /* Exception: decorative glow – overrides global reset */
+            box-shadow: 0 0 12px #00FFFF;
+        }
+
+        /* --- Slide 8: line ends at center, magenta dot --- */
+        .slide-8 .flow-line {
+            width: 50%;
+            border-radius: 2px 0 0 2px;
+        }
+
+        .flow-dot-magenta {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: #FF00FF;
+            border-radius: 50%;
+            /* Exception: decorative glow – overrides global reset */
+            box-shadow: 0 0 12px #FF00FF;
+        }
+
+        /* --- Swipe hint / Website --- */
+        .swipe-hint {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.22);
+            line-height: 1;
+        }
+
+        .swipe-arrow {
+            color: #00FFFF;
+            padding-left: 8px;
+        }
+
+        .website {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.30);
+            font-weight: 500;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== SLIDE 1: Hook ====== -->
+    <div class="slide slide-1">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">1 / 8</span>
+        </div>
+        <div class="slide-content">
+            <h1 class="headline headline-xl headline-gradient">
+                95% aller<br>KI-Projekte<br>erzielen keinen<br>echten ROI.
+            </h1>
+            <p class="subline">Geh&ouml;rst du auch dazu?</p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+                <div class="flow-dot-cyan"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 2: Problem ====== -->
+    <div class="slide slide-2">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">2 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Das Problem</span>
+            <h2 class="headline headline-lg">
+                Die Suche nach der<br>&bdquo;eierlegenden<br>Wollmilchsau&ldquo;
+            </h2>
+            <p class="body-text">
+                ChatGPT &amp; Co. sind gro&szlig;artige <strong>Chat-Partner</strong>.
+            </p>
+            <p class="body-text">
+                Aber sie sind schlechte <strong>Prozess-Automatisierer</strong>.
+            </p>
+            <p class="body-text">
+                Generalistisch trainiert.<br>Nicht f&uuml;r deinen Workflow gebaut.
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 3: Pain 1 ====== -->
+    <div class="slide slide-3">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">3 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Fehler #1</span>
+            <h2 class="headline headline-lg">
+                Vage Prompts statt<br>klarer Workflows
+            </h2>
+            <p class="quote">
+                &bdquo;Schreib mir eine E-Mail an einen Lead.&ldquo;
+            </p>
+            <p class="body-text">
+                Das Ergebnis? <strong>Generisch. Austauschbar. Wirkungslos.</strong>
+            </p>
+            <p class="body-text">
+                KI braucht Struktur, nicht Hoffnung.
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 4: Pain 2 ====== -->
+    <div class="slide slide-4">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">4 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Fehler #2</span>
+            <h2 class="headline headline-lg">
+                Isolierte Tools<br>statt Integration
+            </h2>
+            <p class="body-text">
+                Ein ChatGPT-Tab hier. Ein CRM dort. Excel dazwischen.
+            </p>
+            <p class="body-text">
+                Ohne tiefe Integration in eure Systeme bleibt KI ein <strong>Spielzeug</strong> &ndash; kein <strong>Werkzeug</strong>.
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 5: Pain 3 ====== -->
+    <div class="slide slide-5">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">5 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Fehler #3</span>
+            <h2 class="headline headline-lg">
+                Fehlende<br>Orchestrierung
+            </h2>
+            <p class="body-text">
+                Selbst spezialisierte KI-Agenten brauchen ein <strong>&bdquo;Gehirn&ldquo;</strong>.
+            </p>
+            <p class="body-text">
+                Eines, das entscheidet: Wer macht was? Wann? In welcher Reihenfolge?
+            </p>
+            <p class="body-text">
+                Ohne Orchestrierung: <strong>Chaos statt Effizienz.</strong>
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 6: Solution ====== -->
+    <div class="slide slide-6">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">6 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Die L&ouml;sung</span>
+            <h2 class="headline headline-lg">
+                Spezialisierte Agenten<br>+ Orchestrierung
+            </h2>
+            <p class="body-text">
+                Statt einer KI, die alles &bdquo;irgendwie&ldquo; kann:
+            </p>
+            <ul class="bullets">
+                <li>Spezialisierte Agenten f&uuml;r spezifische Aufgaben</li>
+                <li>Tief integriert in CRM, E-Mail, Datenquellen</li>
+                <li>Orchestriert durch ein zentrales System</li>
+            </ul>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 7: Result ====== -->
+    <div class="slide slide-7">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">7 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Das Ergebnis</span>
+            <h2 class="headline headline-xl headline-gradient">
+                3x h&ouml;herer ROI
+            </h2>
+            <p class="body-text">
+                Unternehmen mit orchestrierten KI-Agenten erzielen <strong>3x mehr ROI</strong> als solche mit isolierten Tools.
+            </p>
+            <p class="source">
+                &mdash; Boston Consulting Group, 2025
+            </p>
+            <p class="body-text" style="padding-top: 24px;">
+                Der Unterschied? <strong>Struktur schl&auml;gt Spielerei.</strong>
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Weiter<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 8: CTA ====== -->
+    <div class="slide slide-8">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">8 / 8</span>
+        </div>
+        <div class="slide-content">
+            <h2 class="headline headline-xl">
+                Und bei euch?
+            </h2>
+            <p class="body-text">
+                Welche KI-Tools nutzt ihr aktuell im Vertrieb?
+            </p>
+            <p class="body-text">
+                <strong>Kommentiert</strong> &ndash; wir teilen unsere Learnings.
+            </p>
+            <div class="cta-spacer">
+                <span class="cta-button">Jetzt kommentieren</span>
+            </div>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+                <div class="flow-dot-magenta"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="website">ai-kip.com</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
