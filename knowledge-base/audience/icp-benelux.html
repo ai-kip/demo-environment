@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-KIP — Benelux ICP Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg-deep:#060a14;--bg-base:#0a0f1a;--bg-card:#0f1628;--bg-card-hover:#141d35;
+--bg-elevated:#1a2340;--border:#1e2a4a;--border-bright:#2a3a5e;
+--cyan:#00FFFF;--magenta:#FF00FF;--cyan-dim:rgba(0,255,255,.15);--magenta-dim:rgba(255,0,255,.12);
+--text-primary:#e8edf5;--text-secondary:#8a94a8;--text-muted:#5a6478;
+--green:#00e676;--amber:#ffab00;--red:#ff5252;--blue:#448aff;
+--grad:linear-gradient(135deg,var(--cyan),var(--magenta));
+--grad-subtle:linear-gradient(135deg,rgba(0,255,255,.08),rgba(255,0,255,.08));
+--font-head:'Rubik',sans-serif;--font-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:15px}
+body{background:var(--bg-deep);color:var(--text-primary);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(0,255,255,.04),transparent),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(255,0,255,.03),transparent);pointer-events:none;z-index:0}
+
+.page{max-width:1400px;margin:0 auto;padding:2rem 2.5rem 4rem;position:relative;z-index:1}
+
+/* ── Header ── */
+.header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.header h1{font-family:var(--font-head);font-size:3rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .subtitle{font-family:var(--font-head);font-size:1.15rem;font-weight:500;color:var(--text-secondary);margin-top:.35rem;letter-spacing:.02em}
+.header-meta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border-radius:100px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.badge-draft{background:rgba(255,171,0,.12);color:var(--amber);border:1px solid rgba(255,171,0,.25)}
+.badge-owner{background:rgba(0,255,255,.08);color:var(--cyan);border:1px solid rgba(0,255,255,.2)}
+.badge-date{background:rgba(138,148,168,.08);color:var(--text-secondary);border:1px solid var(--border)}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.badge-draft::before{background:var(--amber)}
+.badge-owner::before{background:var(--cyan)}
+.badge-date::before{background:var(--text-muted)}
+
+/* ── Section ── */
+.section{margin-bottom:3rem}
+.section-label{font-family:var(--font-head);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--cyan);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.section-label::before{content:'';width:20px;height:1px;background:var(--cyan);opacity:.5}
+.section-title{font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:var(--text-primary);margin-bottom:1.25rem;letter-spacing:-.01em}
+
+/* ── Cards ── */
+.card-grid{display:grid;gap:1rem}
+.card-grid-6{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.card-grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card-grid-2{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.35rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--border-bright);transform:translateY(-1px)}
+.card-glow{position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad);opacity:.4}
+.card-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:.4rem}
+.card-value{font-family:var(--font-head);font-size:1.05rem;font-weight:600;color:var(--text-primary);line-height:1.35}
+.card-detail{font-size:.8rem;color:var(--text-secondary);margin-top:.3rem;line-height:1.5}
+
+/* ── Table ── */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);background:var(--bg-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead{background:var(--bg-elevated)}
+th{font-family:var(--font-head);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary);padding:.85rem 1rem;text-align:left;white-space:nowrap}
+td{padding:.75rem 1rem;border-top:1px solid var(--border);color:var(--text-primary);vertical-align:top}
+tr:hover td{background:rgba(0,255,255,.02)}
+.col-ideal{color:var(--green)}
+.col-acceptable{color:var(--amber)}
+.col-disqualifier{color:var(--red)}
+th.col-ideal{color:var(--green)}
+th.col-acceptable{color:var(--amber)}
+th.col-disqualifier{color:var(--red)}
+
+/* ── Industry Tiers ── */
+.tier-stack{display:flex;flex-direction:column;gap:.75rem}
+.tier{border-radius:12px;padding:1.1rem 1.35rem;border:1px solid var(--border);position:relative;overflow:hidden}
+.tier-1{background:linear-gradient(135deg,rgba(0,255,255,.06),rgba(0,255,255,.02));border-color:rgba(0,255,255,.2)}
+.tier-2{background:linear-gradient(135deg,rgba(255,171,0,.04),rgba(255,171,0,.01));border-color:rgba(255,171,0,.15)}
+.tier-avoid{background:linear-gradient(135deg,rgba(255,82,82,.04),rgba(255,82,82,.01));border-color:rgba(255,82,82,.12)}
+.tier-badge{display:inline-block;font-family:var(--font-head);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.2rem .6rem;border-radius:100px;margin-bottom:.5rem}
+.tier-1 .tier-badge{background:rgba(0,255,255,.15);color:var(--cyan)}
+.tier-2 .tier-badge{background:rgba(255,171,0,.15);color:var(--amber)}
+.tier-avoid .tier-badge{background:rgba(255,82,82,.15);color:var(--red)}
+.tier-title{font-family:var(--font-head);font-weight:700;font-size:1rem;margin-bottom:.25rem}
+.tier-examples{font-size:.8rem;color:var(--text-secondary);line-height:1.5}
+.core-principle{margin-top:1rem;padding:1rem 1.25rem;background:var(--bg-card);border-left:3px solid;border-image:var(--grad) 1;border-radius:0 8px 8px 0;font-size:.9rem;font-style:italic;color:var(--text-secondary)}
+.core-principle strong{color:var(--text-primary);font-style:normal}
+
+/* ── Buyer Profile ── */
+.buyer-split{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:800px){.buyer-split{grid-template-columns:1fr}}
+.buyer-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden}
+.buyer-card h4{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:.15rem}
+.buyer-card .buyer-sub{font-size:.75rem;color:var(--text-muted);margin-bottom:1rem}
+.role-row{display:flex;align-items:center;gap:.75rem;padding:.55rem 0;border-bottom:1px solid rgba(30,42,74,.5)}
+.role-row:last-child{border-bottom:none}
+.role-indicator{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.role-indicator.primary{background:var(--cyan);box-shadow:0 0 8px rgba(0,255,255,.4)}
+.role-indicator.high{background:var(--green)}
+.role-indicator.medium-high{background:var(--amber)}
+.role-indicator.medium{background:var(--text-muted)}
+.role-name{font-weight:600;font-size:.85rem;flex:1}
+.role-tag{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:.15rem .5rem;border-radius:100px;white-space:nowrap}
+.role-tag.entry{background:rgba(0,255,255,.12);color:var(--cyan)}
+.role-tag.expand{background:rgba(0,230,118,.1);color:var(--green)}
+.role-tag.influence{background:rgba(138,148,168,.12);color:var(--text-secondary)}
+.committee-note{margin-top:.75rem;padding:.65rem .85rem;background:var(--bg-elevated);border-radius:8px;font-size:.78rem;color:var(--text-secondary);display:flex;align-items:center;gap:.5rem}
+.committee-note strong{color:var(--text-primary)}
+
+/* ── Pain Points ── */
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.75rem}
+.pain-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem;display:flex;gap:.85rem;align-items:flex-start}
+.pain-num{font-family:var(--font-head);font-size:1.8rem;font-weight:900;line-height:1;min-width:28px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.4}
+.pain-benelux .pain-num{opacity:.7}
+.pain-content h5{font-family:var(--font-head);font-size:.85rem;font-weight:700;margin-bottom:.15rem}
+.pain-content p{font-size:.78rem;color:var(--text-secondary);line-height:1.45}
+.pain-divider{grid-column:1/-1;display:flex;align-items:center;gap:1rem;padding:.5rem 0}
+.pain-divider span{font-family:var(--font-head);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--magenta);white-space:nowrap}
+.pain-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,0,255,.3),transparent)}
+
+/* ── Triggers ── */
+.trigger-list{display:flex;flex-direction:column;gap:.5rem}
+.trigger-item{display:flex;align-items:center;gap:1rem;padding:.7rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px}
+.trigger-priority{font-family:var(--font-head);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .6rem;border-radius:100px;white-space:nowrap;min-width:85px;text-align:center}
+.trigger-priority.very-high{background:rgba(0,255,255,.12);color:var(--cyan)}
+.trigger-priority.high{background:rgba(0,230,118,.1);color:var(--green)}
+.trigger-priority.medium-high{background:rgba(255,171,0,.1);color:var(--amber)}
+.trigger-priority.medium{background:rgba(138,148,168,.1);color:var(--text-secondary)}
+.trigger-name{font-weight:600;font-size:.85rem;flex:1}
+.trigger-signal{font-size:.75rem;color:var(--text-muted)}
+
+/* ── Competitive ── */
+.comp-stack{display:flex;flex-direction:column;gap:.65rem}
+.comp-row{display:grid;grid-template-columns:140px 1fr 1fr;gap:1rem;padding:.85rem 1.15rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;align-items:center}
+@media(max-width:700px){.comp-row{grid-template-columns:1fr;gap:.35rem}}
+.comp-freq{font-family:var(--font-head);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.comp-freq.most{color:var(--red)}
+.comp-freq.common{color:var(--amber)}
+.comp-freq.occasional{color:var(--text-secondary)}
+.comp-freq.rare{color:var(--text-muted)}
+.comp-name{font-weight:600;font-size:.9rem}
+.comp-counter{font-size:.78rem;color:var(--text-secondary);font-style:italic}
+.comp-insight{margin-top:.75rem;padding:1rem 1.25rem;background:var(--bg-card);border:1px solid var(--magenta);border-radius:10px;border-left:3px solid var(--magenta)}
+.comp-insight p{font-size:.85rem;color:var(--text-secondary);line-height:1.5}
+.comp-insight strong{color:var(--magenta)}
+
+/* ── Qualification ── */
+.qual-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:800px){.qual-grid{grid-template-columns:1fr}}
+.qual-col{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;position:relative;overflow:hidden}
+.qual-col::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.qual-col.must::before{background:var(--cyan)}
+.qual-col.strong::before{background:var(--green)}
+.qual-col.red::before{background:var(--red)}
+.qual-col h4{font-family:var(--font-head);font-size:.85rem;font-weight:700;margin-bottom:.85rem;display:flex;align-items:center;gap:.5rem}
+.qual-col.must h4{color:var(--cyan)}
+.qual-col.strong h4{color:var(--green)}
+.qual-col.red h4{color:var(--red)}
+.qual-item{display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0;font-size:.82rem;color:var(--text-secondary);line-height:1.45}
+.qual-item::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:.4rem}
+.qual-col.must .qual-item::before{background:var(--cyan)}
+.qual-col.strong .qual-item::before{background:var(--green)}
+.qual-col.red .qual-item::before{background:var(--red)}
+
+/* ── Funnel ── */
+.funnel{display:flex;align-items:center;gap:0;overflow-x:auto;padding:1rem 0}
+.funnel-step{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;min-width:130px;position:relative}
+.funnel-node{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:1rem;position:relative;z-index:2}
+.funnel-step:nth-child(1) .funnel-node{background:rgba(0,255,255,.15);color:var(--cyan);border:2px solid rgba(0,255,255,.3)}
+.funnel-step:nth-child(2) .funnel-node{background:rgba(0,230,118,.12);color:var(--green);border:2px solid rgba(0,230,118,.25)}
+.funnel-step:nth-child(3) .funnel-node{background:rgba(68,138,255,.12);color:var(--blue);border:2px solid rgba(68,138,255,.25)}
+.funnel-step:nth-child(4) .funnel-node{background:rgba(255,171,0,.12);color:var(--amber);border:2px solid rgba(255,171,0,.25)}
+.funnel-step:nth-child(5) .funnel-node{background:rgba(255,0,255,.12);color:var(--magenta);border:2px solid rgba(255,0,255,.25)}
+.funnel-step:nth-child(6) .funnel-node{background:rgba(0,255,255,.1);color:var(--cyan);border:2px solid rgba(0,255,255,.2)}
+.funnel-step:nth-child(7) .funnel-node{background:linear-gradient(135deg,rgba(0,255,255,.2),rgba(255,0,255,.2));color:var(--text-primary);border:2px solid rgba(255,255,255,.2)}
+.funnel-label{margin-top:.6rem;font-size:.72rem;font-weight:600;color:var(--text-primary);line-height:1.3;max-width:110px}
+.funnel-detail{font-size:.62rem;color:var(--text-muted);margin-top:.15rem}
+.funnel-arrow{width:40px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.9rem;flex-shrink:0;margin-top:-1.5rem}
+
+/* ── Checklist ── */
+.checklist{margin-top:1.25rem;display:flex;flex-direction:column;gap:.4rem}
+.check-item{display:flex;align-items:flex-start;gap:.65rem;font-size:.82rem;color:var(--text-secondary);line-height:1.45;padding:.35rem 0}
+.check-num{font-family:var(--font-head);font-weight:700;font-size:.75rem;color:var(--cyan);min-width:20px}
+
+/* ── MRR Targets ── */
+.mrr-track{display:flex;flex-direction:column;gap:1.25rem;padding:1.25rem}
+.mrr-row{display:flex;align-items:center;gap:1.25rem}
+.mrr-label{min-width:90px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--text-secondary)}
+.mrr-bar-track{flex:1;height:36px;background:var(--bg-elevated);border-radius:8px;position:relative;overflow:hidden}
+.mrr-bar{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:1rem;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--bg-deep);transition:width 1.5s cubic-bezier(.22,1,.36,1)}
+.mrr-row:nth-child(1) .mrr-bar{width:25%;background:var(--cyan)}
+.mrr-row:nth-child(2) .mrr-bar{width:50%;background:linear-gradient(90deg,var(--cyan),#8080ff)}
+.mrr-row:nth-child(3) .mrr-bar{width:100%;background:var(--grad)}
+.mrr-value{min-width:120px;text-align:right;font-family:var(--font-head);font-weight:800;font-size:1.15rem}
+.mrr-row:nth-child(1) .mrr-value{color:var(--cyan)}
+.mrr-row:nth-child(2) .mrr-value{color:#8080ff}
+.mrr-row:nth-child(3) .mrr-value{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Pipeline ── */
+.pipeline-grid{display:flex;flex-direction:column;gap:.65rem}
+.pipeline-row{display:grid;grid-template-columns:200px 160px 1fr auto;gap:1rem;padding:.85rem 1.15rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;align-items:center}
+@media(max-width:700px){.pipeline-row{grid-template-columns:1fr;gap:.3rem}}
+.pipeline-company{font-family:var(--font-head);font-weight:700;font-size:.95rem}
+.pipeline-location{font-size:.78rem;color:var(--text-muted)}
+.pipeline-industry{font-size:.8rem;color:var(--text-secondary)}
+.pipeline-status{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .6rem;border-radius:100px;text-align:center;white-space:nowrap}
+.status-active{background:rgba(0,230,118,.1);color:var(--green)}
+.pipeline-note{grid-column:1/-1;font-size:.75rem;color:var(--text-muted);font-style:italic;padding-left:.5rem;border-left:2px solid var(--border)}
+
+/* ── Market Notes ── */
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.note-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.15rem 1.25rem}
+.note-card h5{font-family:var(--font-head);font-size:.85rem;font-weight:700;color:var(--cyan);margin-bottom:.35rem}
+.note-card p{font-size:.8rem;color:var(--text-secondary);line-height:1.55}
+
+/* ── Client Tiers ── */
+.tiers-container{display:flex;flex-direction:column;gap:1rem}
+.tier-row{display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg-card);position:relative}
+.tier-row:hover{border-color:var(--border-bright)}
+.tier-side{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.25rem .75rem;gap:.25rem}
+.tier-side .tier-num{font-family:var(--font-head);font-weight:900;font-size:1.8rem;line-height:1}
+.tier-side .tier-word{font-family:var(--font-head);font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.7}
+.tier-row:nth-child(1) .tier-side{background:linear-gradient(180deg,rgba(0,255,255,.2),rgba(255,0,255,.15))}
+.tier-row:nth-child(1) .tier-num{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tier-row:nth-child(2) .tier-side{background:rgba(0,255,255,.1)}
+.tier-row:nth-child(2) .tier-num{color:var(--cyan)}
+.tier-row:nth-child(3) .tier-side{background:rgba(0,230,118,.08)}
+.tier-row:nth-child(3) .tier-num{color:var(--green)}
+.tier-row:nth-child(4) .tier-side{background:rgba(255,171,0,.08)}
+.tier-row:nth-child(4) .tier-num{color:var(--amber)}
+.tier-row:nth-child(5) .tier-side{background:rgba(138,148,168,.08)}
+.tier-row:nth-child(5) .tier-num{color:var(--text-secondary)}
+.tier-body{padding:1.15rem 1.5rem;display:flex;flex-direction:column;gap:.65rem}
+.tier-metrics{display:flex;gap:2rem;flex-wrap:wrap}
+.tier-metric{display:flex;flex-direction:column}
+.tier-metric-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.tier-metric-value{font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:var(--text-primary)}
+.tier-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem 1.5rem}
+.tier-detail{font-size:.8rem;color:var(--text-secondary);line-height:1.45}
+.tier-detail strong{color:var(--text-primary);font-weight:600}
+.tier-cycle-bar{height:6px;border-radius:3px;background:var(--bg-elevated);margin-top:.25rem;position:relative;overflow:hidden}
+.tier-cycle-fill{height:100%;border-radius:3px}
+.tier-row:nth-child(1) .tier-cycle-fill{width:100%;background:var(--grad)}
+.tier-row:nth-child(2) .tier-cycle-fill{width:83%;background:var(--cyan)}
+.tier-row:nth-child(3) .tier-cycle-fill{width:67%;background:var(--green)}
+.tier-row:nth-child(4) .tier-cycle-fill{width:50%;background:var(--amber)}
+.tier-row:nth-child(5) .tier-cycle-fill{width:33%;background:var(--text-muted)}
+.tier-desc{font-size:.78rem;color:var(--text-muted);font-style:italic;line-height:1.45}
+.mix-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.25rem}
+.mix-table th{font-family:var(--font-head);font-weight:600;font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);padding:.6rem .5rem;text-align:center;border-bottom:1px solid var(--border)}
+.mix-table th:first-child{text-align:left}
+.mix-table td{padding:.55rem .5rem;text-align:center;border-bottom:1px solid rgba(30,42,74,.4);color:var(--text-secondary);font-size:.8rem}
+.mix-table td:first-child{text-align:left;font-weight:600;color:var(--text-primary)}
+.mix-table td:last-child{font-family:var(--font-head);font-weight:700}
+.mix-table td:nth-last-child(2){font-family:var(--font-head);font-weight:700;color:var(--cyan)}
+.mix-table tr:last-child td{border-bottom:none}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section{animation:fadeUp .5s ease both}
+.section:nth-child(2){animation-delay:.05s}
+.section:nth-child(3){animation-delay:.1s}
+.section:nth-child(4){animation-delay:.15s}
+.section:nth-child(5){animation-delay:.2s}
+
+/* ── Nav ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(6,10,20,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.6rem 2.5rem;display:flex;gap:1.25rem;overflow-x:auto}
+.nav a{font-family:var(--font-head);font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);text-decoration:none;white-space:nowrap;padding:.3rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav a:hover{color:var(--cyan);border-bottom-color:rgba(0,255,255,.3)}
+
+/* ── Print ── */
+@media print{
+body{background:#fff;color:#111}
+body::before{display:none}
+.nav{display:none}
+.card,.buyer-card,.qual-col,.note-card,.comp-row,.trigger-item,.pipeline-row,.pain-card{border-color:#ddd;background:#f9f9fb}
+.header h1{-webkit-text-fill-color:#111;background:none}
+.pain-num{-webkit-text-fill-color:#999;background:none}
+.section-label{color:#333}
+.section-label::before{background:#333}
+.card-label{color:#666}
+.card-value,.card-detail,.text-primary{color:#111}
+.text-secondary,.text-muted{color:#555}
+.mrr-value{-webkit-text-fill-color:#111;background:none}
+.table-wrap{border-color:#ddd}
+th{background:#f0f0f0;color:#333}
+td{border-color:#eee;color:#111}
+.page{padding:1rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<a href="#context">Market Context</a>
+<a href="#firmographics">Firmographics</a>
+<a href="#industries">Industries</a>
+<a href="#buyers">Buyer Profile</a>
+<a href="#pain">Pain Points</a>
+<a href="#triggers">Triggers</a>
+<a href="#competition">Competition</a>
+<a href="#qualification">Qualification</a>
+<a href="#tiers">Client Tiers</a>
+<a href="#funnel">Entry Strategy</a>
+<a href="#targets">MRR Targets</a>
+<a href="#pipeline">Customers &amp; Pipeline</a>
+<a href="#notes">Market Notes</a>
+</nav>
+
+<div class="page">
+
+<!-- HEADER -->
+<header class="header">
+<div class="header-top">
+<div>
+<h1>ICP: Benelux Region</h1>
+<div class="subtitle">Netherlands &middot; Belgium &middot; Luxembourg</div>
+</div>
+<div class="header-meta">
+<span class="badge badge-draft">Draft &mdash; Iterating</span>
+<span class="badge badge-owner">Michael Uenk &middot; CEO</span>
+<span class="badge badge-date">Updated 2026-02-10</span>
+</div>
+</div>
+</header>
+
+<!-- S1: MARKET CONTEXT -->
+<div class="section" id="context">
+<div class="section-label">Section 01</div>
+<div class="section-title">Market Context</div>
+<div class="card-grid card-grid-6">
+<div class="card"><div class="card-glow"></div><div class="card-label">Priority</div><div class="card-value" style="color:var(--cyan)">High</div><div class="card-detail">Home market (HQ Amsterdam)</div></div>
+<div class="card"><div class="card-glow"></div><div class="card-label">Language</div><div class="card-value">English</div><div class="card-detail">Default for all materials &amp; conversations</div></div>
+<div class="card"><div class="card-glow"></div><div class="card-label">Approach</div><div class="card-value">Direct</div><div class="card-detail">Flat &amp; pragmatic. Lead with results &amp; ROI.</div></div>
+<div class="card"><div class="card-glow"></div><div class="card-label">Key Differentiator</div><div class="card-value">Proven Results</div><div class="card-detail">Local references (Aquablu, iBOOD, Acer). GDPR-native important but not #1.</div></div>
+<div class="card"><div class="card-glow"></div><div class="card-label">Sales Cycle</div><div class="card-value">2 wks &ndash; 4 mo</div><div class="card-detail">Faster than DACH</div></div>
+<div class="card"><div class="card-glow"></div><div class="card-label">Meeting Format</div><div class="card-value">In-person / Video</div><div class="card-detail">Video accepted more readily than DACH</div></div>
+</div>
+</div>
+
+<!-- S2: FIRMOGRAPHICS -->
+<div class="section" id="firmographics">
+<div class="section-label">Section 02</div>
+<div class="section-title">Target Company &mdash; Firmographics</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Attribute</th><th class="col-ideal">Ideal</th><th class="col-acceptable">Acceptable</th><th class="col-disqualifier">Disqualifier</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Headquarters</strong></td><td class="col-ideal">Netherlands</td><td class="col-acceptable">Belgium, Luxembourg</td><td class="col-disqualifier">Outside Benelux</td></tr>
+<tr><td><strong>Company size</strong></td><td class="col-ideal">200 &ndash; 5,000 employees</td><td class="col-acceptable">50-200 or 5,000+</td><td class="col-disqualifier">&lt;20 employees</td></tr>
+<tr><td><strong>Revenue</strong></td><td class="col-ideal">EUR 50M &ndash; 500M</td><td class="col-acceptable">EUR 10M-50M or 500M+</td><td class="col-disqualifier">&mdash;</td></tr>
+<tr><td><strong>B2B sales team</strong></td><td class="col-ideal">10 &ndash; 50 salespeople</td><td class="col-acceptable">5-10 or 50+</td><td class="col-disqualifier">No B2B sales function</td></tr>
+<tr><td><strong>Sales model</strong></td><td class="col-ideal">Direct + indirect</td><td class="col-acceptable">Direct only</td><td class="col-disqualifier">Pure B2C</td></tr>
+<tr><td><strong>International</strong></td><td class="col-ideal">Multiple EU markets</td><td class="col-acceptable">Benelux-only</td><td class="col-disqualifier">&mdash;</td></tr>
+<tr><td><strong>CRM</strong></td><td class="col-ideal">In use, data quality issues</td><td class="col-acceptable">No CRM (greenfield)</td><td class="col-disqualifier">&mdash;</td></tr>
+<tr><td><strong>AI maturity</strong></td><td class="col-ideal">Exploring / early stage</td><td class="col-acceptable">Advanced (wants orchestration)</td><td class="col-disqualifier">&ldquo;We have everything&rdquo;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- S2b: INDUSTRIES -->
+<div class="section" id="industries">
+<div class="section-label">Section 02b</div>
+<div class="section-title">Industry Focus</div>
+<div class="tier-stack">
+<div class="tier tier-1">
+<span class="tier-badge">Tier 1 &mdash; Primary</span>
+<div class="tier-title">Manufacturing / Industrial (B2B)</div>
+<div class="tier-examples">ASML suppliers, chemicals (DSM/Chemelot), food processing, logistics equipment, building materials</div>
+</div>
+<div class="tier tier-1">
+<span class="tier-badge">Tier 1 &mdash; Primary</span>
+<div class="tier-title">IT / Software / SaaS (B2B)</div>
+<div class="tier-examples">Enterprise software, cloud services, IT infrastructure, cybersecurity</div>
+</div>
+<div class="tier tier-2">
+<span class="tier-badge">Tier 2 &mdash; Secondary</span>
+<div class="tier-title">Wholesale / Distribution (B2B)</div>
+<div class="tier-examples">Technical wholesale, industrial distribution</div>
+</div>
+<div class="tier tier-avoid">
+<span class="tier-badge">Avoid</span>
+<div class="tier-title">Professional Services / Consultancies &middot; Pure B2C</div>
+<div class="tier-examples">Management consulting, legal, accounting, retail, consumer goods &mdash; different sales motion, doesn't fit partnership model</div>
+</div>
+</div>
+<div class="core-principle"><strong>Core principle:</strong> The ideal Benelux customer makes something (physical product or software) and sells it to other businesses.</div>
+</div>
+
+<!-- S3: BUYER PROFILE -->
+<div class="section" id="buyers">
+<div class="section-label">Section 03</div>
+<div class="section-title">Target Buyer Profile</div>
+<div class="buyer-split">
+<div class="buyer-card">
+<div class="card-glow"></div>
+<h4>Smaller Companies</h4>
+<div class="buyer-sub">50 &ndash; 500 employees</div>
+<div class="role-row"><span class="role-indicator primary"></span><span class="role-name">CEO / Managing Director</span><span class="role-tag entry">Entry Point</span></div>
+<div class="role-row"><span class="role-indicator high"></span><span class="role-name">Head of Sales / Sales Director</span><span class="role-tag expand">High</span></div>
+<div class="role-row"><span class="role-indicator medium"></span><span class="role-name">Head of Marketing / CMO</span><span class="role-tag influence">Influencer</span></div>
+<div class="committee-note"><strong>Committee:</strong> 2&ndash;3 people. MD decides. Flat hierarchy = fast decisions.</div>
+</div>
+<div class="buyer-card">
+<div class="card-glow"></div>
+<h4>Larger Companies</h4>
+<div class="buyer-sub">500+ employees &middot; Mid-market to Enterprise</div>
+<div class="role-row"><span class="role-indicator primary"></span><span class="role-name">Head of Sales / VP Sales</span><span class="role-tag entry">Entry Point</span></div>
+<div class="role-row"><span class="role-indicator high"></span><span class="role-name">CEO / Managing Director</span><span class="role-tag expand">Expand to</span></div>
+<div class="role-row"><span class="role-indicator medium-high"></span><span class="role-name">CMO / Head of Marketing</span><span class="role-tag influence">Influencer</span></div>
+<div class="role-row"><span class="role-indicator medium"></span><span class="role-name">CFO</span><span class="role-tag influence">Budget</span></div>
+<div class="committee-note" style="margin-bottom:.5rem"><strong>Committee:</strong> 3&ndash;4 people. Less consensus-driven than DACH. Champion can push through faster.</div>
+<div class="committee-note" style="background:rgba(255,82,82,.08);border-left:2px solid var(--red)"><strong style="color:var(--red)">Avoid:</strong> IT/CTO/CDO. These roles slow deals and shift conversation away from business value.</div>
+</div>
+</div>
+</div>
+
+<!-- S4: PAIN POINTS -->
+<div class="section" id="pain">
+<div class="section-label">Section 04</div>
+<div class="section-title">Pain Points</div>
+<div class="pain-grid">
+<div class="pain-card"><div class="pain-num">1</div><div class="pain-content"><h5>Time Waste</h5><p>70%+ of sales time on admin &mdash; research, CRM updates, data entry</p></div></div>
+<div class="pain-card"><div class="pain-num">2</div><div class="pain-content"><h5>Pipeline Quality</h5><p>Too many unqualified leads, too few real opportunities</p></div></div>
+<div class="pain-card"><div class="pain-num">3</div><div class="pain-content"><h5>Capacity</h5><p>3&ndash;5 calls/day &mdash; &ldquo;What are they doing the other 7 hours?&rdquo;</p></div></div>
+<div class="pain-card"><div class="pain-num">4</div><div class="pain-content"><h5>CRM Data</h5><p>&ldquo;The name is correct but the rest is garbage&rdquo;</p></div></div>
+<div class="pain-divider"><span>Benelux-Specific</span></div>
+<div class="pain-card pain-benelux"><div class="pain-num">5</div><div class="pain-content"><h5>Small Market, Big Ambitions</h5><p>&ldquo;We've saturated Benelux, we need to expand but don't know where to start&rdquo;</p></div></div>
+<div class="pain-card pain-benelux"><div class="pain-num">6</div><div class="pain-content"><h5>Data Commoditization</h5><p>&ldquo;Everyone uses the same Apollo/ZoomInfo data &mdash; no competitive edge&rdquo;</p></div></div>
+<div class="pain-card pain-benelux"><div class="pain-num">7</div><div class="pain-content"><h5>Scaling Without Headcount</h5><p>&ldquo;Need 10x output, can't hire 10x people&rdquo;</p></div></div>
+<div class="pain-card pain-benelux"><div class="pain-num">8</div><div class="pain-content"><h5>Cross-Border Complexity</h5><p>NL + BE + LU + DE &mdash; different market dynamics per country</p></div></div>
+<div class="pain-card pain-benelux"><div class="pain-num">9</div><div class="pain-content"><h5>Tool Fatigue</h5><p>More tools in use but fragmented, not orchestrated &mdash; no single intelligence layer</p></div></div>
+</div>
+</div>
+
+<!-- S5: BUYING TRIGGERS -->
+<div class="section" id="triggers">
+<div class="section-label">Section 05</div>
+<div class="section-title">Buying Triggers</div>
+<div class="trigger-list">
+<div class="trigger-item"><span class="trigger-priority very-high">Very High</span><span class="trigger-name">New sales leadership</span><span class="trigger-signal">VP Sales or CRO hired</span></div>
+<div class="trigger-item"><span class="trigger-priority very-high">Very High</span><span class="trigger-name">Growth targets announced</span><span class="trigger-signal">Annual report, press release, earnings</span></div>
+<div class="trigger-item"><span class="trigger-priority high">High</span><span class="trigger-name">International expansion plans</span><span class="trigger-signal">Job postings in new countries, new offices</span></div>
+<div class="trigger-item"><span class="trigger-priority high">High</span><span class="trigger-name">Digital transformation initiative</span><span class="trigger-signal">AI budget approved, innovation team created</span></div>
+<div class="trigger-item"><span class="trigger-priority high">High</span><span class="trigger-name">Competitor tool dissatisfaction</span><span class="trigger-signal">Complaints about ZoomInfo data, Apollo accuracy, Dealfront</span></div>
+<div class="trigger-item"><span class="trigger-priority medium-high">Med-High</span><span class="trigger-name">Sales team scaling</span><span class="trigger-signal">Multiple sales roles posted</span></div>
+<div class="trigger-item"><span class="trigger-priority medium">Medium</span><span class="trigger-name">M&amp;A activity</span><span class="trigger-signal">Acquisition &mdash; need to integrate sales teams</span></div>
+<div class="trigger-item"><span class="trigger-priority medium">Medium</span><span class="trigger-name">Benelux market saturation</span><span class="trigger-signal">Slowing domestic growth, looking outward</span></div>
+</div>
+</div>
+
+<!-- S6: COMPETITION -->
+<div class="section" id="competition">
+<div class="section-label">Section 06</div>
+<div class="section-title">Competitive Landscape</div>
+<div class="comp-stack">
+<div class="comp-row"><span class="comp-freq common">Common</span><span class="comp-name">None / Manual process</span><span class="comp-counter">&ldquo;Your top sellers spend 70% on research. That's not a strategy, that's a waste.&rdquo;</span></div>
+<div class="comp-row"><span class="comp-freq common">Common</span><span class="comp-name">LinkedIn Sales Navigator</span><span class="comp-counter">&ldquo;LinkedIn shows who exists. We show who's ready to buy.&rdquo;</span></div>
+<div class="comp-row"><span class="comp-freq common">Common</span><span class="comp-name">Excel / self-built lists</span><span class="comp-counter">&ldquo;You're doing manually what AI agents can do 24/7.&rdquo;</span></div>
+<div class="comp-row"><span class="comp-freq occasional">Occasional</span><span class="comp-name">Apollo</span><span class="comp-counter">&ldquo;270M+ contacts &mdash; but everyone has the same data. Ours is proprietary, exclusive to you.&rdquo;</span></div>
+<div class="comp-row"><span class="comp-freq occasional">Occasional</span><span class="comp-name">Dealfront</span><span class="comp-counter">&ldquo;Data provider vs. intelligence layer. We don't just deliver data &mdash; we deliver action.&rdquo;</span></div>
+<div class="comp-row"><span class="comp-freq occasional">Occasional</span><span class="comp-name">ZoomInfo / Cognism</span><span class="comp-counter">&ldquo;Built in America, retrofitted for Europe. We're built in Europe, for Europe.&rdquo;</span></div>
+</div>
+<div class="comp-insight"><p><strong>Key insight:</strong> Benelux is more tool-aware than DACH. The sale is often about <strong>replacing or consolidating fragmented tools</strong>, not just creating the category from scratch.</p></div>
+</div>
+
+<!-- S7: QUALIFICATION -->
+<div class="section" id="qualification">
+<div class="section-label">Section 07</div>
+<div class="section-title">Qualification Criteria</div>
+<div class="qual-grid">
+<div class="qual-col must">
+<h4>&#9679; Must-Have</h4>
+<div class="qual-item">B2B sales function exists (even if small)</div>
+<div class="qual-item">Budget authority identified or reachable</div>
+<div class="qual-item">Pain acknowledged (not just &ldquo;exploring AI for fun&rdquo;)</div>
+<div class="qual-item">Willing to share customer data for demo (50+ companies)</div>
+<div class="qual-item">Not a direct competitor of an existing partner</div>
+</div>
+<div class="qual-col strong">
+<h4>&#9679; Strong Indicators</h4>
+<div class="qual-item">Active in multiple European markets</div>
+<div class="qual-item">Partner / distributor model</div>
+<div class="qual-item">Existing CRM with data quality issues</div>
+<div class="qual-item">Current tool dissatisfaction</div>
+<div class="qual-item">Announced growth targets for 2026+</div>
+<div class="qual-item">Already using fragmented tools (consolidation play)</div>
+</div>
+<div class="qual-col red">
+<h4>&#9679; Red Flags</h4>
+<div class="qual-item">&ldquo;We just want a price list&rdquo;</div>
+<div class="qual-item">&ldquo;Our IT department decides everything&rdquo;</div>
+<div class="qual-item">Budget below EUR 2,500/month MRR</div>
+<div class="qual-item">No willingness to do a workshop first</div>
+<div class="qual-item">&ldquo;We have ZoomInfo and are happy&rdquo;</div>
+</div>
+</div>
+</div>
+
+<!-- S8: CLIENT TIERS -->
+<div class="section" id="tiers">
+<div class="section-label">Section 08</div>
+<div class="section-title">Client Tiers</div>
+
+<div class="tiers-container">
+
+<div class="tier-row">
+<div class="tier-side"><span class="tier-num">1</span><span class="tier-word">Tier</span></div>
+<div class="tier-body">
+<div class="tier-metrics">
+<div class="tier-metric"><span class="tier-metric-label">MRR</span><span class="tier-metric-value">&euro; 30,000+</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Sales Cycle</span><span class="tier-metric-value">Up to 90 days</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Company Size</span><span class="tier-metric-value">2,000+ employees</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Revenue</span><span class="tier-metric-value">&euro; 500M+</span></div>
+</div>
+<div class="tier-cycle-bar"><div class="tier-cycle-fill"></div></div>
+<div class="tier-detail-grid">
+<div class="tier-detail"><strong>Buyer:</strong> VP Sales + CEO + CMO, formal committee (4-6 people)</div>
+<div class="tier-detail"><strong>Entry:</strong> Network / event &rarr; multiple calls &rarr; custom demo &rarr; workshop &rarr; extended PoC</div>
+</div>
+<div class="tier-desc">Enterprise. Multi-department rollout potential (Sales &rarr; Marketing &rarr; Procurement). Formal procurement, may involve legal. Highest LTV, deepest partnership, strong reference value.</div>
+</div>
+</div>
+
+<div class="tier-row">
+<div class="tier-side"><span class="tier-num">2</span><span class="tier-word">Tier</span></div>
+<div class="tier-body">
+<div class="tier-metrics">
+<div class="tier-metric"><span class="tier-metric-label">MRR</span><span class="tier-metric-value">&euro; 20 &ndash; 30K</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Sales Cycle</span><span class="tier-metric-value">Up to 75 days</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Company Size</span><span class="tier-metric-value">1,000 &ndash; 2,000</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Revenue</span><span class="tier-metric-value">&euro; 200 &ndash; 500M</span></div>
+</div>
+<div class="tier-cycle-bar"><div class="tier-cycle-fill"></div></div>
+<div class="tier-detail-grid">
+<div class="tier-detail"><strong>Buyer:</strong> Head of Sales + Managing Director, 3-4 stakeholders</div>
+<div class="tier-detail"><strong>Entry:</strong> LinkedIn / referral &rarr; discovery &rarr; demo with real data &rarr; workshop &rarr; PoC</div>
+</div>
+<div class="tier-desc">Upper mid-market with established sales infrastructure. Multiple use cases, semi-formal decisions, CEO approval required. Strong expansion potential.</div>
+</div>
+</div>
+
+<div class="tier-row">
+<div class="tier-side"><span class="tier-num">3</span><span class="tier-word">Tier</span></div>
+<div class="tier-body">
+<div class="tier-metrics">
+<div class="tier-metric"><span class="tier-metric-label">MRR</span><span class="tier-metric-value">&euro; 10 &ndash; 20K</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Sales Cycle</span><span class="tier-metric-value">Up to 60 days</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Company Size</span><span class="tier-metric-value">500 &ndash; 1,000</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Revenue</span><span class="tier-metric-value">&euro; 50 &ndash; 200M</span></div>
+</div>
+<div class="tier-cycle-bar"><div class="tier-cycle-fill"></div></div>
+<div class="tier-detail-grid">
+<div class="tier-detail"><strong>Buyer:</strong> Sales Director + Managing Director, 2-3 stakeholders</div>
+<div class="tier-detail"><strong>Entry:</strong> LinkedIn / outreach &rarr; discovery &rarr; demo &rarr; workshop &rarr; contract</div>
+</div>
+<div class="tier-desc">Core mid-market sweet spot. One main use case (Sales Intelligence) with clear ROI. Workshop is standard entry. Most common tier in Benelux pipeline.</div>
+</div>
+</div>
+
+<div class="tier-row">
+<div class="tier-side"><span class="tier-num">4</span><span class="tier-word">Tier</span></div>
+<div class="tier-body">
+<div class="tier-metrics">
+<div class="tier-metric"><span class="tier-metric-label">MRR</span><span class="tier-metric-value">&euro; 5 &ndash; 10K</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Sales Cycle</span><span class="tier-metric-value">Up to 45 days</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Company Size</span><span class="tier-metric-value">200 &ndash; 500</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Revenue</span><span class="tier-metric-value">&euro; 20 &ndash; 50M</span></div>
+</div>
+<div class="tier-cycle-bar"><div class="tier-cycle-fill"></div></div>
+<div class="tier-detail-grid">
+<div class="tier-detail"><strong>Buyer:</strong> Managing Director (often sole decision maker), 1-2 stakeholders</div>
+<div class="tier-detail"><strong>Entry:</strong> Direct outreach &rarr; discovery + demo combined &rarr; workshop optional &rarr; contract</div>
+</div>
+<div class="tier-desc">Smaller, growing companies. MD close to sales team, feels pain directly. Faster decisions, flat hierarchy. Workshop optional. Good volume potential.</div>
+</div>
+</div>
+
+<div class="tier-row">
+<div class="tier-side"><span class="tier-num">5</span><span class="tier-word">Tier</span></div>
+<div class="tier-body">
+<div class="tier-metrics">
+<div class="tier-metric"><span class="tier-metric-label">MRR</span><span class="tier-metric-value">&euro; 2,500 &ndash; 5K</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Sales Cycle</span><span class="tier-metric-value">Up to 30 days</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Company Size</span><span class="tier-metric-value">50 &ndash; 200</span></div>
+<div class="tier-metric"><span class="tier-metric-label">Revenue</span><span class="tier-metric-value">&euro; 10 &ndash; 20M</span></div>
+</div>
+<div class="tier-cycle-bar"><div class="tier-cycle-fill"></div></div>
+<div class="tier-detail-grid">
+<div class="tier-detail"><strong>Buyer:</strong> Managing Director decides alone</div>
+<div class="tier-detail"><strong>Entry:</strong> Direct outreach &rarr; single demo &rarr; contract</div>
+</div>
+<div class="tier-desc">Small B2B. MD decides in one meeting. Lowest touch, fastest close. Entry-level MRR with expansion potential. Risk: higher churn if too small to realize full value.</div>
+</div>
+</div>
+
+</div>
+
+<!-- Revenue Mix -->
+<div style="margin-top:1.5rem">
+<div style="font-family:var(--font-head);font-size:.95rem;font-weight:700;margin-bottom:.75rem">Revenue Mix Scenarios &mdash; Path to &euro;100K MRR</div>
+<div class="table-wrap">
+<table class="mix-table">
+<thead><tr><th>Scenario</th><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>Total MRR</th><th># Clients</th></tr></thead>
+<tbody>
+<tr><td>Top-heavy</td><td>2 &times; 30K</td><td>1 &times; 25K</td><td>1 &times; 15K</td><td>&mdash;</td><td>&mdash;</td><td>&euro; 100K</td><td>4</td></tr>
+<tr><td>Balanced</td><td>1 &times; 30K</td><td>1 &times; 25K</td><td>2 &times; 15K</td><td>1 &times; 8K</td><td>1 &times; 5K</td><td>&euro; 98K</td><td>6</td></tr>
+<tr><td>Volume</td><td>&mdash;</td><td>1 &times; 25K</td><td>3 &times; 15K</td><td>3 &times; 8K</td><td>2 &times; 4K</td><td>&euro; 97K</td><td>9</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<!-- S9: ENTRY STRATEGY -->
+<div class="section" id="funnel">
+<div class="section-label">Section 09</div>
+<div class="section-title">Entry Strategy</div>
+<div class="card" style="padding:1.5rem">
+<div class="funnel">
+<div class="funnel-step"><div class="funnel-node">1</div><div class="funnel-label">LinkedIn Attention</div><div class="funnel-detail">Michael / Micky posts</div></div>
+<div class="funnel-arrow">&rarr;</div>
+<div class="funnel-step"><div class="funnel-node">2</div><div class="funnel-label">Personal Connection</div><div class="funnel-detail">Referral / event</div></div>
+<div class="funnel-arrow">&rarr;</div>
+<div class="funnel-step"><div class="funnel-node">3</div><div class="funnel-label">Discovery</div><div class="funnel-detail">SPICED framework</div></div>
+<div class="funnel-arrow">&rarr;</div>
+<div class="funnel-step"><div class="funnel-node">4</div><div class="funnel-label">Demo</div><div class="funnel-detail">Real data (50+ co's)</div></div>
+<div class="funnel-arrow">&rarr;</div>
+<div class="funnel-step"><div class="funnel-node">5</div><div class="funnel-label">Workshop</div><div class="funnel-detail">EUR 2,500 &middot; 1 day</div></div>
+<div class="funnel-arrow">&rarr;</div>
+<div class="funnel-step"><div class="funnel-node">6</div><div class="funnel-label">Proof of Concept</div><div class="funnel-detail">4&ndash;8 weeks</div></div>
+<div class="funnel-arrow">&rarr;</div>
+<div class="funnel-step"><div class="funnel-node">7</div><div class="funnel-label">MRR Contract</div><div class="funnel-detail">EUR 2.5K&ndash;30K/mo</div></div>
+</div>
+</div>
+
+<div class="checklist">
+<div style="font-family:var(--font-head);font-size:.9rem;font-weight:700;margin-top:1rem;margin-bottom:.5rem">First Conversation Checklist</div>
+<div class="check-item"><span class="check-num">1.</span>Lead with results: Aquablu case study (300% uplift, 60% more meetings, same-day contract)</div>
+<div class="check-item"><span class="check-num">2.</span>Mention European hosting proactively but don't over-emphasize &mdash; Benelux buyers are pragmatic</div>
+<div class="check-item"><span class="check-num">3.</span>Ask the 10 discovery deep-dive questions (SPICED structure)</div>
+<div class="check-item"><span class="check-num">4.</span>Suggest in-person meeting or demo as next step</div>
+<div class="check-item"><span class="check-num">5.</span>If prospect uses other tools: position as consolidation/upgrade, not replacement</div>
+</div>
+</div>
+
+<!-- S10: MRR TARGETS -->
+<div class="section" id="targets">
+<div class="section-label">Section 10</div>
+<div class="section-title">MRR Targets &mdash; 2026</div>
+<div class="card" style="padding:1.5rem">
+<div class="mrr-track">
+<div class="mrr-row"><span class="mrr-label">End Q1</span><div class="mrr-bar-track"><div class="mrr-bar">&euro;25K</div></div><span class="mrr-value">&euro; 25,000</span></div>
+<div class="mrr-row"><span class="mrr-label">End Q2</span><div class="mrr-bar-track"><div class="mrr-bar">&euro;50K</div></div><span class="mrr-value">&euro; 50,000</span></div>
+<div class="mrr-row"><span class="mrr-label">End 2026</span><div class="mrr-bar-track"><div class="mrr-bar">&euro;100K</div></div><span class="mrr-value">&euro; 100,000</span></div>
+</div>
+</div>
+</div>
+
+<!-- S11: CUSTOMERS & PIPELINE -->
+<div class="section" id="pipeline">
+<div class="section-label">Section 11</div>
+<div class="section-title">Current Customers &amp; Pipeline</div>
+<div class="pipeline-grid">
+<div class="pipeline-row">
+<span class="pipeline-company">Aquablu</span>
+<span class="pipeline-location">Amsterdam, NL</span>
+<span class="pipeline-industry">Water dispensers / B2B beverage</span>
+<span class="pipeline-status status-active">Active Customer</span>
+</div>
+<div class="pipeline-row">
+<span class="pipeline-company">iBOOD</span>
+<span class="pipeline-location">Netherlands</span>
+<span class="pipeline-industry">B2B purchasing / daily deals</span>
+<span class="pipeline-status status-active">Active Customer</span>
+</div>
+<div class="pipeline-row">
+<span class="pipeline-company">Acer</span>
+<span class="pipeline-location">Benelux operations</span>
+<span class="pipeline-industry">IT / Hardware</span>
+<span class="pipeline-status status-active">Active Customer</span>
+</div>
+<div style="padding:.5rem 0">
+<div class="pipeline-note">Pipeline managed by Michael Uenk (CEO) and Micky Bronkhorst (COO) directly. Additional prospects not tracked in this document.</div>
+</div>
+</div>
+</div>
+
+<!-- S12: MARKET NOTES -->
+<div class="section" id="notes">
+<div class="section-label">Section 12</div>
+<div class="section-title">Benelux Market Notes</div>
+<div class="notes-grid">
+<div class="note-card"><h5>Netherlands</h5><p>Primary market within Benelux. Dutch business culture is flat, direct, and pragmatic. Decisions made quickly once value is demonstrated.</p></div>
+<div class="note-card"><h5>Belgium</h5><p>Split between Flanders (Dutch-speaking, culturally closer to NL) and Wallonia (French-speaking, more formal). Flanders is the more natural fit for initial expansion.</p></div>
+<div class="note-card"><h5>Luxembourg</h5><p>Small but high-value. Financial services hub with international companies. Good for targeted enterprise plays.</p></div>
+<div class="note-card"><h5>Tool-Aware Market</h5><p>More tool-aware than DACH. Many companies already use some form of sales intelligence or CRM enrichment. Conversation is about consolidation and upgrade.</p></div>
+<div class="note-card"><h5>International by Nature</h5><p>Most Benelux companies think internationally from day one due to the small domestic market. The expansion use case is a natural fit.</p></div>
+<div class="note-card"><h5>GDPR: Pragmatic</h5><p>Important but pragmatic. Dutch and Belgian buyers care about compliance but are less anxious than German buyers. Lead with results, address GDPR briefly.</p></div>
+<div class="note-card"><h5>Home Market Advantage</h5><p>AI-KIP is Amsterdam-based with Dutch founders. Significant trust factor. &ldquo;We're not just selling to you from Europe &mdash; we're your neighbor.&rdquo;</p></div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

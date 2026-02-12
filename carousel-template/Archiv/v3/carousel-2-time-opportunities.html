@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080">
+    <meta name="color-scheme" content="dark">
+    <title>4 Time Opportunities in B2B Sales – AI-KIP Carousel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================
+           ANTI-STITCHING GLOBAL RESET
+           ========================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            box-shadow: none;
+            box-sizing: border-box;
+            shape-rendering: geometricPrecision;
+        }
+
+        /* ==========================================================
+           SINGLE BACKGROUND SOURCE – body only
+           ========================================================== */
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #111111;
+            color: #FFFFFF;
+        }
+
+        /* ==========================================================
+           SLIDE
+           ========================================================== */
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        .slide:last-child {
+            page-break-after: auto;
+        }
+
+        /* ==========================================================
+           HEADER
+           ========================================================== */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-number {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.30);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+        }
+
+        /* ==========================================================
+           CONTENT
+           ========================================================== */
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Label with integrated underline (::after pseudo-element) */
+        .label {
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-bottom: 48px;
+            position: relative;
+        }
+
+        .label::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 28px;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            border-radius: 2px;
+        }
+
+        /* Headlines */
+        .headline {
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1;
+            padding-bottom: 32px;
+        }
+
+        .headline-xl { font-size: 72px; }
+        .headline-lg { font-size: 56px; }
+
+        .headline-gradient {
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subline (Hook/CTA slides) */
+        .subline {
+            font-size: 38px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1;
+        }
+
+        /* Body text */
+        .body-text {
+            font-size: 34px;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.55;
+            padding-bottom: 16px;
+        }
+
+        .body-text:last-child { padding-bottom: 0; }
+
+        .body-text strong {
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        /* Quote (gradient bar via ::before, no border) */
+        .quote {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.72);
+            font-style: italic;
+            line-height: 1.5;
+            padding: 16px 0 16px 28px;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00FFFF, #FF00FF);
+            border-radius: 2px;
+        }
+
+        /* Source citation */
+        .source {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.28);
+            line-height: 1;
+            padding-top: 8px;
+        }
+
+        /* Bullet list */
+        .bullets {
+            list-style: none;
+            padding: 16px 0;
+        }
+
+        .bullets li {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.72);
+            padding: 0 0 16px 40px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .bullets li:last-child { padding-bottom: 0; }
+
+        .bullets li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #00FFFF;
+            font-weight: 700;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 44px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            border-radius: 14px;
+            font-size: 26px;
+            color: #111111;
+            font-weight: 700;
+            align-self: flex-start;
+        }
+
+        .cta-spacer { padding-top: 24px; }
+
+        /* ==========================================================
+           FOOTER
+           ========================================================== */
+        .slide-footer-area {
+            flex-shrink: 0;
+        }
+
+        .flow-line-wrap {
+            position: relative;
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .flow-line {
+            height: 4px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+        }
+
+        /* Slide 1: line starts at center, cyan dot */
+        .slide-1 .flow-line {
+            width: 50%;
+            position: absolute;
+            right: 0;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .flow-dot-cyan {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: #00FFFF;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #00FFFF;
+        }
+
+        /* Slide 8: line ends at center, magenta dot */
+        .slide-8 .flow-line {
+            width: 50%;
+            border-radius: 2px 0 0 2px;
+        }
+
+        .flow-dot-magenta {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: #FF00FF;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #FF00FF;
+        }
+
+        .swipe-hint {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.22);
+            line-height: 1;
+        }
+
+        .swipe-arrow {
+            color: #00FFFF;
+            padding-left: 8px;
+        }
+
+        .website {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.30);
+            font-weight: 500;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         SLIDE 1: Hook
+         ============================================================ -->
+    <div class="slide slide-1">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">1 / 8</span>
+        </div>
+        <div class="slide-content">
+            <h1 class="headline headline-xl headline-gradient">
+                4 Hidden Drains<br>on Your Pipeline
+            </h1>
+            <p class="subline">(And Where the Biggest Gains Are)</p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+                <div class="flow-dot-cyan"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 2: Opportunity #1
+         ============================================================ -->
+    <div class="slide slide-2">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">2 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Opportunity #1</span>
+            <h2 class="headline headline-lg">
+                Research at Scale
+            </h2>
+            <p class="body-text">
+                Sales reps spend 70% of their time on non-selling tasks. Automating research instantly increases selling capacity.
+            </p>
+            <p class="source">
+                &mdash; Salesforce State of Sales Report (2024)
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 3: Opportunity #2
+         ============================================================ -->
+    <div class="slide slide-3">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">3 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Opportunity #2</span>
+            <h2 class="headline headline-lg">
+                Focus on the<br>Active 5%
+            </h2>
+            <p class="body-text">
+                Only 5% of your total addressable market is actively buying at any given moment. Precision beats volume.
+            </p>
+            <p class="source">
+                &mdash; Ehrenberg-Bass Institute &amp; LinkedIn B2B Institute
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 4: Opportunity #3
+         ============================================================ -->
+    <div class="slide slide-4">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">4 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Opportunity #3</span>
+            <h2 class="headline headline-lg">
+                Fix Your CRM<br>Data Decay
+            </h2>
+            <p class="body-text">
+                B2B contact data decays at 22-30% per year. That means nearly a third of your database becomes obsolete annually.
+            </p>
+            <p class="source">
+                &mdash; HubSpot Database Decay Study
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 5: Opportunity #4
+         ============================================================ -->
+    <div class="slide slide-5">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">5 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">Opportunity #4</span>
+            <h2 class="headline headline-lg">
+                Win Earlier
+            </h2>
+            <p class="body-text">
+                70&ndash;80% of the buyer journey happens before first sales contact, and 81% already have a preferred vendor by then.
+            </p>
+            <p class="source">
+                &mdash; Gartner B2B Buying Journey; 6sense Buyer Experience Report (2024)
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 6: The Pattern
+         ============================================================ -->
+    <div class="slide slide-6">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">6 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">The Pattern</span>
+            <h2 class="headline headline-lg">
+                Effort Isn't<br>the Problem
+            </h2>
+            <p class="body-text">
+                Sales teams work hard. Teams with real-time market signals work ahead of the buyer.
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 7: The Fix
+         ============================================================ -->
+    <div class="slide slide-7">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">7 / 8</span>
+        </div>
+        <div class="slide-content">
+            <span class="label">The Fix</span>
+            <h2 class="headline headline-lg">
+                Intelligence<br>Before Action
+            </h2>
+            <p class="body-text">
+                Know which accounts are moving. Know why. Know when. Then act, before your competition does.
+            </p>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+            </div>
+            <div class="slide-footer">
+                <span class="swipe-hint">Swipe<span class="swipe-arrow">&rarr;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SLIDE 8: CTA (Educational – no website)
+         ============================================================ -->
+    <div class="slide slide-8">
+        <div class="slide-header">
+            <div class="logo-container">
+                <img src="../logo.png" alt="AI-KIP" class="logo">
+                <span class="logo-text">AI Knowledge &amp; Interaction Platform</span>
+            </div>
+            <span class="slide-number">8 / 8</span>
+        </div>
+        <div class="slide-content">
+            <h2 class="headline headline-xl">
+                Turn Insight<br>into Advantage
+            </h2>
+            <p class="body-text">Your team deserves leverage.</p>
+            <div class="cta-spacer">
+                <span class="cta-button">Follow for Sales Tips</span>
+            </div>
+        </div>
+        <div class="slide-footer-area">
+            <div class="flow-line-wrap">
+                <div class="flow-line"></div>
+                <div class="flow-dot-magenta"></div>
+            </div>
+            <div class="slide-footer">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

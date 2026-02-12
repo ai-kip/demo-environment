@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-KIP — Nordics Competitive Intelligence (N=10)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-void:#04060e;
+  --bg-deep:#070a16;
+  --bg-base:#0a0f1e;
+  --bg-card:#0d1326;
+  --bg-card-alt:#101730;
+  --bg-elevated:#141c3a;
+  --accent:#4f8fff;
+  --accent-light:#7eadff;
+  --accent-dim:rgba(79,143,255,.12);
+  --green:#00d68f;
+  --green-light:#3eeab4;
+  --green-dim:rgba(0,214,143,.1);
+  --amber:#ffb020;
+  --amber-dim:rgba(255,176,32,.1);
+  --rose:#ff4d6a;
+  --rose-dim:rgba(255,77,106,.08);
+  --purple:#b07fff;
+  --purple-dim:rgba(176,127,255,.1);
+  --cyan:#22d3ee;
+  --cyan-dim:rgba(34,211,238,.1);
+  --cyan-light:#67e8f9;
+  --text-primary:#e8ecf4;
+  --text-secondary:#8793a8;
+  --text-muted:#5a6578;
+  --text-faint:#3d4659;
+  --border:#1a2040;
+  --border-light:#252e4a;
+  --radius:10px;
+  --radius-lg:16px;
+  --serif:'DM Serif Display', Georgia, serif;
+  --sans:'IBM Plex Sans', -apple-system, sans-serif;
+  --mono:'IBM Plex Mono', 'Consolas', monospace;
+}
+html{scroll-behavior:smooth;background:var(--bg-void)}
+body{
+  font-family:var(--sans);color:var(--text-primary);
+  background:var(--bg-void);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(34,211,238,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(4,6,14,.88);backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid rgba(26,32,64,.6);
+}
+nav .inner{
+  max-width:1280px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;height:52px;padding:0 2rem;
+}
+nav .brand{
+  font-family:var(--mono);font-weight:600;font-size:.78rem;
+  letter-spacing:.08em;color:var(--cyan);text-transform:uppercase;
+}
+nav .brand span{color:var(--text-muted);font-weight:400}
+nav .links{display:flex;gap:1.5rem;list-style:none}
+nav .links a{
+  color:var(--text-muted);text-decoration:none;font-size:.72rem;
+  font-family:var(--mono);font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;transition:color .2s;
+}
+nav .links a:hover{color:var(--text-primary)}
+
+.container{max-width:1280px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+section{padding:5.5rem 0}
+
+.section-label{
+  font-family:var(--mono);font-size:.68rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;
+}
+.section-label::before{
+  content:'';width:20px;height:1px;background:var(--cyan);
+}
+.section-title{
+  font-family:var(--serif);font-size:2.4rem;line-height:1.12;
+  color:var(--text-primary);margin-bottom:.6rem;font-weight:400;
+}
+.section-subtitle{
+  font-size:.95rem;color:var(--text-secondary);max-width:620px;
+  line-height:1.7;font-weight:300;
+}
+
+.hero{padding:9rem 0 5rem;position:relative;overflow:hidden}
+.hero-glow{
+  position:absolute;top:-300px;right:-200px;width:800px;height:800px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(34,211,238,.06) 0%,rgba(0,214,143,.03) 40%,transparent 70%);
+  animation:heroFloat 20s ease-in-out infinite;
+}
+@keyframes heroFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+.hero-glow-2{
+  position:absolute;bottom:-200px;left:-100px;width:600px;height:600px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(34,211,238,.04) 0%,transparent 70%);
+}
+.hero .container{position:relative;z-index:1}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.7rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:2rem;
+  display:inline-flex;align-items:center;gap:.75rem;
+  padding:.45rem 1rem;border:1px solid rgba(34,211,238,.2);
+  border-radius:4px;background:rgba(34,211,238,.04);
+}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(2.6rem,5vw,4.2rem);
+  line-height:1.1;font-weight:400;margin-bottom:1.25rem;max-width:820px;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--cyan-light),var(--green-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-desc{
+  font-size:1.05rem;color:var(--text-secondary);max-width:640px;
+  line-height:1.75;font-weight:300;margin-bottom:3rem;
+}
+.hero-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:800px}
+.hero-stat{padding:1.25rem 0;position:relative}
+.hero-stat+.hero-stat{border-left:1px solid var(--border-light);padding-left:1.5rem}
+.hero-stat-value{
+  font-family:var(--mono);font-size:1.8rem;font-weight:600;
+  color:var(--text-primary);line-height:1;letter-spacing:-.02em;
+}
+.hero-stat-value .counter{display:inline}
+.hero-stat-label{
+  font-size:.7rem;color:var(--text-muted);margin-top:.4rem;
+  font-weight:500;text-transform:uppercase;letter-spacing:.06em;
+  font-family:var(--mono);
+}
+.hero-stat-label--alert{color:var(--rose)}
+
+.divider{
+  height:1px;margin:0 auto;max-width:100%;
+  background:linear-gradient(90deg,transparent,var(--border-light) 20%,var(--border-light) 80%,transparent);
+}
+
+.tier-tabs{display:flex;gap:.35rem;margin-top:2rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.tier-tab{
+  padding:.45rem 1rem;border-radius:6px;font-size:.72rem;
+  font-family:var(--mono);font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--border);color:var(--text-muted);
+  background:transparent;transition:all .2s;
+}
+.tier-tab:hover{border-color:var(--cyan);color:var(--text-secondary)}
+.tier-tab.active{
+  background:var(--cyan-dim);border-color:var(--cyan);
+  color:var(--cyan);
+}
+
+.heatmap-panel{display:none}
+.heatmap-panel.active{display:block}
+.heatmap-wrap{overflow-x:auto;padding-bottom:.5rem;-webkit-overflow-scrolling:touch}
+.heatmap{display:grid;gap:2px;min-width:720px}
+.heatmap-header{
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-muted);padding:.65rem .4rem;text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.heatmap-header:first-child{text-align:left;padding-left:.75rem}
+.heatmap-row-label{
+  font-size:.78rem;font-weight:500;color:var(--text-secondary);
+  padding:.55rem .75rem;display:flex;align-items:center;
+  border-bottom:1px solid rgba(26,32,64,.4);
+  background:rgba(10,15,30,.4);
+}
+.heatmap-cell{
+  padding:.5rem .3rem;text-align:center;border-radius:4px;
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  letter-spacing:.03em;cursor:default;
+  border-bottom:1px solid rgba(26,32,64,.15);
+  transition:transform .12s,box-shadow .12s;
+}
+.heatmap-cell:hover{transform:scale(1.1);z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.heat-vh{background:rgba(0,214,143,.2);color:var(--green-light)}
+.heat-h{background:rgba(0,214,143,.1);color:rgba(62,234,180,.75)}
+.heat-m{background:rgba(255,176,32,.1);color:var(--amber)}
+.heat-l{background:rgba(255,77,106,.07);color:rgba(255,77,106,.6)}
+.heat-0{background:rgba(90,101,120,.04);color:rgba(90,101,120,.3)}
+
+.ws-banner{
+  margin-top:1.75rem;padding:1.15rem 1.5rem;
+  border:1px solid rgba(34,211,238,.2);border-radius:var(--radius);
+  background:rgba(34,211,238,.03);
+  display:flex;align-items:flex-start;gap:1rem;
+}
+.ws-banner-marker{
+  flex-shrink:0;margin-top:3px;width:8px;height:8px;
+  border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 8px rgba(34,211,238,.4);
+}
+.ws-banner p{color:var(--text-secondary);font-size:.85rem;line-height:1.65}
+.ws-banner strong{color:var(--cyan);font-weight:600}
+
+.actions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1rem;margin-top:2.5rem}
+.action-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.75rem 1.75rem 1.5rem;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.action-card:hover{
+  border-color:rgba(34,211,238,.3);transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(34,211,238,.06);
+}
+.action-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--green),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.action-card:hover::before{opacity:.6}
+.action-number{
+  font-family:var(--serif);font-size:2.4rem;font-style:italic;
+  line-height:1;color:rgba(34,211,238,.08);position:absolute;top:.75rem;right:1.25rem;
+}
+.action-badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.6rem;font-family:var(--mono);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.25rem .6rem;border-radius:3px;margin-bottom:.85rem;
+}
+.badge-now{background:rgba(0,214,143,.12);color:var(--green-light);border:1px solid rgba(0,214,143,.15)}
+.badge-soon{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(34,211,238,.15)}
+.action-card h3{
+  font-family:var(--serif);font-size:1.25rem;font-weight:400;
+  line-height:1.3;margin-bottom:.65rem;padding-right:2rem;
+}
+.action-card p{color:var(--text-secondary);font-size:.84rem;line-height:1.65;margin-bottom:1rem}
+.action-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.action-tag{
+  font-size:.65rem;font-family:var(--mono);font-weight:600;
+  padding:.25rem .55rem;border-radius:4px;letter-spacing:.02em;
+}
+.tag-cost{background:var(--green-dim);color:var(--green-light)}
+.tag-time{background:var(--cyan-dim);color:var(--cyan)}
+.tag-data{background:var(--purple-dim);color:var(--purple)}
+
+.map-outer{
+  margin-top:2.5rem;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:2rem;position:relative;overflow:hidden;
+}
+.map-container{position:relative;width:100%;aspect-ratio:16/9;min-height:480px}
+.map-axis{
+  position:absolute;font-size:.62rem;font-family:var(--mono);
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);
+}
+.map-axis--x{bottom:-.5rem;left:50%;transform:translateX(-50%)}
+.map-axis--y{top:50%;left:-1.5rem;transform:translateY(-50%) rotate(-90deg);white-space:nowrap}
+.map-corner{
+  position:absolute;font-size:.58rem;font-family:var(--mono);
+  color:rgba(90,101,120,.3);font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+}
+.map-corner--tl{top:.5rem;left:.5rem}
+.map-corner--tr{top:.5rem;right:.5rem;text-align:right}
+.map-corner--bl{bottom:.5rem;left:.5rem}
+.map-corner--br{bottom:.5rem;right:.5rem;text-align:right}
+.map-grid-lines{position:absolute;inset:2rem 1rem 2rem 2rem}
+.map-grid-lines::before,.map-grid-lines::after{content:'';position:absolute;background:var(--border)}
+.map-grid-lines::before{left:50%;top:0;bottom:0;width:1px}
+.map-grid-lines::after{top:50%;left:0;right:0;height:1px}
+.map-zone{
+  position:absolute;border:1.5px dashed rgba(0,214,143,.2);
+  border-radius:var(--radius);background:rgba(0,214,143,.015);
+  top:2%;left:1%;width:48%;height:44%;
+}
+.map-zone-label{
+  position:absolute;top:6%;left:3%;font-size:.6rem;font-family:var(--mono);
+  font-weight:600;color:rgba(0,214,143,.35);letter-spacing:.08em;text-transform:uppercase;
+}
+.map-dot{
+  position:absolute;transform:translate(-50%,-50%);
+  z-index:2;cursor:default;transition:transform .2s;
+}
+.map-dot:hover{transform:translate(-50%,-50%) scale(1.2);z-index:10}
+.map-dot:hover .map-tooltip{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.dot-core{width:10px;height:10px;border-radius:50%;border:2px solid;position:relative}
+.dot-label{
+  position:absolute;white-space:nowrap;
+  font-size:.64rem;font-family:var(--mono);font-weight:500;color:var(--text-muted);
+  top:50%;left:calc(100% + 5px);transform:translateY(-50%);
+}
+.dot-label.l{left:auto;right:calc(100% + 5px)}
+.dot-label.b{top:calc(100% + 3px);left:50%;transform:translateX(-50%)}
+.dot-label.t{top:auto;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%)}
+.map-tooltip{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);
+  background:var(--bg-elevated);border:1px solid var(--border-light);border-radius:6px;
+  padding:.5rem .7rem;white-space:nowrap;font-size:.68rem;color:var(--text-secondary);
+  opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:20;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.map-dot.is-kip .dot-core{
+  width:16px;height:16px;background:rgba(0,214,143,.15);border-color:var(--green);
+  box-shadow:0 0 16px rgba(0,214,143,.25),0 0 40px rgba(0,214,143,.08);
+}
+.map-dot.is-kip .dot-label{color:var(--green-light);font-weight:700;font-size:.72rem}
+.map-dot.is-kip{animation:kipPulse 3s ease-in-out infinite}
+@keyframes kipPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+
+.map-legend{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.map-legend-item{display:flex;align-items:center;gap:.35rem;font-size:.66rem;font-family:var(--mono);color:var(--text-muted)}
+.map-legend-dot{width:8px;height:8px;border-radius:50%;border:2px solid}
+
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2.5rem}
+.ws-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.5rem;
+  position:relative;overflow:hidden;transition:border-color .3s,transform .3s;
+}
+.ws-card:hover{border-color:rgba(0,214,143,.25);transform:translateY(-2px)}
+.ws-card-glow{
+  position:absolute;top:-40px;right:-40px;width:120px;height:120px;
+  background:radial-gradient(circle,rgba(0,214,143,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.ws-card-tag{
+  display:inline-block;font-size:.58rem;font-family:var(--mono);font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.2rem .5rem;border-radius:3px;margin-bottom:.85rem;
+  background:var(--green-dim);color:var(--green-light);
+  border:1px solid rgba(0,214,143,.12);
+}
+.ws-card h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;line-height:1.3;margin-bottom:.5rem}
+.ws-card p{color:var(--text-secondary);font-size:.82rem;line-height:1.6}
+.ws-card-meter{margin-top:.85rem;display:flex;align-items:center;gap:.6rem}
+.ws-card-meter-bar{flex:1;height:4px;background:rgba(90,101,120,.12);border-radius:2px;overflow:hidden}
+.ws-card-meter-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--green-light));transition:width 1s ease}
+.ws-card-meter-val{font-size:.68rem;font-family:var(--mono);font-weight:600;color:var(--green-light);min-width:3rem}
+
+.scoreboard{margin-top:2rem}
+.scoreboard-row{
+  display:flex;align-items:center;gap:1rem;
+  padding:.8rem 0;border-bottom:1px solid var(--border);
+  transition:background .2s;
+}
+.scoreboard-row:hover{background:rgba(255,255,255,.008)}
+.sb-practice{width:170px;flex-shrink:0;font-size:.82rem;font-weight:500;color:var(--text-primary)}
+.sb-companies{display:flex;gap:.3rem;flex-wrap:wrap;flex:1}
+.sb-pill{
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  padding:.2rem .45rem;border-radius:3px;letter-spacing:.02em;
+}
+.pill-leader{background:rgba(79,143,255,.12);color:var(--accent-light)}
+.pill-strong{background:var(--green-dim);color:var(--green-light)}
+.pill-emerging{background:var(--amber-dim);color:var(--amber)}
+.pill-nordic{background:var(--cyan-dim);color:var(--cyan)}
+.sb-bar-wrap{width:130px;flex-shrink:0;display:flex;align-items:center;gap:.4rem}
+.sb-bar{flex:1;height:4px;background:rgba(90,101,120,.08);border-radius:2px;overflow:hidden}
+.sb-bar-fill{height:100%;border-radius:2px;transition:width .8s ease;background:linear-gradient(90deg,var(--cyan),var(--cyan-light))}
+.sb-bar-val{font-size:.65rem;font-family:var(--mono);color:var(--text-muted);font-weight:600;width:2.5rem;text-align:right}
+
+.roadmap{margin-top:2.5rem;position:relative;padding-left:3rem}
+.roadmap::before{
+  content:'';position:absolute;left:8px;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,var(--cyan),var(--green) 50%,var(--cyan));
+}
+.rm-phase{margin-bottom:2.5rem;position:relative}
+.rm-dot{
+  position:absolute;left:-3rem;top:.3rem;width:17px;height:17px;
+  border-radius:50%;border:3px solid var(--bg-void);z-index:2;
+}
+.rm-phase:nth-child(1) .rm-dot{background:var(--cyan)}
+.rm-phase:nth-child(2) .rm-dot{background:var(--green)}
+.rm-phase:nth-child(3) .rm-dot{background:var(--accent-light)}
+.rm-phase:nth-child(4) .rm-dot{background:var(--green-light)}
+.rm-label{
+  font-size:.65rem;font-family:var(--mono);font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;
+}
+.rm-phase:nth-child(1) .rm-label{color:var(--cyan)}
+.rm-phase:nth-child(2) .rm-label{color:var(--green-light)}
+.rm-phase:nth-child(3) .rm-label{color:var(--accent-light)}
+.rm-phase:nth-child(4) .rm-label{color:var(--green-light)}
+.rm-phase h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:.65rem}
+.rm-items{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.rm-items li{
+  display:flex;align-items:baseline;gap:.55rem;
+  font-size:.84rem;color:var(--text-secondary);line-height:1.55;
+}
+.rm-items li::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--text-faint);flex-shrink:0;margin-top:.6rem;
+}
+.rm-items .data-ref{
+  font-family:var(--mono);font-size:.68rem;color:var(--purple);
+  background:var(--purple-dim);padding:.1rem .35rem;border-radius:3px;
+  white-space:nowrap;
+}
+
+.cta-section{text-align:center;padding:5rem 0 6rem}
+.cta-section h2{font-family:var(--serif);font-size:2.4rem;font-weight:400;margin-bottom:.75rem}
+.cta-section h2 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--cyan-light),var(--green-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cta-section p{color:var(--text-secondary);font-size:1rem;max-width:540px;margin:0 auto;line-height:1.7}
+.cta-date{
+  margin-top:2rem;font-family:var(--mono);font-size:.7rem;
+  color:var(--text-faint);letter-spacing:.06em;
+}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+.reveal-d4{transition-delay:.32s}
+.reveal-d5{transition-delay:.4s}
+
+@media(max-width:768px){
+  section{padding:3.5rem 0}
+  .container{padding:0 1rem}
+  .hero{padding:6.5rem 0 3.5rem}
+  .hero h1{font-size:2rem}
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:.5rem}
+  .section-title{font-size:1.7rem}
+  .actions-grid{grid-template-columns:1fr}
+  .ws-grid{grid-template-columns:1fr}
+  .sb-practice{width:110px;font-size:.75rem}
+  .sb-bar-wrap{width:70px}
+  nav .links{display:none}
+  .map-container{aspect-ratio:auto;min-height:400px}
+  .tier-tabs{gap:.25rem}
+  .tier-tab{padding:.35rem .65rem;font-size:.65rem}
+}
+@media(max-width:480px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .scoreboard-row{flex-wrap:wrap}
+  .sb-bar-wrap{width:100%;order:3}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="brand">AI-KIP <span>// Nordics Intelligence</span></div>
+    <ul class="links">
+      <li><a href="#matrix">Channels</a></li>
+      <li><a href="#actions">Actions</a></li>
+      <li><a href="#positioning">Map</a></li>
+      <li><a href="#whitespace">White Space</a></li>
+      <li><a href="#scoreboard">Scoreboard</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-eyebrow reveal">Nordics Competitive Intelligence -- N=10</div>
+    <h1 class="reveal reveal-d1">Nordics Market<br><em>Intelligence Dossier</em></h1>
+    <p class="hero-desc reveal reveal-d2">Analysis of 10 competitors active in Sweden, Norway, Denmark, and Finland. Five Nordic-native companies plus five EU/global players competing for the Nordic B2B intelligence market.</p>
+    <div class="hero-stats reveal reveal-d3">
+      <div class="hero-stat">
+        <div class="hero-stat-value"><span class="counter" data-target="10">0</span></div>
+        <div class="hero-stat-label">Competitors</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value"><span class="counter" data-target="12">0</span></div>
+        <div class="hero-stat-label">Channels Mapped</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value"><span class="counter" data-target="7">0</span></div>
+        <div class="hero-stat-label">Nordic White Spaces</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">5/5</div>
+        <div class="hero-stat-label hero-stat-label--alert">Nordic HQs, EN Only</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">0/10</div>
+        <div class="hero-stat-label hero-stat-label--alert">Nordic Community</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- CHANNEL MATRIX -->
+<section id="matrix">
+  <div class="container">
+    <div class="section-label reveal">01 -- Channel Analysis</div>
+    <h2 class="section-title reveal">Nordics Channel Matrix</h2>
+    <p class="section-subtitle reveal">Channel intensity across 10 Nordics-active competitors. Every single competitor -- including all 5 Nordic-HQ companies -- operates in English only.</p>
+
+    <div class="tier-tabs reveal">
+      <button class="tier-tab active" onclick="showTier('nordic',this)">Nordic-Native (5)</button>
+      <button class="tier-tab" onclick="showTier('eu',this)">EU-Focused (2)</button>
+      <button class="tier-tab" onclick="showTier('gl',this)">Global Players (3)</button>
+    </div>
+
+    <div class="heatmap-panel active" id="panel-nordic">
+      <div class="heatmap-wrap reveal"><div class="heatmap" id="heatmap-nordic"></div></div>
+    </div>
+    <div class="heatmap-panel" id="panel-eu">
+      <div class="heatmap-wrap reveal"><div class="heatmap" id="heatmap-eu"></div></div>
+    </div>
+    <div class="heatmap-panel" id="panel-gl">
+      <div class="heatmap-wrap reveal"><div class="heatmap" id="heatmap-gl"></div></div>
+    </div>
+
+    <div class="ws-banner reveal">
+      <div class="ws-banner-marker"></div>
+      <p><strong>7 Nordic-specific channels have zero competition:</strong> Nordic-language B2B content (10/10 English-only, including all Nordic HQs), Nordic community (0/10), Nordic podcast in local language (0/10 -- Strise's "The Laundry" is in English), Nordic newsletter (0/10), Nordic events (0/10), Nordic SEO in local languages (0/10), and YouTube Nordic B2B content (0/10). Despite 5 companies being headquartered in the Nordics, none produce content in Swedish, Norwegian, Danish, or Finnish.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ACTIONS -->
+<section id="actions">
+  <div class="container">
+    <div class="section-label reveal">02 -- Immediate Priorities</div>
+    <h2 class="section-title reveal">5 Nordics Actions to Execute Now</h2>
+    <p class="section-subtitle reveal">High-impact moves to establish AI-KIP's presence across Sweden, Norway, Denmark, and Finland.</p>
+
+    <div class="actions-grid">
+
+      <div class="action-card reveal">
+        <span class="action-number">01</span>
+        <div class="action-badge badge-now">Start this week</div>
+        <h3>Leverage Nordic Registry Data Advantage</h3>
+        <p>Vainu built $17.3M revenue on Nordic registry partnerships (PRH Finland, Bolagsverket Sweden, Bronnoysund Norway). AI-KIP can integrate the same registries with agentic intelligence layer -- Vainu does data only, not coaching or outreach.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">Low cost</span>
+          <span class="action-tag tag-time">4-8 wk impact</span>
+          <span class="action-tag tag-data">1/10 proven</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d1">
+        <span class="action-number">02</span>
+        <div class="action-badge badge-now">Start this week</div>
+        <h3>Build Nordic-Language Content</h3>
+        <p>All 10 competitors, including 5 Nordic-HQ companies, produce content exclusively in English. Zero Swedish, Norwegian, Danish, or Finnish B2B sales content exists. Start with Swedish (largest market).</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">Low cost</span>
+          <span class="action-tag tag-time">2-4 wk impact</span>
+          <span class="action-tag tag-data">10/10 absent</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d2">
+        <span class="action-number">03</span>
+        <div class="action-badge badge-soon">Month 1-2</div>
+        <h3>Adopt Strise's Podcast-Led Model</h3>
+        <p>Strise built credibility with "The Laundry" podcast (80+ episodes, Nordic Tier-1 banks as guests). A Nordic B2B sales podcast in local languages has zero competition -- Strise's is English-only.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">Low cost</span>
+          <span class="action-tag tag-time">3-6 mo compound</span>
+          <span class="action-tag tag-data">0/10 local lang</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d3">
+        <span class="action-number">04</span>
+        <div class="action-badge badge-soon">Month 1-2</div>
+        <h3>Replicate Dreamdata's Employee Advocacy</h3>
+        <p>Dreamdata (DK) generated 520K+ LinkedIn views from just 6 employees through systematic employee advocacy. AI-KIP can replicate this with Nordic B2B focus -- posting in Swedish/Norwegian for local audiences.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">0 EUR</span>
+          <span class="action-tag tag-time">Immediate</span>
+          <span class="action-tag tag-data">1/10 proven</span>
+        </div>
+      </div>
+
+      <div class="action-card reveal reveal-d4">
+        <span class="action-number">05</span>
+        <div class="action-badge badge-soon">Month 2-3</div>
+        <h3>Launch Nordic B2B Community</h3>
+        <p>Zero of 10 competitors run a Nordic-focused B2B community. Start a Slack for Nordic sales professionals. Target Stockholm, Oslo, Copenhagen, Helsinki -- 20-50 hand-picked B2B leaders.</p>
+        <div class="action-tags">
+          <span class="action-tag tag-cost">0 EUR</span>
+          <span class="action-tag tag-time">6+ mo compound</span>
+          <span class="action-tag tag-data">0/10 present</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- POSITIONING MAP -->
+<section id="positioning">
+  <div class="container">
+    <div class="section-label reveal">03 -- Market Positioning</div>
+    <h2 class="section-title reveal">Nordics Positioning Map</h2>
+    <p class="section-subtitle reveal">10 competitors + AI-KIP plotted on maturity vs. Nordic focus. The upper-left quadrant is the opportunity zone -- where Nordic-first early-stage companies can win.</p>
+
+    <div class="map-outer reveal">
+      <div class="map-container">
+        <div class="map-axis map-axis--x">Company Maturity &#8594;</div>
+        <div class="map-axis map-axis--y">Nordic Focus &#8594;</div>
+        <div class="map-corner map-corner--tl">Nordic-First / Early Stage</div>
+        <div class="map-corner map-corner--tr">Nordic-First / Enterprise</div>
+        <div class="map-corner map-corner--bl">Global / Early Stage</div>
+        <div class="map-corner map-corner--br">Global / Enterprise</div>
+
+        <div class="map-grid-lines">
+          <div class="map-zone"></div>
+          <div class="map-zone-label">Opportunity Zone</div>
+
+          <!-- Nordic-Native: cyan -->
+          <div class="map-dot" style="left:35%;top:8%">
+            <div class="dot-core" style="border-color:var(--cyan);background:var(--cyan-dim)"></div>
+            <div class="dot-label">Vainu</div>
+            <div class="map-tooltip">$17.3M rev -- FI, Nordic registry data, 1,200 customers</div>
+          </div>
+          <div class="map-dot" style="left:18%;top:15%">
+            <div class="dot-core" style="border-color:var(--cyan);background:var(--cyan-dim)"></div>
+            <div class="dot-label">Albacross</div>
+            <div class="map-tooltip">$1.5M rev -- SE, intent data, 11K customers</div>
+          </div>
+          <div class="map-dot" style="left:32%;top:22%">
+            <div class="dot-core" style="border-color:var(--cyan);background:var(--cyan-dim)"></div>
+            <div class="dot-label">GetAccept</div>
+            <div class="map-tooltip">$30M+ funded -- SE, digital sales rooms, 4K companies</div>
+          </div>
+          <div class="map-dot" style="left:25%;top:10%">
+            <div class="dot-core" style="border-color:var(--cyan);background:var(--cyan-dim)"></div>
+            <div class="dot-label t">Strise</div>
+            <div class="map-tooltip">$15.6M funded -- NO, AML/compliance, 70% Nordic banks</div>
+          </div>
+          <div class="map-dot" style="left:30%;top:20%">
+            <div class="dot-core" style="border-color:var(--cyan);background:var(--cyan-dim)"></div>
+            <div class="dot-label l">Dreamdata</div>
+            <div class="map-tooltip">$66.9M funded -- DK, revenue attribution, PLG</div>
+          </div>
+
+          <!-- EU-Focused: green -->
+          <div class="map-dot" style="left:60%;top:40%">
+            <div class="dot-core" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div>
+            <div class="dot-label">Cognism</div>
+            <div class="map-tooltip">$83M rev -- UK, Diamond Data, expanding Nordic</div>
+          </div>
+          <div class="map-dot" style="left:50%;top:18%">
+            <div class="dot-core" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div>
+            <div class="dot-label">Dealfront</div>
+            <div class="map-tooltip">$41M ARR -- DE/FI heritage (Leadfeeder), EU-native</div>
+          </div>
+
+          <!-- Global Players: blue -->
+          <div class="map-dot" style="left:72%;top:80%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label">Apollo</div>
+            <div class="map-tooltip">$150M ARR -- US, 3M+ free users, PLG king</div>
+          </div>
+          <div class="map-dot" style="left:58%;top:78%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label l">Lusha</div>
+            <div class="map-tooltip">$64.4M rev -- IL, 800K+ Chrome users, GDPR issues</div>
+          </div>
+          <div class="map-dot" style="left:95%;top:90%">
+            <div class="dot-core" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div>
+            <div class="dot-label l">ZoomInfo</div>
+            <div class="map-tooltip">$1.24B rev -- US-centric, no Nordic content</div>
+          </div>
+
+          <!-- AI-KIP -->
+          <div class="map-dot is-kip" style="left:18%;top:14%">
+            <div class="dot-core"></div>
+            <div class="dot-label b">AI-KIP</div>
+            <div class="map-tooltip">Agentic Sales Intelligence -- Nordics/DACH/Benelux</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-legend">
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--cyan);background:var(--cyan-dim)"></div> Nordic-Native</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--green);background:rgba(0,214,143,.12)"></div> EU-Focused</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="border-color:var(--accent);background:rgba(79,143,255,.15)"></div> Global Players</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- WHITE SPACE -->
+<section id="whitespace">
+  <div class="container">
+    <div class="section-label reveal">04 -- Uncontested Territory</div>
+    <h2 class="section-title reveal">Nordics White Space Opportunities</h2>
+    <p class="section-subtitle reveal">The paradox: 5 companies are headquartered in the Nordics, yet none produce content in Nordic languages. The entire local-language B2B space is uncontested.</p>
+
+    <div class="ws-grid">
+
+      <div class="ws-card reveal">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">10/10 absent</div>
+        <h3>Nordic-Language B2B Content</h3>
+        <p>All 10 competitors, including Vainu (FI), Albacross (SE), GetAccept (SE), Strise (NO), and Dreamdata (DK), produce content exclusively in English. Zero B2B sales content in Swedish, Norwegian, Danish, or Finnish.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d1">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/10 present</div>
+        <h3>Nordic B2B Community</h3>
+        <p>No Slack, Discord, or forum exists for Nordic B2B sales professionals. Even with 5 Nordic-HQ companies, nobody has built a community for this audience. First-mover takes all.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d2">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/10 in local lang</div>
+        <h3>Nordic-Language Podcast</h3>
+        <p>Strise runs "The Laundry" (80+ episodes, English). No competitor produces a podcast in Swedish, Norwegian, Danish, or Finnish. A Nordic B2B podcast is completely uncontested.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d3">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/10 present</div>
+        <h3>Nordic Events &amp; Meetups</h3>
+        <p>No competitor hosts owned events in Stockholm, Oslo, Copenhagen, or Helsinki. All events are US/UK-based. Nordic B2B roundtables are completely uncontested territory.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d4">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">1/10 proven</div>
+        <h3>Nordic Registry Data Intelligence</h3>
+        <p>Only Vainu leverages Nordic business registry data (PRH, Bolagsverket, CVR, Bronnoysund). Vainu does data only -- no coaching, no outreach, no signal-to-action workflow. AI-KIP can add the intelligence layer.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="90%"></div></div>
+          <div class="ws-card-meter-val">90% gap</div>
+        </div>
+      </div>
+
+      <div class="ws-card reveal reveal-d5">
+        <div class="ws-card-glow"></div>
+        <div class="ws-card-tag">0/10 present</div>
+        <h3>Nordic Employee Advocacy</h3>
+        <p>Dreamdata proved 6 employees can generate 520K+ LinkedIn views. Nobody does this systematically for Nordic audiences. A coordinated team posting in local languages multiplies reach.</p>
+        <div class="ws-card-meter">
+          <div class="ws-card-meter-bar"><div class="ws-card-meter-fill" data-width="100%"></div></div>
+          <div class="ws-card-meter-val">100% gap</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- SCOREBOARD -->
+<section id="scoreboard">
+  <div class="container">
+    <div class="section-label reveal">05 -- Competitor Strengths</div>
+    <h2 class="section-title reveal">Nordics Best Practices Scoreboard</h2>
+    <p class="section-subtitle reveal">Who leads in each marketing discipline across the 10 Nordics-active competitors. Learn from Nordic natives, exploit global weaknesses.</p>
+
+    <div class="scoreboard reveal" id="scoreboard-content"></div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-label reveal">06 -- Execution Plan</div>
+    <h2 class="section-title reveal">90-Day Nordics Roadmap</h2>
+    <p class="section-subtitle reveal">A phased plan to establish AI-KIP's Nordic presence, calibrated against 10 competitors -- 5 Nordic-native, 5 EU/global.</p>
+
+    <div class="roadmap reveal">
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Week 1-2 -- Foundation</div>
+        <h3>Activate Nordic Presence</h3>
+        <ul class="rm-items">
+          <li>Start founder LinkedIn posting targeting Stockholm/Oslo/Copenhagen B2B networks <span class="data-ref">5/10</span></li>
+          <li>Study Vainu's Nordic registry integrations (PRH, Bolagsverket, CVR, Bronnoysund) -- map partnership opportunities</li>
+          <li>Audit Strise's "The Laundry" podcast (80+ episodes) -- identify format and guest strategy to replicate</li>
+          <li>Study Dreamdata's employee advocacy playbook -- 520K+ views from 6 employees <span class="data-ref">1/10</span></li>
+          <li>Connect with 50 Nordic B2B sales leaders on LinkedIn -- build initial community seed list</li>
+          <li>Claim G2, Capterra profiles with Nordic-specific messaging <span class="data-ref">7/10</span></li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Week 3-4 -- Nordic Content</div>
+        <h3>Launch First Nordic-Language Content</h3>
+        <ul class="rm-items">
+          <li>Write first 5 blog posts in Swedish -- "Vad ar Sales Intelligence?", "AI i B2B-forsaljning" <span class="data-ref">10/10 absent</span></li>
+          <li>Create Nordic landing page with country-specific value propositions (SE, NO, DK, FI)</li>
+          <li>Build first 5 comparison pages: "AI-KIP vs. Vainu", "AI-KIP vs. Albacross", "AI-KIP vs. GetAccept"</li>
+          <li>Start employee advocacy program -- coordinate 3-4 team members posting about Nordic B2B</li>
+          <li>Map Nordic SEO keywords in Swedish, Norwegian, Danish -- identify all uncontested terms</li>
+          <li>Exploit: Vainu's data-only model (no coaching), GetAccept's narrow sales rooms focus, Albacross's declining revenue</li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Month 2 -- Content &amp; Podcast</div>
+        <h3>Build Nordic Content Engine</h3>
+        <ul class="rm-items">
+          <li>Launch Nordic B2B podcast -- interview Stockholm/Oslo/Copenhagen sales leaders <span class="data-ref">0/10 local lang</span></li>
+          <li>Publish 10 SEO pages in Swedish targeting uncontested B2B keywords <span class="data-ref">10/10 absent</span></li>
+          <li>Create 5 more comparison pages in Swedish + English</li>
+          <li>Explore Nordic registry data partnerships (PRH, Bolagsverket) -- Vainu model <span class="data-ref">1/10</span></li>
+          <li>Publish 2-3 blog posts from AI-KIP dogfooding insights, translated to Swedish/Norwegian</li>
+          <li>Launch newsletter for Nordic B2B sales intelligence insights <span class="data-ref">0/10</span></li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot"></div>
+        <div class="rm-label">Month 3 -- Community &amp; Scale</div>
+        <h3>Launch Nordic Community</h3>
+        <ul class="rm-items">
+          <li>Launch Slack with 20-50 hand-picked Nordic B2B professionals <span class="data-ref">0/10</span></li>
+          <li>Host first Stockholm B2B sales roundtable (10-20 attendees) <span class="data-ref">0/10</span></li>
+          <li>Start YouTube channel with Swedish-language product walkthroughs <span class="data-ref">0/10</span></li>
+          <li>Publish first Nordic market data report from AI-KIP platform</li>
+          <li>Expand content to Norwegian and Danish (month 2 was Swedish-first)</li>
+          <li>Evaluate 90-day Nordic results, plan Q2 with Oslo event and Copenhagen meetup</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">The Nordics paradox: <em>5 HQs, zero local content</em></h2>
+    <p class="reveal reveal-d1">Five companies are headquartered in Finland, Sweden, Norway, and Denmark -- yet none produce content in Nordic languages. Across 7 dimensions, zero of 10 competitors serve the Nordic B2B market in local languages. AI-KIP can be the first.</p>
+    <div class="cta-date reveal reveal-d2">Report generated 2026-02-09 // N=10 // AI-KIP Nordics Intelligence</div>
+  </div>
+</section>
+
+<script>
+// ===== TIER TABS =====
+function showTier(id, btn) {
+  document.querySelectorAll('.tier-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.heatmap-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ===== HEATMAP DATA =====
+var channels = ['LinkedIn','SEO','Community','Events','YouTube','Content','PLG','Podcast','Paid Ads','Reviews'];
+var heatLabels = {vh:'V.High',h:'High',m:'Med',l:'Low','0':'--'};
+
+var nordicData = {
+  competitors: ['Vainu (FI)','Albacross (SE)','GetAccept (SE)','Strise (NO)','Dreamdata (DK)'],
+  matrix: {
+    'Vainu (FI)':      ['m','m','l','l','l','h','l','l','m','m'],
+    'Albacross (SE)':  ['vh','h','l','l','l','m','m','0','m','h'],
+    'GetAccept (SE)':  ['h','vh','l','l','m','vh','m','m','m','h'],
+    'Strise (NO)':     ['h','m','l','m','l','h','0','vh','l','l'],
+    'Dreamdata (DK)':  ['vh','h','m','m','l','vh','vh','m','h','h'],
+  }
+};
+var euData = {
+  competitors: ['Cognism','Dealfront'],
+  matrix: {
+    'Cognism':   ['vh','vh','m','h','m','vh','m','h','vh','h'],
+    'Dealfront': ['h','vh','l','m','m','vh','h','l','m','h'],
+  }
+};
+var glData = {
+  competitors: ['Apollo','Lusha','ZoomInfo'],
+  matrix: {
+    'Apollo':   ['h','vh','vh','m','m','vh','vh','l','m','h'],
+    'Lusha':    ['m','h','l','l','l','h','vh','l','m','m'],
+    'ZoomInfo': ['h','vh','m','h','m','vh','m','m','vh','vh'],
+  }
+};
+
+function renderHeatmap(containerId, tierData) {
+  var el = document.getElementById(containerId);
+  el.style.gridTemplateColumns = '140px repeat(' + channels.length + ',1fr)';
+  var html = '<div class="heatmap-header"></div>';
+  channels.forEach(function(ch) { html += '<div class="heatmap-header">' + ch + '</div>'; });
+  tierData.competitors.forEach(function(comp) {
+    html += '<div class="heatmap-row-label">' + comp + '</div>';
+    tierData.matrix[comp].forEach(function(val) {
+      html += '<div class="heatmap-cell heat-' + val + '" title="' + heatLabels[val] + '">' + heatLabels[val] + '</div>';
+    });
+  });
+  el.innerHTML = html;
+}
+
+renderHeatmap('heatmap-nordic', nordicData);
+renderHeatmap('heatmap-eu', euData);
+renderHeatmap('heatmap-gl', glData);
+
+// ===== SCOREBOARD =====
+var practices = [
+  {name:'SEO / Organic', companies:[{n:'ZoomInfo',t:'leader'},{n:'Cognism',t:'leader'},{n:'GetAccept',t:'leader'},{n:'Dealfront',t:'strong'},{n:'Apollo',t:'strong'},{n:'Dreamdata',t:'strong'},{n:'Albacross',t:'strong'}], count:'7/10'},
+  {name:'Content Marketing', companies:[{n:'Cognism',t:'leader'},{n:'GetAccept',t:'leader'},{n:'ZoomInfo',t:'leader'},{n:'Dreamdata',t:'strong'},{n:'Apollo',t:'strong'},{n:'Vainu',t:'strong'}], count:'6/10'},
+  {name:'PLG / Freemium', companies:[{n:'Apollo',t:'leader'},{n:'Dreamdata',t:'leader'},{n:'Lusha',t:'strong'},{n:'Dealfront',t:'strong'},{n:'GetAccept',t:'emerging'},{n:'Albacross',t:'emerging'}], count:'6/10'},
+  {name:'Employee Advocacy', companies:[{n:'Dreamdata',t:'leader'},{n:'Cognism',t:'strong'},{n:'GetAccept',t:'emerging'}], count:'3/10'},
+  {name:'LinkedIn Strategy', companies:[{n:'Cognism',t:'leader'},{n:'Dreamdata',t:'leader'},{n:'Albacross',t:'strong'},{n:'Apollo',t:'strong'},{n:'GetAccept',t:'strong'}], count:'5/10'},
+  {name:'Podcast Strategy', companies:[{n:'Strise',t:'leader'},{n:'Cognism',t:'strong'},{n:'GetAccept',t:'emerging'},{n:'Dreamdata',t:'emerging'}], count:'4/10'},
+  {name:'Events', companies:[{n:'Cognism',t:'leader'},{n:'ZoomInfo',t:'strong'},{n:'Strise',t:'emerging'},{n:'Dreamdata',t:'emerging'}], count:'4/10'},
+  {name:'Review Sites', companies:[{n:'ZoomInfo',t:'leader'},{n:'GetAccept',t:'leader'},{n:'Cognism',t:'strong'},{n:'Apollo',t:'strong'},{n:'Dreamdata',t:'strong'},{n:'Albacross',t:'strong'}], count:'6/10'},
+  {name:'GDPR / Compliance', companies:[{n:'Dealfront',t:'leader'},{n:'Cognism',t:'strong'},{n:'Vainu',t:'emerging'}], count:'3/10'},
+  {name:'Registry Data', companies:[{n:'Vainu',t:'leader'},{n:'Dealfront',t:'strong'}], count:'2/10'},
+  {name:'Community', companies:[{n:'Apollo',t:'leader'},{n:'Dreamdata',t:'emerging'},{n:'Cognism',t:'emerging'}], count:'3/10'},
+  {name:'Nordic Localization', companies:[], count:'0/10'},
+];
+
+var sb = document.getElementById('scoreboard-content');
+practices.forEach(function(p) {
+  var pills = p.companies.map(function(c) {
+    return '<span class="sb-pill pill-' + c.t + '">' + c.n + '</span>';
+  }).join('');
+  if (p.count === '0/10') {
+    pills = '<span class="sb-pill" style="background:var(--rose-dim);color:var(--rose)">None -- wide open</span>';
+  }
+  var pct = (parseInt(p.count) * 100 / 10).toFixed(0);
+  sb.innerHTML += '<div class="scoreboard-row">' +
+    '<div class="sb-practice">' + p.name + '</div>' +
+    '<div class="sb-companies">' + pills + '</div>' +
+    '<div class="sb-bar-wrap">' +
+      '<div class="sb-bar"><div class="sb-bar-fill" style="width:0%" data-width="' + pct + '%"></div></div>' +
+      '<div class="sb-bar-val">' + p.count + '</div>' +
+    '</div>' +
+  '</div>';
+});
+
+// ===== COUNTER ANIMATION =====
+function animateCounters() {
+  document.querySelectorAll('.counter').forEach(function(el) {
+    var target = parseInt(el.dataset.target);
+    var current = 0;
+    var step = Math.ceil(target / 20);
+    var interval = setInterval(function() {
+      current += step;
+      if (current >= target) { current = target; clearInterval(interval); }
+      el.textContent = current;
+    }, 40);
+  });
+}
+
+// ===== SCROLL ANIMATIONS =====
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      entry.target.querySelectorAll('.sb-bar-fill').forEach(function(bar) {
+        setTimeout(function() { bar.style.width = bar.dataset.width; }, 200);
+      });
+      entry.target.querySelectorAll('.ws-card-meter-fill').forEach(function(fill) {
+        setTimeout(function() { fill.style.width = fill.dataset.width; }, 300);
+      });
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+var heroObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) { animateCounters(); heroObs.disconnect(); }
+  });
+}, { threshold: 0.3 });
+var heroEl = document.querySelector('.hero-stats');
+if (heroEl) heroObs.observe(heroEl);
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('nav a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
