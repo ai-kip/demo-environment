@@ -1,78 +1,11 @@
 ﻿Company,Domain,City,Country,Client Tier,Gap Type,Action Required,Priority
-TenCate,tencate.com,Nijverdal,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-OCI Nitrogen,oci-global.com,Geleen,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Bronkhorst High-Tech,bronkhorst.com,Ruurlo,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-SIF Group,sfrholding.com,Roermond,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Photonis Netherlands,photonis.com,Roden,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Bollegraaf Recycling Machinery,bollegraaf.com,Appingedam,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-BE Semiconductor Industries (Besi),besi.com,Duiven,NL,2,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-VMI Group,vmi-group.com,Epe,NL,2,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Royal IHC,royalihc.com,Kinderdijk,NL,2,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Lely Industries,lely.com,Maassluis,NL,2,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Stahl Holdings,stahl.com,Waalwijk,NL,2,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Lamb Weston / Meijer,lambweston.eu,Kruiningen,NL,2,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-ASM International,asm.com,Almere,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Nexperia,nexperia.com,Nijmegen,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
+Royal IHC,royalihc.com,Kinderdijk,NL,2,MISSING_LINKEDIN,Find LinkedIn URL for Scott Mimeche,MEDIUM
+Lamb Weston / Meijer,lambweston.eu,Kruiningen,NL,2,MISSING_LINKEDIN,Find LinkedIn URL for Talal Issa,MEDIUM
 NTS Group,nts-group.com,Eindhoven,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
 KMWE Group,kmwe.com,Eindhoven,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Sioux Technologies,sioux.eu,Eindhoven,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Demcon,demcon.com,Enschede,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Aalberts Industries,aalberts.com,Utrecht,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Inalfa Roof Systems,inalfa.com,Venray,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Vanderlande Industries,vanderlande.com,Veghel,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Damen Shipyards Group,damen.com,Gorinchem,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Boskalis,boskalis.com,Papendrecht,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Heerema Marine Contractors,heerema.com,Leiden,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Huisman Equipment,huismanequipment.com,Schiedam,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Koninklijke Vopak,vopak.com,Rotterdam,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Thales Nederland,thalesgroup.com,Hengelo,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Marel / JBT Marel,jbtmarel.com,Boxmeer,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Wavin,wavin.com,Zwolle,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-AWL-Techniek,awl.nl,Harderwijk,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Fugro,fugro.com,Leidschendam,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
+Inalfa Roof Systems,inalfa.com,Venray,NL,1,MISSING_LINKEDIN,Find LinkedIn URL for Gordon Lanker,MEDIUM
 Royal Cosun,cosun.com,Breda,NL,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Voortman Steel Machinery,voortman.net,Rijssen,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
 Nooteboom Trailers,nooteboom.com,Wijchen,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-AFAS Software,afas.nl,Leusden,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-TOPdesk,topdesk.com,Delft,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-ilionx,ilionx.com,Utrecht,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-OGD ict-diensten,ogd.nl,Delft,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Plat4mation,plat4mation.com,Utrecht,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Leaseweb,leaseweb.com,Amsterdam,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Bynder,bynder.com,Amsterdam,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Bird,bird.com,Amsterdam,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Planon,planonsoftware.com,Nijmegen,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-ORTEC,ortec.com,Zoetermeer,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Enreach,enreach.com,Amersfoort,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Sioen Industries,sioen.com,Ardooie,BE,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Banken Champignons Group,bankenchampignons.com,Maasdriel,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Rexel Nederland,rexel.nl,Amsterdam,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Wasco,wasco.nl,Den Bosch,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Plieger Groep,plieger.nl,Zaltbommel,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-MCB Group,mcb.eu,Valkenswaard,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Nedis,nedis.com,'s-Hertogenbosch,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Rubix Benelux,rubix.com,,NL,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Frencken Europe,frenckengroup.com,Eindhoven,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Holland Colours,hollandcolours.com,Apeldoorn,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-AnQore,anqore.com,Geleen,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Contiweb,contiweb.com,Boxmeer,NL,5,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Airborne Composites,airborne.com,The Hague,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-247TailorSteel,247tailorsteel.com,Varsseveld,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Ebusco,ebusco.com,Deurne,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Schuberg Philis,schubergphilis.com,Schiphol-Rijk,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Eurofiber,eurofiber.com,Maarssen,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Fox-IT,fox-it.com,Delft,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Sendcloud,sendcloud.com,Eindhoven,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Wortell,wortell.nl,Lijnden,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Software Improvement Group,softwareimprovementgroup.com,Amsterdam,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-DataSnipper,datasnipper.com,Amsterdam,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Effectory,effectory.com,Amsterdam,NL,4,MISSING_CONTACT,Find CEO / Managing Director,HIGH
-Vandewiele Group,vandewiele.com,Kortrijk,BE,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-FN Herstal,fnherstal.com,Herstal,BE,1,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Niko Group,niko.eu,Sint-Niklaas,BE,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Resilux,resilux.com,Wetteren,BE,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-BMT Aerospace,bmtaerospace.com,Oostkamp,BE,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
-Vandersanden,vandersanden.com,Bilzen,BE,3,MISSING_CONTACT,Find Head of Sales / VP Sales,HIGH
 itsme Group,itsme.eu,Brussels,BE,3,MISSING_LINKEDIN,Find LinkedIn URL for Tom Van Den Bosch,MEDIUM
 Technische Unie,technischeunie.nl,Amstelveen,NL,2,MISSING_LINKEDIN,Find LinkedIn URL for Bas Schroder,MEDIUM
 IMCD,imcdgroup.com,Rotterdam,NL,1,MISSING_LINKEDIN,Find LinkedIn URL for Andreas Igerl,MEDIUM
